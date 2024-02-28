@@ -17,17 +17,28 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: #000;
+  background: #fff;
+  min-height: 100vh;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 375px;
+    padding: 0 20px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 1200px;
+      padding: 0 32px;
+    }
+
+    @media screen and (min-width: 1400px) {
+      max-width: 1702px;
+    }
   }
 }
