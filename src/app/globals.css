@@ -17,6 +17,7 @@
 }
 
 body {
+  margin: 0px;
   color: #000;
   background: #fff;
   min-height: 100vh;
@@ -25,23 +26,22 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  } 
+  }
   .container {
     margin: 0 auto;
     max-width: 375px;
     padding: 0 20px;
-} 
-@media screen and (min-width: 768px) {
-    .container { 
-      max-width: 1200px;
-      padding: 0 32px;
-    }
-}
-
-@media screen and (min-width: 1400px) {
+  }
+  @media screen and (min-width: 768px) {
     .container {
-      max-width: 1702px;
+      max-width: 1200px;
+      padding: 0 64px;
     }
-}
-}
+  }
 
+  @media screen and (min-width: 1400px) {
+    .container {
+      max-width: 1568px;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import Footer from '../footer/Footer';
 import { Header } from '../header/Header';
 
 export const LayoutProvider = ({
@@ -11,8 +12,8 @@ export const LayoutProvider = ({
         <Header />
       </header>
       <main>{children}</main>
-      <footer>
-        <p>Footer</p>
+      <footer className="py-[20px] border-t-[3px] border-[#F6B83D]">
+        <Footer />
       </footer>
     </>
   );

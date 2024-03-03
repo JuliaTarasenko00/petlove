@@ -1,10 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { FaHeart } from 'react-icons/fa6';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { options } from './data';
+import { RenderAuthComponent } from './RenderAuthComponent';
 
-interface Options {
+export interface Options {
   title: string;
   href: string;
 }
@@ -12,16 +14,11 @@ interface Options {
 export const Header = () => {
   const location = usePathname();
   const mainPage = location === '/';
-
-  const options: Options[] = [
-    { title: 'News', href: '/news' },
-    { title: 'Find pet', href: '/find_pet' },
-    { title: ' Our friends', href: '/our_friends' },
-  ];
+  const auth = true;
 
   return (
     <div className="container">
-      <div className=" bg-slate-600 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <Link
           href="/"
           className={`${mainPage ? 'text-white' : 'text-[#000]'} flex items-center font-extrabold text-[28px] leading-tight tracking-tighter`}
@@ -55,18 +52,7 @@ export const Header = () => {
           })}
         </nav>
         <div className="flex items-center gap-[10px]">
-          <button
-            type="button"
-            className="px-[35px] py-[15px] font-bold text-[16px] uppercase text-white rounded-[30px] bg-[#f6b83d] mr-[5px] hover:bg-[#f9b020] focus:bg-[#f9b020] transition-colors duration-250 ease-in-out"
-          >
-            Login
-          </button>
-          <button
-            type="button"
-            className="px-[35px] py-[15px] font-bold text-[16px] uppercase rounded-[30px] bg-[#fff4df] text-[#f6b83d] hover:bg-[#fbe7c1] focus:bg-[#fbe7c1]  transition-colors duration-250 ease-in-out"
-          >
-            Register
-          </button>
+          <RenderAuthComponent mainPage={mainPage} auth={auth} />
         </div>
       </div>
     </div>
