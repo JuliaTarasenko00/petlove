@@ -16,7 +16,7 @@ const Home = () => {
           </p>
         </div>
         <div className="rounded-[60px] overflow-hidden w-max m-auto">
-          <Image src={img} alt="" width={1440} height={384} />
+          <Image src={img} alt="" loading="lazy" width={1440} height={384} />
         </div>
       </div>
     </section>
