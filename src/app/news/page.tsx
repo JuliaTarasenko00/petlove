@@ -1,3 +1,5 @@
+import { NewsList } from '@/components/news/NewsList';
+
 export default function NewsPage() {
-  return <p>news</p>;
+  return <NewsList />;
 }

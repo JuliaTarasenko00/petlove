@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import { LayoutProvider } from '@/components/layoutProvider/LayoutProvider';
 import './globals.css';
+import ProviderComponent from './provider';
 
 const manrope = Manrope({
   weight: ['400', '500', '700', '800'],
@@ -14,7 +15,6 @@ export const metadata: Metadata = {
   title: 'Petl💛ve',
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={manrope.className}>
-        <LayoutProvider>{children}</LayoutProvider>
+        <ProviderComponent>
+          <LayoutProvider>{children}</LayoutProvider>
+        </ProviderComponent>
       </body>
     </html>
   );
