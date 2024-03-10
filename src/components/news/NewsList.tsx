@@ -1,12 +1,11 @@
 'use client';
 import { getNews } from '@/redux/news/slice';
 import { useEffect, useState } from 'react';
-import { Pagination, PaginationItem } from '@mui/material';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { RiArrowLeftDoubleFill, RiArrowRightDoubleFill } from 'react-icons/ri';
 import { NewsItem } from './NewsItem';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/actionHooks';
-import { CustomPagination } from './PaginationCustom';
+import { SearchForm } from './SearchForm';
+import { TitlePage } from '../ui/TitlePage';
+import { Pagination } from '../ui/Pagination/Pagination';
 
 export const NewsList = () => {
   const dispatch = useAppDispatch();
@@ -21,29 +20,16 @@ export const NewsList = () => {
   return (
     <section className="py-[96px]">
       <div className="container">
+        <div className=" flex justify-between items-center mb-[60px] px-[60px]">
+          <TitlePage>News</TitlePage>
+          <SearchForm />
+        </div>
         <div className="max-w-[100%] flex justify-center mb-[60px]">
           <ul className="flex flex-wrap w-[1153px] justify-center gap-x-[32px] gap-y-[40px]">
             <NewsItem items={news} />
           </ul>
         </div>
-        <CustomPagination
-          count={count}
-          page={page}
-          onChange={(_, page) => setPage(page)}
-          showFirstButton
-          showLastButton
-          renderItem={(item) => (
-            <PaginationItem
-              slots={{
-                first: RiArrowLeftDoubleFill,
-                last: RiArrowRightDoubleFill,
-                previous: IoIosArrowBack,
-                next: IoIosArrowForward,
-              }}
-              {...item}
-            />
-          )}
-        />
+        <Pagination count={count} page={page} setPage={setPage} />
       </div>
     </section>
   );
