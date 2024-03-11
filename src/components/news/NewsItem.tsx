@@ -1,4 +1,4 @@
-import { NewsResult } from '@/types/newsTypes';
+import { NewsResult } from '@/types/news';
 import { format } from 'date-fns';
 
 interface NewsItemsProps {

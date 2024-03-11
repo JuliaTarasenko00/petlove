@@ -1,11 +1,11 @@
 'use client';
-import { getNews } from '@/redux/news/slice';
 import { useEffect, useState } from 'react';
 import { NewsItem } from './NewsItem';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/actionHooks';
 import { TitlePage } from '../ui/TitlePage';
 import { Pagination } from '../ui/Pagination/Pagination';
 import { SearchForm } from '../ui/SearchForm';
+import { getNews } from '@/redux/news/operation';
 
 export const NewsList = () => {
   const dispatch = useAppDispatch();
