@@ -1,3 +1,4 @@
+'use client';
 import { PaginationItem, PaginationRenderItemParams } from '@mui/material';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { RiArrowLeftDoubleFill, RiArrowRightDoubleFill } from 'react-icons/ri';

@@ -3,6 +3,7 @@ import { Pagination, styled } from '@mui/material';
 export const CustomPagination = styled(Pagination)(() => ({
   display: 'flex',
   justifyContent: 'center',
+  marginTop: '60px',
   '& .MuiPaginationItem-root': {
     display: 'flex',
     justifyContent: 'center',
