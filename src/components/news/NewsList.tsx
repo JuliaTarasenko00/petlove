@@ -2,9 +2,9 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { NewsItem } from './NewsItem';
 import image from '../../../public/image/not_found.png';
-import { useAppDispatch, useAppSelector } from '@/helpers/hooks/actionHooks';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { TitlePage } from '../ui/TitlePage';
-import { Pagination } from '../ui/Pagination/Pagination';
+import { Pagination } from '../ui/pagination/Pagination';
 import { SearchForm } from '../ui/SearchForm';
 import { getNews, getNewsSearch } from '@/redux/news/operation';
 import Image from 'next/image';
@@ -62,6 +62,7 @@ export const NewsList: FC = () => {
                 alt="This name not found"
                 width={300}
                 height={200}
+                className=" w-[300px]"
               />
               <h3 className=" font-bold text-[#fff] text-[24px]">
                 Oppppsss! This name "{value}" not found

@@ -1,14 +1,33 @@
 'use client';
 import { NoticesResult } from '@/types/notices';
-import { FaStar, FaRegHeart } from 'react-icons/fa';
+import { FaRegHeart } from 'react-icons/fa';
+import { MdOutlineStar } from 'react-icons/md';
 import { Span, Text } from '../ui/TextNotices';
+import { ModalWindow } from '../ui/modal/Modal';
+import { useToggleModal } from '@/helpers/hooks/useToggleModal';
+import { ModalInformationAuth } from './modalInformation/Auth';
+import { ModalInformationNotAuth } from './modalInformation/NotAuth';
+import { useState } from 'react';
 
 interface INoticesItem {
   items: NoticesResult[];
 }
 
 export const NoticesItem = ({ items }: INoticesItem) => {
+  const { open, toggleModal } = useToggleModal();
+  const [showInform, setShowInform] = useState<boolean>(false);
   const auth = false;
+
+  const clickLearnMore = (id: string) => {
+    toggleModal();
+    if (auth) {
+      console.log('id: ', id);
+      setShowInform(false);
+    } else {
+      setShowInform(true);
+    }
+  };
+
   return (
     <>
       {items.map(
@@ -21,9 +40,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
           birthday,
           comment,
           sex,
-          location,
           imgURL,
-          user,
           popularity,
         }: NoticesResult) => (
           <li
@@ -45,7 +62,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
                 </h3>
                 <p className=" flex items-center gap-[5px] text-[#262626] text-[16px] font-medium">
                   <span>
-                    <FaStar className=" fill-[#FFC531] w-[20px] h-[20px]" />
+                    <MdOutlineStar className=" fill-[#FFC531] w-[20px] h-[20px]" />
                   </span>
                   {popularity}
                 </p>
@@ -89,6 +106,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
             <div className=" flex justify-between items-center">
               <button
                 type="button"
+                onClick={() => clickLearnMore(_id)}
                 className=" max-w-[257px] bg-[#f6b83d] rounded-[30px] text-[#fff] text-[16px] px-[80px] py-[14px] tracking-[-0.03em] leading-[125%]"
               >
                 Learn more
@@ -102,6 +120,17 @@ export const NoticesItem = ({ items }: INoticesItem) => {
             </div>
           </li>
         ),
+      )}
+      {open && (
+        <ModalWindow onClose={toggleModal}>
+          <>
+            {!showInform ? (
+              <ModalInformationAuth />
+            ) : (
+              <ModalInformationNotAuth />
+            )}
+          </>
+        </ModalWindow>
       )}
     </>
   );

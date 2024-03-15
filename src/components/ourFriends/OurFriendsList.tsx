@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/helpers/hooks/actionHooks';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { getFriends } from '@/redux/friends/operation';
 import { useEffect } from 'react';
 import { OurFriendsItem } from './OurFriendsItem';
