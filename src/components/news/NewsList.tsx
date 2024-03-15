@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { TitlePage } from '../ui/TitlePage';
 import { SearchForm } from '../ui/SearchForm';
 import { NewsItem } from './NewsItem';
-import { Pagination } from '../ui/pagination/Pagination';
+import { Pagination } from '../ui/Pagination/Pagination';
 import image from '/public/image/not_found.png';
 
 interface FormValue {
