@@ -1,19 +1,20 @@
 'use client';
-import { FC, useCallback, useEffect, useState } from 'react';
-import { NewsItem } from './NewsItem';
-import image from '../../../public/image/not_found.png';
+
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
-import { TitlePage } from '../ui/TitlePage';
-import { Pagination } from '../ui/pagination/Pagination';
-import { SearchForm } from '../ui/SearchForm';
 import { getNews, getNewsSearch } from '@/redux/news/operation';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { TitlePage } from '../ui/TitlePage';
+import { SearchForm } from '../ui/SearchForm';
+import { NewsItem } from './NewsItem';
+import { Pagination } from '../ui/pagination/Pagination';
+import image from '/public/image/not_found.png';
 
 interface FormValue {
   name: string;
 }
 
-export const NewsList: FC = () => {
+export const NewsList = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const [value, setValue] = useState<string>('');

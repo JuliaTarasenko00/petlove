@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { TitlePage } from '../ui/TitlePage';
 import { getNotices } from '@/redux/notices/operation';
 import { NoticesItem } from './NoticesItem';
-import { Pagination } from '../ui/pagination/Pagination';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { Pagination } from '../ui/pagination/Pagination';
 
 export const NoticesList = () => {
   const [page, setPage] = useState<number>(1);
