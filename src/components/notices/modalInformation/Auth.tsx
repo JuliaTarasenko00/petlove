@@ -49,14 +49,19 @@ export const ModalInformationAuth = () => {
 
   return (
     <div className=" w-[393px] flex flex-col items-center">
-      <img
-        src={imgURL}
-        alt={title}
-        loading="lazy"
-        width="150"
-        height="150"
-        className=" rounded-[100px] max-w-[150px] max-h-[150px] object-cover object-center mb-[24px]"
-      />
+      <div className=" relative">
+        <img
+          src={imgURL}
+          alt={title}
+          loading="lazy"
+          width="150"
+          height="150"
+          className=" rounded-[100px] max-w-[150px] max-h-[150px] object-cover object-center mb-[24px]"
+        />
+        <p className=" bg-[#fff4df] absolute capitalize top-0 left-0 py-[8px] px-[14px] rounded-[30px] font-medium text-[14px] text-[#f6b83d]">
+          {category}
+        </p>
+      </div>
       <h3 className="mb-[10px] font-bold text-[18px] text-[#2b2b2a] leading-[133%]">
         {title}
       </h3>
@@ -104,12 +109,19 @@ export const ModalInformationAuth = () => {
           </Text>
         </li>
       </ul>
-      <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] mb-[20px]">
+      <p className=" font-medium up text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] mb-[20px]">
         {comment}
       </p>
-      <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] mb-[20px]">
-        Region: {location.stateEn}, City: {location.cityEn}
-      </p>
+      <div className=" mb-[20px] flex flex-col gap-[5px]">
+        <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] ">
+          <span className=" text-[#26262680] mr-[5px]"> Region:</span>
+          {location.stateEn}
+        </p>
+        <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] ">
+          <span className=" text-[#26262680] mr-[5px] ">City:</span>
+          {location.cityEn}
+        </p>
+      </div>
       <div className="flex items-center gap-[15px]">
         <button
           type="button"

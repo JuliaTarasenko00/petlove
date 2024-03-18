@@ -21,9 +21,19 @@ export const NoticesItem = ({ items }: INoticesItem) => {
   const clickLearnMore = (id: string) => {
     toggleModal();
     if (auth) {
-      console.log('id: ', id);
+      console.log('id learn more: ', id);
       setShowInform(false);
     } else {
+      setShowInform(true);
+    }
+  };
+
+  const clickFavorite = (id: string) => {
+    if (auth) {
+      console.log('id favorite: ', id);
+      setShowInform(false);
+    } else {
+      toggleModal();
       setShowInform(true);
     }
   };
@@ -113,6 +123,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
               </button>
               <button
                 type="button"
+                onClick={() => clickFavorite(_id)}
                 className=" bg-[#fff4df] p-[15px] rounded-[30px]"
               >
                 <FaRegHeart className=" fill-[#F6B83D] w-[18px] h-[18px]" />

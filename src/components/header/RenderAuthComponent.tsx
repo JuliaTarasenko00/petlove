@@ -1,4 +1,4 @@
-import { AuthButton } from '../ui/Button';
+import { AuthLink } from '../ui/AuthLink';
 
 interface IRender {
   mainPage: boolean;
@@ -9,7 +9,7 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
   return (
     <>
       {auth && <p>User Data</p>}
-      {!auth && <AuthButton mainPage={mainPage} />}
+      {!auth && <AuthLink mainPage={mainPage} />}
     </>
   );
 };
