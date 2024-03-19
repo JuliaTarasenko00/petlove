@@ -9,6 +9,8 @@ import { PasswordInput } from '../ui/authInput/PasswordInput';
 import { EmailInput } from '../ui/authInput/EmailInput';
 import { emailRegexp } from '@/helpers/emailRegexp';
 import { TextInput } from '../ui/TextInput';
+import { Button } from '../ui/authInput/Button';
+import { FastRedirection } from '../ui/authInput/FastRedirection';
 
 interface ValuesInput {
   name: string;
@@ -43,15 +45,15 @@ const validationSchema = Yup.object().shape({
 export const RegisterComponent = () => {
   return (
     <section className="py-[32px]">
-      <div className=" container flex justify-center gap-[32px]">
-        <div className=" relative ">
+      <div className=" container flex items-center justify-center gap-[32px]">
+        <div className=" relative">
           <Image
             src={img}
             priority={true}
             width={592}
             height={654}
             alt="Image Dog"
-            className=" h-[654px] w-[592px] rounded-[60px]"
+            className=" h-[100%] min-h-[654px] w-[592px] rounded-[60px]"
           />
           <div className="absolute bottom-[15%] left-[61px] flex translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px]">
             <Image
@@ -79,7 +81,7 @@ export const RegisterComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" mb-[32px] rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
+        <div className=" h-[100%] rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
           <TitlePage>Register</TitlePage>
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Thank you for your interest in our platform.
@@ -90,42 +92,41 @@ export const RegisterComponent = () => {
             onSubmit={(values) => console.log(values)}
           >
             {({ values, handleSubmit }) => (
-              <div className="flex w-[100%] items-center justify-center">
-                <form
-                  onSubmit={handleSubmit}
-                  className=" mt-[32px] flex w-[424px] flex-col items-start gap-[16px]"
-                >
-                  <TextInput
-                    name="name"
-                    icon={true}
-                    placeholder="User Name"
-                    value={values.name}
-                  />
-                  <EmailInput
-                    name="email"
-                    placeholder="Email"
-                    value={values.email}
-                  />
-                  <PasswordInput
-                    name="password"
-                    placeholder="Password"
-                    value={values.password}
-                  />
-                  <PasswordInput
-                    name="configPassword"
-                    placeholder="Config Password"
-                    value={values.configPassword}
-                  />
-                  <button
-                    type="submit"
-                    className=" w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-center"
-                  >
-                    Register
-                  </button>
+              <div className="mt-[32px] flex w-[100%] items-center justify-center">
+                <form onSubmit={handleSubmit} className=" w-[424px]">
+                  <div className="mb-[34px]  flex w-[100%] flex-col items-start gap-[16px] ">
+                    <TextInput
+                      name="name"
+                      icon={true}
+                      placeholder="User Name"
+                      value={values.name}
+                    />
+                    <EmailInput
+                      name="email"
+                      placeholder="Email"
+                      value={values.email}
+                    />
+                    <PasswordInput
+                      name="password"
+                      placeholder="Password"
+                      value={values.password}
+                    />
+                    <PasswordInput
+                      name="configPassword"
+                      placeholder="Config Password"
+                      value={values.configPassword}
+                    />
+                  </div>
+                  <Button>Register</Button>
                 </form>
               </div>
             )}
           </Formik>
+          <FastRedirection
+            name="Already have an account?"
+            link="login"
+            nameLink="Login"
+          />
         </div>
       </div>
     </section>

@@ -8,6 +8,8 @@ import { TitlePage } from '../ui/TitlePage';
 import { PasswordInput } from '../ui/authInput/PasswordInput';
 import { EmailInput } from '../ui/authInput/EmailInput';
 import { emailRegexp } from '@/helpers/emailRegexp';
+import { Button } from '../ui/authInput/Button';
+import { FastRedirection } from '../ui/authInput/FastRedirection';
 
 interface ValuesInput {
   name: string;
@@ -43,7 +45,7 @@ export const LoginComponent = () => {
             width={592}
             height={654}
             alt="Image Dog"
-            className=" h-[654px] w-[592px] rounded-[60px]"
+            className=" min-h-[654px] w-[592px] rounded-[60px]"
           />
           <div className="absolute bottom-[15%] left-[61px] flex translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px]">
             <Image
@@ -71,7 +73,7 @@ export const LoginComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" mb-[32px] rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
+        <div className=" rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
           <TitlePage>Log in</TitlePage>
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Welcome! Please enter your credentials to login to the platform:
@@ -82,31 +84,30 @@ export const LoginComponent = () => {
             onSubmit={(values) => console.log(values)}
           >
             {({ values, handleSubmit }) => (
-              <div className="flex w-[100%] items-center justify-center">
-                <form
-                  onSubmit={handleSubmit}
-                  className=" mt-[32px] flex w-[424px] flex-col items-start gap-[16px]"
-                >
-                  <EmailInput
-                    name="email"
-                    placeholder="Email"
-                    value={values.email}
-                  />
-                  <PasswordInput
-                    name="password"
-                    placeholder="Password"
-                    value={values.password}
-                  />
-                  <button
-                    type="submit"
-                    className=" w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-center"
-                  >
-                    Log In
-                  </button>
+              <div className="mt-[32px] flex w-[100%] items-center justify-center">
+                <form onSubmit={handleSubmit} className="   w-[424px] ">
+                  <div className="mb-[58px] flex w-[100%] flex-col items-start gap-[16px]">
+                    <EmailInput
+                      name="email"
+                      placeholder="Email"
+                      value={values.email}
+                    />
+                    <PasswordInput
+                      name="password"
+                      placeholder="Password"
+                      value={values.password}
+                    />
+                  </div>
+                  <Button>Log In</Button>
                 </form>
               </div>
             )}
           </Formik>
+          <FastRedirection
+            name="Don’t have an account?"
+            link="register"
+            nameLink="Register"
+          />
         </div>
       </div>
     </section>

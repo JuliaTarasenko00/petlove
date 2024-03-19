@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { TitlePage } from '../ui/TitlePage';
 import { SearchForm } from '../ui/SearchForm';
 import { NewsItem } from './NewsItem';
-import { Pagination } from '../ui/pagination/Pagination';
+import { Pagination } from '../ui/Pagination/Pagination';
 import image from '/public/image/not_found.png';
 
 interface FormValue {
@@ -37,7 +37,7 @@ export const NewsList = () => {
   return (
     <section className=" py-[96px]">
       <div className="container">
-        <div className=" flex justify-between items-center mb-[60px] px-[60px]">
+        <div className=" mb-[60px] flex items-center justify-between px-[60px]">
           <TitlePage>News</TitlePage>
           <SearchForm
             handelSubmitForm={handelSubmitForm}
@@ -47,8 +47,8 @@ export const NewsList = () => {
         </div>
         {news.length > 0 && (
           <>
-            <div className="max-w-[100%] flex justify-center">
-              <ul className="flex flex-wrap w-[1153px] justify-center gap-x-[32px] gap-y-[40px]">
+            <div className="flex max-w-[100%] justify-center">
+              <ul className="flex w-[1153px] flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
                 <NewsItem items={news} />
               </ul>
             </div>
@@ -57,7 +57,7 @@ export const NewsList = () => {
         )}
         {news.length <= 0 && value !== '' && (
           <div className=" flex justify-center">
-            <div className=" max-w-[900px] flex items-center justify-center gap-[50px] p-[20px] rounded-[20px] bg-[#f6b83d]">
+            <div className=" flex max-w-[900px] items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
               <Image
                 src={image}
                 alt="This name not found"
@@ -65,7 +65,7 @@ export const NewsList = () => {
                 height={200}
                 className=" w-[300px]"
               />
-              <h3 className=" font-bold text-[#fff] text-[24px]">
+              <h3 className=" text-[24px] font-bold text-[#fff]">
                 Oppppsss! This name "{value}" not found
               </h3>
             </div>
