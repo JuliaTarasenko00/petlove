@@ -1,11 +1,12 @@
 import { ErrorType } from '@/types/errorType';
 import { Notices } from '@/types/notices';
 import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getNotices } from './operation';
+import { getCategories, getNotices } from './operation';
 
 export interface InitialState extends Notices {
+  categories: Array<string>;
   isLoading: boolean;
-  error: ErrorType | null | unknown;
+  error: ErrorType | null | undefined;
 }
 
 const initialState: InitialState = {
@@ -13,11 +14,10 @@ const initialState: InitialState = {
   perPage: 0,
   totalPages: 0,
   results: [],
+  categories: [],
   isLoading: false,
   error: null,
 };
-
-type RejectedAction = ReturnType<typeof getNotices.rejected>;
 
 export const noticesSlice = createSlice({
   name: 'notices',
@@ -36,17 +36,27 @@ export const noticesSlice = createSlice({
           state.error = null;
         },
       )
-      .addMatcher(isAnyOf(getNotices.pending), (state: InitialState) => {
-        state.page = 0;
-        state.perPage = 0;
-        state.totalPages = 0;
-        state.results = [];
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(
+        getCategories.fulfilled,
+        (state: InitialState, { payload }: PayloadAction<Array<string>>) => {
+          state.categories = payload;
+          state.isLoading = false;
+          state.error = null;
+        },
+      )
       .addMatcher(
-        isAnyOf(getNotices.rejected),
-        (state: InitialState, { payload }: RejectedAction) => {
+        isAnyOf(getNotices.pending, getCategories.pending),
+        (state: InitialState) => {
+          state.isLoading = true;
+          state.error = null;
+        },
+      )
+      .addMatcher(
+        isAnyOf(getNotices.rejected, getCategories.rejected),
+        (
+          state: InitialState,
+          { payload }: PayloadAction<ErrorType | undefined>,
+        ) => {
           state.page = 0;
           state.perPage = 0;
           state.totalPages = 0;

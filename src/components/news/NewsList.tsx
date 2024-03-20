@@ -5,14 +5,10 @@ import { getNews, getNewsSearch } from '@/redux/news/operation';
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { TitlePage } from '../ui/TitlePage';
-import { SearchForm } from '../ui/SearchForm';
+import { FormValue, SearchForm } from '../ui/SearchForm';
 import { NewsItem } from './NewsItem';
 import { Pagination } from '../ui/Pagination/Pagination';
 import image from '/public/image/not_found.png';
-
-interface FormValue {
-  name: string;
-}
 
 export const NewsList = () => {
   const dispatch = useAppDispatch();

@@ -10,7 +10,7 @@ interface FormProps {
   setPage?: (v: number) => void;
 }
 
-type FormValue = {
+export type FormValue = {
   name: string;
 };
 
@@ -34,7 +34,7 @@ export const SearchForm = ({
       onSubmit={handelSubmitForm}
     >
       {({ values, errors, handleChange, handleSubmit, resetForm }) => (
-        <form onSubmit={handleSubmit} className=" relative">
+        <form onSubmit={handleSubmit} className=" relative w-[230px]">
           <div>
             <input
               type="text"
@@ -42,10 +42,10 @@ export const SearchForm = ({
               value={values.name}
               onChange={handleChange}
               placeholder="Search"
-              className={`w-[230px] p-[14px] rounded-[30px] border-[1px] text-[#26262680] ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'}  placeholder:text-[#26262680]`}
+              className={`w-[100%] rounded-[30px] border-[1px] p-[14px] text-[#26262680] ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'}  placeholder:text-[#26262680]`}
             />
             {errors.name && (
-              <p className=" absolute bottom-[-15px] translate-y-[15px] w-max text-[#ef4444]">
+              <p className=" absolute bottom-[-15px] w-max translate-y-[15px] text-[#ef4444]">
                 {errors.name}
               </p>
             )}
@@ -60,17 +60,17 @@ export const SearchForm = ({
                 }
                 resetForm();
               }}
-              className="absolute top-[50%] right-[34px] translate-y-[-50%]"
+              className="absolute right-[34px] top-[50%] translate-y-[-50%]"
             >
-              <IoIosClose className="w-[15px] h-[15px] fill-[#262626] hover:fill-[#a52a2a] focus:fill-[#a52a2a]  transition-colors duration-250 ease-in-out" />
+              <IoIosClose className="duration-250 h-[15px] w-[15px] fill-[#262626] transition-colors  ease-in-out hover:fill-[#a52a2a] focus:fill-[#a52a2a]" />
             </button>
           )}
           <button
             type="submit"
             disabled={!!errors.name || values.name === ''}
-            className=" absolute top-[50%] right-[14px] translate-y-[-50%] disabled:cursor-no-drop"
+            className=" absolute right-[14px] top-[50%] translate-y-[-50%] disabled:cursor-no-drop"
           >
-            <IoSearch className="w-[18px] h-[18px] fill-[#262626] hover:fill-[#f1b84d] focus:fill-[#f1b84d]  transition-colors duration-250 ease-in-out" />
+            <IoSearch className="duration-250 h-[18px] w-[18px] fill-[#262626] transition-colors  ease-in-out hover:fill-[#f1b84d] focus:fill-[#f1b84d]" />
           </button>
         </form>
       )}

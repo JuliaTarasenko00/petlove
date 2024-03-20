@@ -5,6 +5,7 @@ import { getNotices } from '@/redux/notices/operation';
 import { NoticesItem } from './NoticesItem';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { Pagination } from '../ui/Pagination/Pagination';
+import { Filter } from './filter/Filter';
 
 export const NoticesList = () => {
   const [page, setPage] = useState<number>(1);
@@ -20,6 +21,7 @@ export const NoticesList = () => {
     <section className="min-h-[100vh] py-[96px]">
       <div className="container">
         <TitlePage>Find your favorite pet</TitlePage>
+        <Filter />
         <ul className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
           <NoticesItem items={noticesList} />
         </ul>
