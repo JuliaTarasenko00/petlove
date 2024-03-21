@@ -8,6 +8,7 @@ interface FormProps {
   handelSubmitForm: (values: FormValue) => void;
   setValue?: (v: string) => void;
   setPage?: (v: number) => void;
+  color?: boolean;
 }
 
 export type FormValue = {
@@ -24,6 +25,7 @@ export const SearchForm = ({
   handelSubmitForm,
   setValue,
   setPage,
+  color,
 }: FormProps) => {
   const initialValues: FormValue = { name: '' };
 
@@ -42,7 +44,7 @@ export const SearchForm = ({
               value={values.name}
               onChange={handleChange}
               placeholder="Search"
-              className={`w-[100%] rounded-[30px] border-[1px] p-[14px] text-[#26262680] ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'}  placeholder:text-[#26262680]`}
+              className={`w-[100%] rounded-[30px] border-[1px] ${color ? 'bg-[#fff]' : 'bg-transparent'} ${color && 'border-transparent'} p-[14px] ${color ? 'text-[#262626]' : 'text-[#26262680]'} ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'} ${color ? 'placeholder:text-[#262626]' : 'placeholder:text-[#26262680]'}`}
             />
             {errors.name && (
               <p className=" absolute bottom-[-15px] w-max translate-y-[15px] text-[#ef4444]">

@@ -16,6 +16,14 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #80808080;
+  border-radius: 15px;
+}
 body {
   margin: 0px;
   color: #000;
