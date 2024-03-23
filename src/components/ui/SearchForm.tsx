@@ -64,7 +64,7 @@ export const SearchForm = ({
               }}
               className="absolute right-[34px] top-[50%] translate-y-[-50%]"
             >
-              <IoIosClose className="duration-250 h-[15px] w-[15px] fill-[#262626] transition-colors  ease-in-out hover:fill-[#a52a2a] focus:fill-[#a52a2a]" />
+              <IoIosClose className="duration-250 h-[35px] w-[35px] fill-[#262626] transition-colors  ease-in-out hover:fill-[#a52a2a] focus:fill-[#a52a2a]" />
             </button>
           )}
           <button

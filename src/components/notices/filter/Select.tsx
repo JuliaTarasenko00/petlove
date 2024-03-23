@@ -63,7 +63,7 @@ export const SelectList = ({
               </CustomMenuItem>
             ))}
         </CustomSelect>
-      </FormControl>{' '}
+      </FormControl>
       <FormControl sx={{ width: 200 }}>
         <CustomSelect
           defaultValue={0}

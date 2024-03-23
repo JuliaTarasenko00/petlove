@@ -2,6 +2,7 @@
 import { FormValue, SearchForm } from '@/components/ui/SearchForm';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { SelectList } from './Select';
+import { RadioButton } from './RadioButton';
 
 export const Filter = () => {
   const { categories, isLoading, sex, species } = useAppSelector(
@@ -19,17 +20,20 @@ export const Filter = () => {
   };
 
   return (
-    <div className="mt-[40px] flex items-center gap-[16px] rounded-[30px] bg-[#fff4df] p-[40px]">
-      <SearchForm handelSubmitForm={submitForm} color={true} />
-      <div className="flex items-center gap-[16px]">
-        <SelectList
-          isLoading={isLoading}
-          categories={categories}
-          species={species}
-          sex={sex}
-          handleChange={handleChange}
-        />
+    <div className="mt-[40px] rounded-[30px] bg-[#fff4df] p-[40px]">
+      <div className="flex items-center gap-[16px] border-b border-[#2626261a] pb-[20px]">
+        <SearchForm handelSubmitForm={submitForm} color={true} />
+        <div className="flex items-center gap-[16px]">
+          <SelectList
+            isLoading={isLoading}
+            categories={categories}
+            species={species}
+            sex={sex}
+            handleChange={handleChange}
+          />
+        </div>
       </div>
+      <RadioButton />
     </div>
   );
 };
