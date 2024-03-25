@@ -105,7 +105,7 @@ export const LoginComponent = () => {
           </Formik>
           <FastRedirection
             name="Don’t have an account?"
-            link="register"
+            link="/register"
             nameLink="Register"
           />
         </div>

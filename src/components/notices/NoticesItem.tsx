@@ -5,8 +5,8 @@ import { MdOutlineStar } from 'react-icons/md';
 import { Span, Text } from '../ui/TextNotices';
 import { ModalWindow } from '../ui/modal/Modal';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { ModalInformationAuth } from './modalInformation/Auth';
-import { ModalInformationNotAuth } from './modalInformation/NotAuth';
+import { ModalInformationAuth } from '../ui/modalInformation/Auth';
+import { ModalInformationNotAuth } from '../ui/modalInformation/NotAuth';
 import { useState } from 'react';
 
 interface INoticesItem {
@@ -55,7 +55,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
         }: NoticesResult) => (
           <li
             key={_id}
-            className=" w-[363px] p-[24px] rounded-[16px] bg-[#fff] flex flex-col gap-[50px]"
+            className=" flex w-[363px] flex-col gap-[50px] rounded-[16px] bg-[#fff] p-[24px]"
           >
             <div className=" grow-[1]">
               <img
@@ -64,20 +64,20 @@ export const NoticesItem = ({ items }: INoticesItem) => {
                 loading="lazy"
                 width="315"
                 height="178"
-                className=" rounded-[16px] max-h-[178px] object-cover object-center mb-[24px]"
+                className=" mb-[24px] max-h-[178px] rounded-[16px] object-cover object-center"
               />
-              <div className=" flex justify-between mb-[8px]">
-                <h3 className=" font-bold text-[18px] text-[#2b2b2a] leading-[133%]">
+              <div className=" mb-[8px] flex justify-between">
+                <h3 className=" text-[18px] font-bold leading-[133%] text-[#2b2b2a]">
                   {title}
                 </h3>
-                <p className=" flex items-center gap-[5px] text-[#262626] text-[16px] font-medium">
+                <p className=" flex items-center gap-[5px] text-[16px] font-medium text-[#262626]">
                   <span>
-                    <MdOutlineStar className=" fill-[#FFC531] w-[20px] h-[20px]" />
+                    <MdOutlineStar className=" h-[20px] w-[20px] fill-[#FFC531]" />
                   </span>
                   {popularity}
                 </p>
               </div>
-              <ul className=" flex items-center justify-center gap-[20px] mb-[20px]">
+              <ul className=" mb-[20px] flex items-center justify-center gap-[20px]">
                 <li>
                   <Text>
                     <Span>Name</Span>
@@ -109,24 +109,24 @@ export const NoticesItem = ({ items }: INoticesItem) => {
                   </Text>
                 </li>
               </ul>
-              <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%]">
+              <p className=" text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a]">
                 {comment}
               </p>
             </div>
-            <div className=" flex justify-between items-center">
+            <div className=" flex items-center justify-between">
               <button
                 type="button"
                 onClick={() => clickLearnMore(_id)}
-                className=" max-w-[257px] bg-[#f6b83d] rounded-[30px] text-[#fff] text-[16px] px-[80px] py-[14px] tracking-[-0.03em] leading-[125%]"
+                className=" max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] transition-colors ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020]"
               >
                 Learn more
               </button>
               <button
                 type="button"
                 onClick={() => clickFavorite(_id)}
-                className=" bg-[#fff4df] p-[15px] rounded-[30px]"
+                className=" rounded-[30px] bg-[#fff4df] p-[15px]"
               >
-                <FaRegHeart className=" fill-[#F6B83D] w-[18px] h-[18px]" />
+                <FaRegHeart className=" h-[18px] w-[18px] fill-[#F6B83D]" />
               </button>
             </div>
           </li>

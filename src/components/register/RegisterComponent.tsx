@@ -124,7 +124,7 @@ export const RegisterComponent = () => {
           </Formik>
           <FastRedirection
             name="Already have an account?"
-            link="login"
+            link="/login"
             nameLink="Login"
           />
         </div>
