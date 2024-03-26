@@ -117,14 +117,14 @@ export const NoticesItem = ({ items }: INoticesItem) => {
               <button
                 type="button"
                 onClick={() => clickLearnMore(_id)}
-                className=" max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] transition-colors ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020]"
+                className=" button-active-darker max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff]"
               >
                 Learn more
               </button>
               <button
                 type="button"
                 onClick={() => clickFavorite(_id)}
-                className=" rounded-[30px] bg-[#fff4df] p-[15px]"
+                className="button-active-lighter rounded-[30px] bg-[#fff4df] p-[15px]"
               >
                 <FaRegHeart className=" h-[18px] w-[18px] fill-[#F6B83D]" />
               </button>

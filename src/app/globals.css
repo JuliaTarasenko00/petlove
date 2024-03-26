@@ -31,23 +31,16 @@ body {
   min-height: 100vh;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+@layer components {
+  .button-active-darker {
+    @apply duration-[350ms]  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020];
+  }
+  .button-active-lighter {
+    @apply duration-[350ms]  ease-in-out hover:bg-[#fbe7c1] focus:bg-[#fbe7c1];
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   .container {
     margin: 0 auto;
     max-width: 375px;

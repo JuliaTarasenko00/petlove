@@ -3,19 +3,19 @@ import img from '/public/image/img_home_page.png';
 
 const Home = () => {
   return (
-    <section className="relative top-[-42px] left-[-20px] z-[-10] translate-y-[-42px]">
+    <section className="relative left-[-20px] top-[-42px] z-[-10] translate-y-[-42px]">
       <div className="container">
-        <div className="flex items-end gap-[73px] w-[1440px] h-[384px] bg-[#f6b83d] rounded-[60px] m-auto px-[64px] pb-[32px]">
-          <h1 className="font-bold text-[90px] text-[#fff] tracking-[-0.03rem] leading-[1.07] max-w-[760px]">
+        <div className="m-auto flex h-[384px] w-[1440px] items-end gap-[73px] rounded-[60px] bg-[#f6b83d] px-[64px] pb-[32px]">
+          <h1 className="max-w-[760px] text-[90px] font-bold leading-[1.07] tracking-[-0.03rem] text-[#fff]">
             Take good <span className="text-[#FFFFFF66]">care</span> of your
             small pets
           </h1>
-          <p className="max-w-[255px] font-medium text-[#fff] text-[18px] tracking-[-0.02rem]">
+          <p className="max-w-[255px] text-[18px] font-medium tracking-[-0.02rem] text-[#fff]">
             Choosing a pet for your home is a choice that is meant to enrich
             your life with immeasurable joy and tenderness.
           </p>
         </div>
-        <div className="rounded-[60px] overflow-hidden w-max m-auto">
+        <div className="m-auto w-max overflow-hidden rounded-[60px]">
           <Image
             src={img}
             alt=""

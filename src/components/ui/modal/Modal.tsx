@@ -1,6 +1,7 @@
 'use client';
 
 import React, { MouseEvent, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 
 type ModalProps = {
@@ -30,21 +31,22 @@ export const ModalWindow = (props: ModalProps) => {
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
       onClick={onClickOverlay}
-      className=" fixed top-0 bottom-0 w-[100%] h-[100%] flex justify-center items-center z-[1000] bg-[#2626264d]"
+      className=" fixed bottom-0 top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center bg-[#2626264d]"
     >
-      <div className=" relative bg-[#fff] rounded-[15px]  p-[40px]">
+      <div className=" relative rounded-[15px] bg-[#fff]  p-[40px]">
         <button
           type="button"
           onClick={onClose}
-          className=" absolute top-[20px] right-[20px]"
+          className=" absolute right-[20px] top-[20px]"
         >
-          <IoClose className=" fill-[#262626] w-[24px] h-[24px]" />
+          <IoClose className=" h-[24px] w-[24px] fill-[#262626]" />
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };

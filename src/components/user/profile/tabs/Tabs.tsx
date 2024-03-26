@@ -18,12 +18,18 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
 
   return (
     <div className=" w-[664px]">
-      <div className="">
-        {tabs.map((tab, index) => (
-          <button key={index} onClick={() => handleTabClick(index)}>
-            {tab.title}
-          </button>
-        ))}
+      <div className=" mb-[32px] flex items-center gap-[8px]">
+        {tabs.map((tab, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => handleTabClick(index)}
+              className={`${activeTabIndex === index ? 'text-[#fff]' : 'text-[#262626]'} ${activeTabIndex === index ? 'bg-[#f6b83d]' : 'bg-[#fff]'} rounded-[30px] px-[45px] py-[14px]`}
+            >
+              {tab.title}
+            </button>
+          );
+        })}
       </div>
       <>{tabs[activeTabIndex].content}</>
     </div>

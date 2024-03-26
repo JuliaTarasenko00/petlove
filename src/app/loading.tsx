@@ -1,5 +1,6 @@
+import { Loader } from '@/components/loader/Loader';
 import React from 'react';
 
 export default function Loading() {
-  return <h2 className="global">Loading...</h2>;
+  return <Loader />;
 }

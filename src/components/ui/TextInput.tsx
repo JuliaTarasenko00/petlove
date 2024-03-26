@@ -8,9 +8,15 @@ interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon?: boolean;
   placeholder: string;
+  disabled?: boolean;
 }
 
-export const TextInput = ({ icon, name, placeholder }: TextInputProps) => {
+export const TextInput = ({
+  icon,
+  name,
+  placeholder,
+  disabled,
+}: TextInputProps) => {
   const [field, meta, helpers] = useField(name);
   const { setTouched } = helpers;
 
@@ -25,9 +31,10 @@ export const TextInput = ({ icon, name, placeholder }: TextInputProps) => {
         <input
           {...field}
           type="text"
+          disabled={disabled}
           onChange={handleChange}
           placeholder={placeholder}
-          className={`w-[100%] rounded-[30px] border-[1px] border-[#26262626] ${meta.touched && meta.error && 'outline-[#ef2447]'} ${!meta.error ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
+          className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px] border-[#26262626] bg-transparent ${meta.touched && meta.error && 'outline-[#ef2447]'} ${!meta.error ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
         />
         {icon && (
           <button

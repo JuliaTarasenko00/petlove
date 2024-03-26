@@ -11,6 +11,10 @@ const config: Config = {
       fontFamily: {
         manrope: 'var(--font-manrope)',
       },
+      backgroundImage: {
+        loader:
+          'linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url(../../public/image/bg_image.png)',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar')],
