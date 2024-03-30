@@ -2,12 +2,12 @@
 import { NoticesResult } from '@/types/notices';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdOutlineStar } from 'react-icons/md';
-import { Span, Text } from '../ui/TextNotices';
-import { ModalWindow } from '../ui/modal/Modal';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { ModalInformationAuth } from '../ui/modalInformation/Auth';
-import { ModalInformationNotAuth } from '../ui/modalInformation/NotAuth';
 import { useState } from 'react';
+import { Span, Text } from '@/components/ui/TextNotices';
+import { ModalWindow } from '@/components/ui/modal/Modal';
+import { ModalInformationAuth } from '@/components/ui/modalInformation/Auth';
+import { ModalInformationNotAuth } from '@/components/ui/modalInformation/NotAuth';
 
 interface INoticesItem {
   items: NoticesResult[];

@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { TitlePage } from '../ui/TitlePage';
 import { getNotices } from '@/redux/notices/operation';
 import { NoticesItem } from './NoticesItem';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
-import { Pagination } from '../ui/Pagination/Pagination';
 import { Filter } from './filter/Filter';
+import { TitlePage } from '@/components/ui/TitlePage';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
 
 export const NoticesList = () => {
   const [page, setPage] = useState<number>(1);

@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import img from '/public/image/icon_cat.webp';
 
-interface ModalInformationProps {
+interface ModalInformationLogOutProps {
   onClose: () => void;
 }
 
-export const ModalInformation = ({ onClose }: ModalInformationProps) => {
+export const ModalInformationLogOut = ({
+  onClose,
+}: ModalInformationLogOutProps) => {
   return (
     <div className=" text-center">
       <Image

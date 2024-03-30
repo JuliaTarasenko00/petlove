@@ -1,61 +1,61 @@
 'use client';
-import { useField } from 'formik';
-import { useState } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: string;
   icon?: boolean;
+  errorMessage?: string;
   placeholder: string;
   disabled?: boolean;
 }
 
-export const TextInput = ({
-  icon,
-  name,
-  placeholder,
-  disabled,
-}: TextInputProps) => {
-  const [field, meta, helpers] = useField(name);
-  const { setTouched } = helpers;
+export const TextInput = forwardRef(
+  (
+    {
+      value,
+      icon,
+      placeholder,
+      errorMessage,
+      disabled,
+      ...rest
+    }: TextInputProps,
+    _ref: ForwardedRef<HTMLInputElement>,
+  ) => {
+    const valueLength = typeof value === 'string' ? value?.length : 0;
 
-  const handleChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    field.onChange(e);
-    setTouched(true);
-  };
-
-  return (
-    <div className="w-[100%]">
-      <div className=" relative ">
-        <input
-          {...field}
-          type="text"
-          disabled={disabled}
-          onChange={handleChange}
-          placeholder={placeholder}
-          className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px] border-[#26262626] bg-transparent ${meta.touched && meta.error && 'outline-[#ef2447]'} ${!meta.error ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
-        />
-        {icon && (
-          <button
-            type="button"
-            className=" absolute right-[20px] top-[50%] translate-y-[-50%]"
-          >
-            {meta.touched && meta.error ? (
-              <IoClose className=" h-[22px] w-[22px] text-[#ef2447]" />
-            ) : meta.touched && !meta.error ? (
-              <FaCheck className=" h-[22px] w-[22px] text-[#08AA83]" />
-            ) : null}
-          </button>
-        )}
+    return (
+      <div className="w-[100%]">
+        <div className=" relative ">
+          <input
+            {...rest}
+            type="text"
+            value={value}
+            disabled={disabled}
+            placeholder={placeholder}
+            className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px] border-[#26262626] bg-transparent ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
+          />
+          {icon && (
+            <button
+              type="button"
+              className=" absolute right-[20px] top-[50%] translate-y-[-50%]"
+            >
+              {errorMessage ? (
+                <IoClose className=" h-[22px] w-[22px] text-[#ef2447]" />
+              ) : !errorMessage && valueLength > 0 ? (
+                <FaCheck className=" h-[22px] w-[22px] text-[#08AA83]" />
+              ) : null}
+            </button>
+          )}
+        </div>
+        {errorMessage ? (
+          <p className="mt-[4px] text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]">
+            {errorMessage}
+          </p>
+        ) : null}
       </div>
-      {meta.touched && meta.error ? (
-        <p className="mt-[4px] text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]">
-          {meta.error}
-        </p>
-      ) : null}
-    </div>
-  );
-};
+    );
+  },
+);
 
 TextInput.displayName = 'TextInput';

@@ -1,13 +1,16 @@
+'use client';
 import { FaUserLarge } from 'react-icons/fa6';
 import { LuPen } from 'react-icons/lu';
 import { UserPets } from '../pets/UserPets';
 import { user } from '../data';
 import img from '/public/image/not-photo.png';
 import { TextInput } from '@/components/ui/TextInput';
-import { Formik } from 'formik';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
 import { ModalWindow } from '@/components/ui/modal/Modal';
-import { ModalInformation } from './ModalInformation';
+import { ModalInformationLogOut } from './ModalInformationLogOut';
+import { ModalInformationEdit } from './ModalInformationEdit';
+import { Controller, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 interface ValuesInput {
   name: string;
@@ -15,13 +18,24 @@ interface ValuesInput {
   phone: string;
 }
 
+const MODALNAME = {
+  EDIT: 'edit',
+  LOGOUT: 'logOut',
+};
+
 export const UserInformation = () => {
-  const { open, toggleModal } = useToggleModal();
+  const { modalWithName, openModalWithName, closeModalWithName } =
+    useToggleModal();
+
   const initialValues: ValuesInput = {
     name: user?.name,
     email: user?.email,
     phone: user?.phone || '+380',
   };
+  const { control } = useForm<ValuesInput>({
+    defaultValues: initialValues,
+    disabled: true,
+  });
   const image = !user?.avatar ? img.src : user?.avatar;
 
   return (
@@ -41,6 +55,7 @@ export const UserInformation = () => {
             />
             <button
               type="button"
+              onClick={() => openModalWithName(MODALNAME.EDIT)}
               className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] "
             >
               <LuPen className=" text-[#F6B83D]" />
@@ -49,46 +64,47 @@ export const UserInformation = () => {
           <h2 className="mb-[20px] text-[18px] font-bold leading-[133%] tracking-tight">
             My information
           </h2>
-          <Formik initialValues={initialValues} onSubmit={() => {}}>
-            {({ values }) => (
-              <form className=" flex w-[100%] flex-col gap-[14px]">
-                <TextInput
-                  name="name"
-                  placeholder="Name"
-                  value={values.name}
-                  disabled={true}
-                  icon={false}
-                />
-                <TextInput
-                  name="email"
-                  placeholder="Email"
-                  value={values.email}
-                  disabled={true}
-                  icon={false}
-                />
-                <TextInput
-                  name="phone"
-                  placeholder="Phone"
-                  value={values.phone}
-                  disabled={true}
-                  icon={false}
-                />
-              </form>
-            )}
-          </Formik>
+          <form className=" flex w-[100%] flex-col gap-[14px]">
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <TextInput {...field} placeholder="Name" icon={false} />
+              )}
+            />
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TextInput {...field} placeholder="Email" icon={false} />
+              )}
+            />
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <TextInput {...field} placeholder="Phone" icon={false} />
+              )}
+            />
+          </form>
         </div>
         <UserPets />
         <button
           type="button"
-          onClick={() => toggleModal()}
+          onClick={() => openModalWithName(MODALNAME.LOGOUT)}
           className="button-active-lighter mt-[40px] rounded-[30px] bg-[#fff4df] px-[35px] py-[15px] text-[16px] font-bold uppercase leading-[125%] tracking-tight text-[#f6b83d]"
         >
           Log Out
         </button>
       </div>
-      {open && (
-        <ModalWindow onClose={toggleModal}>
-          <ModalInformation onClose={toggleModal} />
+      {modalWithName.open && modalWithName.name === MODALNAME.LOGOUT && (
+        <ModalWindow onClose={closeModalWithName}>
+          <ModalInformationLogOut onClose={closeModalWithName} />
+        </ModalWindow>
+      )}
+      {modalWithName.open && modalWithName.name === MODALNAME.EDIT && (
+        <ModalWindow onClose={closeModalWithName}>
+          <ModalInformationEdit />
         </ModalWindow>
       )}
     </>

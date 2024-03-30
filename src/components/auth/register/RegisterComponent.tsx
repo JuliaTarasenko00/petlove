@@ -1,16 +1,18 @@
 'use client';
-import { Formik } from 'formik';
+
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_cat.png';
 import icon from '/public/image/icon_cat.webp';
-import { TitlePage } from '../ui/TitlePage';
-import { PasswordInput } from '../ui/authInput/PasswordInput';
-import { EmailInput } from '../ui/authInput/EmailInput';
+import { TitlePage } from '../../ui/TitlePage';
+import { PasswordInput } from '../../ui/authInput/PasswordInput';
+import { EmailInput } from '../../ui/authInput/EmailInput';
 import { emailRegexp } from '@/helpers/emailRegexp';
-import { TextInput } from '../ui/TextInput';
-import { Button } from '../ui/authInput/Button';
-import { FastRedirection } from '../ui/authInput/FastRedirection';
+import { TextInput } from '../../ui/TextInput';
+import { Button } from '../../ui/authInput/Button';
+import { FastRedirection } from '../../ui/authInput/FastRedirection';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface ValuesInput {
   name: string;
@@ -43,6 +45,20 @@ const validationSchema = Yup.object().shape({
 });
 
 export const RegisterComponent = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ValuesInput>({
+    defaultValues: initialValues,
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = handleSubmit((value) => {
+    console.log('value: ', value);
+  });
+
   return (
     <section className="py-[32px]">
       <div className=" container flex items-center justify-center gap-[32px]">
@@ -86,42 +102,58 @@ export const RegisterComponent = () => {
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Thank you for your interest in our platform.
           </p>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
-          >
-            {({ values, handleSubmit }) => (
-              <div className="mt-[32px] flex w-[100%] items-center justify-center">
-                <form onSubmit={handleSubmit} className=" w-[424px]">
-                  <div className="mb-[34px]  flex w-[100%] flex-col items-start gap-[16px] ">
+          <div className="mt-[32px] flex w-[100%] items-center justify-center">
+            <form onSubmit={onSubmit} className=" w-[424px]">
+              <div className="mb-[34px]  flex w-[100%] flex-col items-start gap-[16px] ">
+                <Controller
+                  name="name"
+                  control={control}
+                  render={({ field }) => (
                     <TextInput
-                      name="name"
+                      {...field}
+                      errorMessage={errors.name?.message}
                       icon={true}
                       placeholder="User Name"
-                      value={values.name}
                     />
+                  )}
+                />
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
                     <EmailInput
-                      name="email"
+                      {...field}
+                      errorMessage={errors.email?.message}
                       placeholder="Email"
-                      value={values.email}
                     />
+                  )}
+                />
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
                     <PasswordInput
-                      name="password"
+                      {...field}
+                      errorMessage={errors.password?.message}
                       placeholder="Password"
-                      value={values.password}
                     />
+                  )}
+                />
+                <Controller
+                  name="configPassword"
+                  control={control}
+                  render={({ field }) => (
                     <PasswordInput
-                      name="configPassword"
-                      placeholder="Config Password"
-                      value={values.configPassword}
+                      {...field}
+                      errorMessage={errors.configPassword?.message}
+                      placeholder="Password Password"
                     />
-                  </div>
-                  <Button>Register</Button>
-                </form>
+                  )}
+                />
               </div>
-            )}
-          </Formik>
+              <Button>Register</Button>
+            </form>
+          </div>
           <FastRedirection
             name="Already have an account?"
             link="/login"

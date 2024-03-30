@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { getFriends } from '@/redux/friends/operation';
 import { useEffect } from 'react';
 import { OurFriendsItem } from './OurFriendsItem';
-import { TitlePage } from '../ui/TitlePage';
+import { TitlePage } from '@/components/ui/TitlePage';
 
 export const OurFriendsComponent = () => {
   const friendsList = useAppSelector((state) => state.friends.friends);

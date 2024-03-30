@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { getNews, getNewsSearch } from '@/redux/news/operation';
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { TitlePage } from '../ui/TitlePage';
-import { FormValue, SearchForm } from '../ui/SearchForm';
+import image from './public/image/not_found.png';
+import { FormValue, SearchForm } from '@/components/ui/SearchForm';
+import { TitlePage } from '@/components/ui/TitlePage';
 import { NewsItem } from './NewsItem';
-import { Pagination } from '../ui/Pagination/Pagination';
-import image from '/public/image/not_found.png';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
 
 export const NewsList = () => {
   const dispatch = useAppDispatch();

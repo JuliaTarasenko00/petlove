@@ -1,28 +1,25 @@
 'use client';
-import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_dog.png';
 import icon from '/public/image/icon_dog.png';
-import { TitlePage } from '../ui/TitlePage';
-import { PasswordInput } from '../ui/authInput/PasswordInput';
-import { EmailInput } from '../ui/authInput/EmailInput';
+import { TitlePage } from '../../ui/TitlePage';
+import { PasswordInput } from '../../ui/authInput/PasswordInput';
+import { EmailInput } from '../../ui/authInput/EmailInput';
 import { emailRegexp } from '@/helpers/emailRegexp';
-import { Button } from '../ui/authInput/Button';
-import { FastRedirection } from '../ui/authInput/FastRedirection';
+import { Button } from '../../ui/authInput/Button';
+import { FastRedirection } from '../../ui/authInput/FastRedirection';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface ValuesInput {
-  name: string;
   email: string;
   password: string;
-  configPassword: string;
 }
 
 const initialValues: ValuesInput = {
-  name: '',
   email: '',
   password: '',
-  configPassword: '',
 };
 
 const validationSchema = Yup.object().shape({
@@ -35,6 +32,20 @@ const validationSchema = Yup.object().shape({
 });
 
 export const LoginComponent = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ValuesInput>({
+    defaultValues: initialValues,
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = handleSubmit((value) => {
+    console.log('value: ', value);
+  });
+
   return (
     <section className="py-[32px]">
       <div className=" container flex justify-center gap-[32px]">
@@ -78,31 +89,36 @@ export const LoginComponent = () => {
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Welcome! Please enter your credentials to login to the platform:
           </p>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
-          >
-            {({ values, handleSubmit }) => (
-              <div className="mt-[32px] flex w-[100%] items-center justify-center">
-                <form onSubmit={handleSubmit} className="   w-[424px] ">
-                  <div className="mb-[58px] flex w-[100%] flex-col items-start gap-[16px]">
+
+          <div className="mt-[32px] flex w-[100%] items-center justify-center">
+            <form onSubmit={onSubmit} className="   w-[424px] ">
+              <div className="mb-[58px] flex w-[100%] flex-col items-start gap-[16px]">
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
                     <EmailInput
-                      name="email"
+                      {...field}
+                      errorMessage={errors.email?.message}
                       placeholder="Email"
-                      value={values.email}
                     />
+                  )}
+                />
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
                     <PasswordInput
-                      name="password"
+                      {...field}
+                      errorMessage={errors.password?.message}
                       placeholder="Password"
-                      value={values.password}
                     />
-                  </div>
-                  <Button>Log In</Button>
-                </form>
+                  )}
+                />
               </div>
-            )}
-          </Formik>
+              <Button>Log In</Button>
+            </form>
+          </div>
           <FastRedirection
             name="Don’t have an account?"
             link="/register"
