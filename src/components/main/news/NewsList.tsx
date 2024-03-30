@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { getNews, getNewsSearch } from '@/redux/news/operation';
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import image from './public/image/not_found.png';
+import image from '/public/image/not_found.png';
 import { FormValue, SearchForm } from '@/components/ui/SearchForm';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { NewsItem } from './NewsItem';
