@@ -12,7 +12,7 @@ export const UserPets = () => {
         </h2>
         <button
           type="button"
-          className="button-active-darker flex items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-medium leading-[133%] tracking-tight text-[#fff] "
+          className=" button-active-darker flex items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-medium leading-[133%] tracking-tight text-[#fff] outline-none "
         >
           Add pet <GoPlus />
         </button>
@@ -75,7 +75,7 @@ export const UserPets = () => {
                 </div>
                 <button
                   type="button"
-                  className="button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] text-[#F6B83D]"
+                  className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] text-[#F6B83D] outline-none"
                 >
                   <RiDeleteBinLine />
                 </button>

@@ -78,7 +78,7 @@ export const MarkupPets = ({ items, handelClick }: MarkupPetsProps) => {
             <button
               type="button"
               onClick={() => handelClick(item?._id)}
-              className=" m-auto max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] transition-colors ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020]"
+              className=" m-auto max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] outline-none transition-colors ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020]"
             >
               Learn more
             </button>

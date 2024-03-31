@@ -24,7 +24,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
             <button
               key={index}
               onClick={() => handleTabClick(index)}
-              className={`${activeTabIndex === index ? 'text-[#fff]' : 'text-[#262626]'} ${activeTabIndex === index ? 'bg-[#f6b83d]' : 'bg-[#fff]'} rounded-[30px] px-[45px] py-[14px]`}
+              className={`${activeTabIndex === index ? 'text-[#fff]' : 'text-[#262626]'} outline-none ${activeTabIndex === index ? 'bg-[#f6b83d]' : 'bg-[#fff]'} rounded-[30px] px-[45px] py-[14px]`}
             >
               {tab.title}
             </button>

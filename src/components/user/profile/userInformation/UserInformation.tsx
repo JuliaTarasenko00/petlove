@@ -4,7 +4,7 @@ import { LuPen } from 'react-icons/lu';
 import { UserPets } from '../pets/UserPets';
 import { user } from '../data';
 import img from '/public/image/not-photo.png';
-import { TextInput } from '@/components/ui/TextInput';
+import { TextInput } from '@/components/ui/input/TextInput';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
 import { ModalWindow } from '@/components/ui/modal/Modal';
 import { ModalInformationLogOut } from './ModalInformationLogOut';
@@ -56,7 +56,7 @@ export const UserInformation = () => {
             <button
               type="button"
               onClick={() => openModalWithName(MODALNAME.EDIT)}
-              className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] "
+              className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] outline-none "
             >
               <LuPen className=" text-[#F6B83D]" />
             </button>
@@ -92,7 +92,7 @@ export const UserInformation = () => {
         <button
           type="button"
           onClick={() => openModalWithName(MODALNAME.LOGOUT)}
-          className="button-active-lighter mt-[40px] rounded-[30px] bg-[#fff4df] px-[35px] py-[15px] text-[16px] font-bold uppercase leading-[125%] tracking-tight text-[#f6b83d]"
+          className=" button-active-lighter mt-[40px] rounded-[30px] bg-[#fff4df] px-[35px] py-[15px] text-[16px] font-bold uppercase leading-[125%] tracking-tight text-[#f6b83d] outline-none"
         >
           Log Out
         </button>

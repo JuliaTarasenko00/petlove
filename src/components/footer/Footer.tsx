@@ -14,13 +14,13 @@ export default function Footer() {
         <div className="flex items-center gap-[10px]">
           <a
             href={'tel:+380(000)000-00-00'}
-            className="duration-250 text-[16px] font-medium leading-tight text-[#000] transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
+            className="duration-250 text-[16px] font-medium leading-tight text-[#000] outline-none transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
           >
             +380(000)000-00-00
           </a>
           <a
             href={'mailto:pet_love1@gmail.com'}
-            className="duration-250 text-[16px] font-medium leading-tight text-[#000] transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
+            className="duration-250 text-[16px] font-medium leading-tight text-[#000] outline-none transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
           >
             pet_love1@gmail.com
           </a>

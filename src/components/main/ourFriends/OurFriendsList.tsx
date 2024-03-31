@@ -18,7 +18,7 @@ export const OurFriendsComponent = () => {
     <section className="py-[96px]">
       <div className="container">
         <TitlePage>Our Friends</TitlePage>
-        <ul className=" mt-[60px] flex flex-wrap items-center justify-center gap-[20px]">
+        <ul className=" mt-[60px] flex flex-wrap  justify-center gap-[20px]">
           <OurFriendsItem items={friendsList} />
         </ul>
       </div>

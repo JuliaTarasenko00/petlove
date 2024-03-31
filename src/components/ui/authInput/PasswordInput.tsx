@@ -32,9 +32,9 @@ export const PasswordInput = forwardRef(
             className=" absolute right-[20px] top-[50%] translate-y-[-50%]"
           >
             {show ? (
-              <FiEye className=" h-[22px] w-[22px] text-[#F6B83D]" />
+              <FiEye className=" h-[22px] w-[22px] text-[#F6B83D] " />
             ) : (
-              <FiEyeOff className=" h-[22px] w-[22px] text-[#F6B83D]" />
+              <FiEyeOff className=" h-[22px] w-[22px] text-[#F6B83D] " />
             )}
           </button>
         </div>

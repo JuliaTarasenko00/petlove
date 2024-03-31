@@ -7,19 +7,14 @@ import icon from '/public/image/icon_cat.webp';
 import { TitlePage } from '../../ui/TitlePage';
 import { PasswordInput } from '../../ui/authInput/PasswordInput';
 import { EmailInput } from '../../ui/authInput/EmailInput';
-import { emailRegexp } from '@/helpers/emailRegexp';
-import { TextInput } from '../../ui/TextInput';
+import { TextInput } from '../../ui/input/TextInput';
 import { Button } from '../../ui/authInput/Button';
 import { FastRedirection } from '../../ui/authInput/FastRedirection';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { validationSchema } from './validationSchema';
 
-interface ValuesInput {
-  name: string;
-  email: string;
-  password: string;
-  configPassword: string;
-}
+type ValuesInput = Yup.InferType<typeof validationSchema>;
 
 const initialValues: ValuesInput = {
   name: '',
@@ -27,22 +22,6 @@ const initialValues: ValuesInput = {
   password: '',
   configPassword: '',
 };
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(5, 'Too Short! Minimum number of characters is 5')
-    .max(20, 'Too Long! Maximum number of characters is 20')
-    .required('Required'),
-  email: Yup.string()
-    .matches(emailRegexp, `This is an ERROR email`)
-    .required('Required'),
-  password: Yup.string()
-    .min(8, 'Too Short! Minimum number of characters is 8')
-    .required('Required'),
-  configPassword: Yup.string()
-    .min(8, 'Too Short! Minimum number of characters is 8')
-    .required('Required'),
-});
 
 export const RegisterComponent = () => {
   const {
@@ -123,6 +102,7 @@ export const RegisterComponent = () => {
                   render={({ field }) => (
                     <EmailInput
                       {...field}
+                      icon={true}
                       errorMessage={errors.email?.message}
                       placeholder="Email"
                     />

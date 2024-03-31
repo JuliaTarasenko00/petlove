@@ -1,4 +1,5 @@
 'use client';
+
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_dog.png';
@@ -6,30 +7,18 @@ import icon from '/public/image/icon_dog.png';
 import { TitlePage } from '../../ui/TitlePage';
 import { PasswordInput } from '../../ui/authInput/PasswordInput';
 import { EmailInput } from '../../ui/authInput/EmailInput';
-import { emailRegexp } from '@/helpers/emailRegexp';
 import { Button } from '../../ui/authInput/Button';
 import { FastRedirection } from '../../ui/authInput/FastRedirection';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { validationSchema } from './validationSchema';
 
-interface ValuesInput {
-  email: string;
-  password: string;
-}
+type ValuesInput = Yup.InferType<typeof validationSchema>;
 
 const initialValues: ValuesInput = {
   email: '',
   password: '',
 };
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .matches(emailRegexp, `This is an ERROR email`)
-    .required('Required'),
-  password: Yup.string()
-    .min(8, 'Too Short! Minimum number of characters is 8')
-    .required('Required'),
-});
 
 export const LoginComponent = () => {
   const {
@@ -99,6 +88,7 @@ export const LoginComponent = () => {
                   render={({ field }) => (
                     <EmailInput
                       {...field}
+                      icon={true}
                       errorMessage={errors.email?.message}
                       placeholder="Email"
                     />

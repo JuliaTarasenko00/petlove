@@ -8,6 +8,7 @@ interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   placeholder: string;
   disabled?: boolean;
+  activeBorder?: boolean;
 }
 
 export const TextInput = forwardRef(
@@ -18,6 +19,7 @@ export const TextInput = forwardRef(
       placeholder,
       errorMessage,
       disabled,
+      activeBorder,
       ...rest
     }: TextInputProps,
     _ref: ForwardedRef<HTMLInputElement>,
@@ -33,19 +35,16 @@ export const TextInput = forwardRef(
             value={value}
             disabled={disabled}
             placeholder={placeholder}
-            className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px] border-[#26262626] bg-transparent ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
+            className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px]  ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'} bg-transparent ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
           />
           {icon && (
-            <button
-              type="button"
-              className=" absolute right-[20px] top-[50%] translate-y-[-50%]"
-            >
+            <p className=" absolute right-[20px] top-[50%] translate-y-[-50%] outline-none">
               {errorMessage ? (
-                <IoClose className=" h-[22px] w-[22px] text-[#ef2447]" />
+                <IoClose className=" h-[22px] w-[22px] text-[#ef2447] outline-none" />
               ) : !errorMessage && valueLength > 0 ? (
-                <FaCheck className=" h-[22px] w-[22px] text-[#08AA83]" />
+                <FaCheck className=" h-[22px] w-[22px] text-[#08AA83] outline-none" />
               ) : null}
-            </button>
+            </p>
           )}
         </div>
         {errorMessage ? (

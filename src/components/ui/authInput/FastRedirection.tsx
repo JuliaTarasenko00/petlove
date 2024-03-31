@@ -17,7 +17,7 @@ export const FastRedirection = ({
       <Link
         href={link}
         className=" duration-250 text-[14px] font-bold leading-[145%] tracking-[-0.03em] text-[#f6b83d] underline
-        transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
+        outline-none transition-colors ease-in-out hover:text-[#f9b020] focus:text-[#f9b020]"
       >
         {nameLink}
       </Link>
