@@ -2,6 +2,7 @@ import { GoPlus } from 'react-icons/go';
 import { pet } from '../data';
 import { format } from 'date-fns';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import Link from 'next/link';
 
 export const UserPets = () => {
   return (
@@ -10,12 +11,12 @@ export const UserPets = () => {
         <h2 className="mb-[20px] text-[18px] font-bold leading-[133%] tracking-tight">
           UserPets
         </h2>
-        <button
-          type="button"
+        <Link
+          href="/user/add_pets"
           className=" button-active-darker flex items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-medium leading-[133%] tracking-tight text-[#fff] outline-none "
         >
           Add pet <GoPlus />
-        </button>
+        </Link>
       </div>
       {pet.length > 0 && (
         <ul className=" mt-[20px] flex w-[440px] flex-col items-center gap-[14px]">

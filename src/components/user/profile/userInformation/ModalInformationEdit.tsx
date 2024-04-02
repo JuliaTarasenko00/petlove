@@ -3,13 +3,14 @@
 import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { user } from '../data';
+import img from '/public/image/not-photo.png';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
 import { TextInput } from '@/components/ui/input/TextInput';
-import { fields } from '@hookform/resolvers/joi/src/__tests__/__fixtures__/data.js';
 import { EmailInput } from '@/components/ui/authInput/EmailInput';
 import { PhoneInput } from '@/components/ui/input/PhoneInput';
 import { ImageInput } from '@/components/ui/input/ImageInput';
+import { useState } from 'react';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -21,6 +22,8 @@ const defaultValues: ValuesInput = {
 };
 
 export const ModalInformationEdit = () => {
+  const [selectImg, setSelectImg] = useState<File | null>(null);
+  console.log('selectImg: ', !!selectImg);
   const {
     handleSubmit,
     control,
@@ -41,15 +44,41 @@ export const ModalInformationEdit = () => {
         Edit information
       </h3>
       <form onSubmit={handleSubmitForm}>
-        <div className=" mb-[40px] flex flex-col gap-[14px]">
-          <div>
-            <Controller
-              name="image"
-              control={control}
-              render={({ field }) => (
-                <ImageInput {...field} placeholder="Image" />
-              )}
-            />
+        <div className=" mb-[40px] flex flex-col items-center gap-[14px]">
+          <div className=" flex w-[100%] flex-col items-center gap-[12px]">
+            <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
+              <img
+                src={
+                  !!selectImg
+                    ? URL.createObjectURL(selectImg)
+                    : user.avatar === ''
+                      ? img?.src
+                      : user?.avatar
+                }
+                alt={user.name}
+                className="h-[100%] w-[100%] object-cover object-center"
+              />
+            </div>
+            <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
+              <Controller
+                name="image"
+                control={control}
+                render={({ field }) => (
+                  <ImageInput
+                    {...field}
+                    setSelectImg={setSelectImg}
+                    placeholder="Image"
+                  />
+                )}
+              />
+              <div className=" h-[42px] w-[226px] overflow-hidden rounded-[30px] border-[1px] border-[#f6b83d] p-[12px]">
+                <p className=" h-[22px] w-[200px] overflow-hidden text-ellipsis whitespace-normal text-[15px] font-bold leading-[129%] tracking-tight text-[#262626]">
+                  {!!selectImg
+                    ? URL.createObjectURL(selectImg).slice(5)
+                    : 'URL your photo'}
+                </p>
+              </div>
+            </div>
           </div>
           <Controller
             name="name"
