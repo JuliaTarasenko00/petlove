@@ -15,6 +15,7 @@ export const ImageInput = forwardRef(
       setSelectImg,
       placeholder,
       errorMessage,
+      onChange,
       ...rest
     }: ImageInputProps,
     _ref: ForwardedRef<HTMLInputElement>,
@@ -35,8 +36,15 @@ export const ImageInput = forwardRef(
             type="file"
             id="image"
             onChange={(ev: ChangeEvent<HTMLInputElement>) => {
-              setSelectImg(ev.target.files ? ev.target.files[0] : null);
-              rest.onChange(ev.target.files[0]);
+              const files = ev.target.files;
+              if (files && files.length > 0) {
+                setSelectImg(files[0]);
+                if (onChange) {
+                  onChange(ev);
+                }
+              } else {
+                setSelectImg(null);
+              }
             }}
             accept="image/png, image/jpeg"
             multiple

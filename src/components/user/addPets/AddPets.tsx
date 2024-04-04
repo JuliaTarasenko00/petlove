@@ -14,13 +14,13 @@ export const AddPetForm = () => {
   const listSelect: IListSelect[] = [
     {
       name: 'female',
-      element: <IoMale />,
+      element: <IoFemaleSharp />,
       style:
         'bg-[red] w-[40px] h-[40px] rounded-[30px] flex items-center justify-center',
     },
     {
       name: 'male',
-      element: <IoFemaleSharp />,
+      element: <IoMale />,
       style:
         'bg-[blue] w-[40px] h-[40px] rounded-[30px] flex items-center justify-center',
     },
