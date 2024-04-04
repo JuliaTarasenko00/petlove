@@ -23,7 +23,6 @@ const defaultValues: ValuesInput = {
 
 export const ModalInformationEdit = () => {
   const [selectImg, setSelectImg] = useState<File | null>(null);
-  console.log('selectImg: ', !!selectImg);
   const {
     handleSubmit,
     control,
@@ -72,7 +71,7 @@ export const ModalInformationEdit = () => {
                 )}
               />
               <div className=" h-[42px] w-[226px] overflow-hidden rounded-[30px] border-[1px] border-[#f6b83d] p-[12px]">
-                <p className=" h-[22px] w-[200px] overflow-hidden text-ellipsis whitespace-normal text-[15px] font-bold leading-[129%] tracking-tight text-[#262626]">
+                <p className=" h-[22px] w-[200px] cursor-not-allowed overflow-hidden text-ellipsis whitespace-normal text-[15px] font-bold leading-[129%] tracking-tight text-[#262626]">
                   {!!selectImg
                     ? URL.createObjectURL(selectImg).slice(5)
                     : 'URL your photo'}

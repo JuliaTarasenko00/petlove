@@ -6,10 +6,12 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { Filter } from './filter/Filter';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { Pagination } from '@/components/ui/Pagination/Pagination';
+import { Loader } from '@/components/ui/loader/Loader';
 
 export const NoticesList = () => {
   const [page, setPage] = useState<number>(1);
   const noticesList = useAppSelector((state) => state.notices.results);
+  const isLoading = useAppSelector((state) => state.notices.isLoading);
   const count = useAppSelector((state) => state.notices.totalPages);
   const dispatch = useAppDispatch();
 
@@ -18,15 +20,20 @@ export const NoticesList = () => {
   }, [page, dispatch]);
 
   return (
-    <section className="min-h-[100vh] py-[96px]">
-      <div className="container">
-        <TitlePage>Find your favorite pet</TitlePage>
-        <Filter />
-        <ul className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
-          <NoticesItem items={noticesList} />
-        </ul>
-        <Pagination page={page} setPage={setPage} count={count} />
-      </div>
-    </section>
+    <>
+      {!isLoading && (
+        <section className="min-h-[100vh] py-[96px]">
+          <div className="container">
+            <TitlePage>Find your favorite pet</TitlePage>
+            <Filter />
+            <ul className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
+              <NoticesItem items={noticesList} />
+            </ul>
+            <Pagination page={page} setPage={setPage} count={count} />
+          </div>
+        </section>
+      )}
+      {isLoading && <Loader />}
+    </>
   );
 };

@@ -5,9 +5,11 @@ import { getFriends } from '@/redux/friends/operation';
 import { useEffect } from 'react';
 import { OurFriendsItem } from './OurFriendsItem';
 import { TitlePage } from '@/components/ui/TitlePage';
+import { Loader } from '@/components/ui/loader/Loader';
 
 export const OurFriendsComponent = () => {
   const friendsList = useAppSelector((state) => state.friends.friends);
+  const isLoading = useAppSelector((state) => state.friends.isLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -15,13 +17,18 @@ export const OurFriendsComponent = () => {
   }, []);
 
   return (
-    <section className="py-[96px]">
-      <div className="container">
-        <TitlePage>Our Friends</TitlePage>
-        <ul className=" mt-[60px] flex flex-wrap  justify-center gap-[20px]">
-          <OurFriendsItem items={friendsList} />
-        </ul>
-      </div>
-    </section>
+    <>
+      {!isLoading && (
+        <section className="py-[96px]">
+          <div className="container">
+            <TitlePage>Our Friends</TitlePage>
+            <ul className=" mt-[60px] flex flex-wrap  justify-center gap-[20px]">
+              <OurFriendsItem items={friendsList} />
+            </ul>
+          </div>
+        </section>
+      )}
+      {isLoading && <Loader />}
+    </>
   );
 };

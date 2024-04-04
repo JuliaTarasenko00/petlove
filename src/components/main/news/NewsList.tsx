@@ -9,10 +9,12 @@ import { FormValue, SearchForm } from '@/components/ui/SearchForm';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { NewsItem } from './NewsItem';
 import { Pagination } from '@/components/ui/Pagination/Pagination';
+import { Loader } from '@/components/ui/loader/Loader';
 
 export const NewsList = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
+  const isLoading = useAppSelector((state) => state.news.isLoading);
   const [value, setValue] = useState<string>('');
   const news = useAppSelector((state) => state.news.results);
   const count = useAppSelector((state) => state.news.totalPages);
@@ -31,43 +33,48 @@ export const NewsList = () => {
   }, []);
 
   return (
-    <section className=" py-[96px]">
-      <div className="container">
-        <div className=" mb-[60px] flex items-center justify-between px-[60px]">
-          <TitlePage>News</TitlePage>
-          <SearchForm
-            handelSubmitForm={handelSubmitForm}
-            setValue={setValue}
-            setPage={setPage}
-          />
-        </div>
-        {news.length > 0 && (
-          <>
-            <div className="flex max-w-[100%] justify-center">
-              <ul className="flex w-[1153px] flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
-                <NewsItem items={news} />
-              </ul>
-            </div>
-            <Pagination count={count} page={page} setPage={setPage} />
-          </>
-        )}
-        {news.length <= 0 && value !== '' && (
-          <div className=" flex justify-center">
-            <div className=" flex max-w-[900px] items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
-              <Image
-                src={image}
-                alt="This name not found"
-                width={300}
-                height={200}
-                className=" w-[300px]"
+    <>
+      {!isLoading && (
+        <section className=" py-[96px]">
+          <div className="container">
+            <div className=" mb-[60px] flex items-center justify-between px-[60px]">
+              <TitlePage>News</TitlePage>
+              <SearchForm
+                handelSubmitForm={handelSubmitForm}
+                setValue={setValue}
+                setPage={setPage}
               />
-              <h3 className=" text-[24px] font-bold text-[#fff]">
-                Oppppsss! This name "{value}" not found
-              </h3>
             </div>
+            {news.length > 0 && (
+              <>
+                <div className="flex max-w-[100%] justify-center">
+                  <ul className="flex w-[1153px] flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
+                    <NewsItem items={news} />
+                  </ul>
+                </div>
+                <Pagination count={count} page={page} setPage={setPage} />
+              </>
+            )}
+            {news.length <= 0 && value !== '' && (
+              <div className=" flex justify-center">
+                <div className=" flex max-w-[900px] items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
+                  <Image
+                    src={image}
+                    alt="This name not found"
+                    width={300}
+                    height={200}
+                    className=" w-[300px]"
+                  />
+                  <h3 className=" text-[24px] font-bold text-[#fff]">
+                    Oppppsss! This name "{value}" not found
+                  </h3>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </section>
+        </section>
+      )}
+      {isLoading && <Loader />}
+    </>
   );
 };
