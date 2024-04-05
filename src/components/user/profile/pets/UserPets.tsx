@@ -3,6 +3,7 @@ import { pet } from '../data';
 import { format } from 'date-fns';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Link from 'next/link';
+import { routes } from '@/helpers/routes';
 
 export const UserPets = () => {
   return (
@@ -12,7 +13,7 @@ export const UserPets = () => {
           UserPets
         </h2>
         <Link
-          href="/user/add_pets"
+          href={routes.user.addPet}
           className=" button-active-darker flex items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-medium leading-[133%] tracking-tight text-[#fff] outline-none "
         >
           Add pet <GoPlus />

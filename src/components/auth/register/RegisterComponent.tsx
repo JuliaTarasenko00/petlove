@@ -13,6 +13,7 @@ import { FastRedirection } from '../../ui/authInput/FastRedirection';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
+import { routes } from '@/helpers/routes';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -136,7 +137,7 @@ export const RegisterComponent = () => {
           </div>
           <FastRedirection
             name="Already have an account?"
-            link="/login"
+            link={routes.main.login}
             nameLink="Login"
           />
         </div>

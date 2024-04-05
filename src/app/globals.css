@@ -38,6 +38,9 @@ body {
   .button-active-lighter {
     @apply duration-[350ms]  ease-in-out hover:bg-[#fbe7c1] focus:bg-[#fbe7c1];
   }
+  .custom-transition {
+    @apply duration-[350ms]  ease-in-out;
+  }
 }
 
 @layer utilities {

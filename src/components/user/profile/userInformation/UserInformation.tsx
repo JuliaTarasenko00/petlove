@@ -1,4 +1,6 @@
 'use client';
+import { Controller, useForm } from 'react-hook-form';
+import { InferType } from 'yup';
 import { FaUserLarge } from 'react-icons/fa6';
 import { LuPen } from 'react-icons/lu';
 import { UserPets } from '../pets/UserPets';
@@ -9,14 +11,9 @@ import { useToggleModal } from '@/helpers/hooks/useToggleModal';
 import { ModalWindow } from '@/components/ui/modal/Modal';
 import { ModalInformationLogOut } from './ModalInformationLogOut';
 import { ModalInformationEdit } from './ModalInformationEdit';
-import { Controller, useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { validationSchema } from './validationSchema';
 
-interface ValuesInput {
-  name: string;
-  email: string;
-  phone: string;
-}
+type ValuesInput = InferType<typeof validationSchema>;
 
 const MODALNAME = {
   EDIT: 'edit',

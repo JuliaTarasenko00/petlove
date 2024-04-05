@@ -5,6 +5,7 @@ import { FaHeart } from 'react-icons/fa6';
 import { usePathname } from 'next/navigation';
 import { options } from './data';
 import { RenderAuthComponent } from './RenderAuthComponent';
+import { routes } from '@/helpers/routes';
 
 export interface Options {
   title: string;
@@ -13,14 +14,14 @@ export interface Options {
 
 export const Header = () => {
   const location = usePathname();
-  const mainPage = location === '/';
+  const mainPage = location === routes.main.main;
   const auth = false;
 
   return (
     <div className="container">
       <div className="flex items-center justify-between">
         <Link
-          href="/"
+          href={routes.main.main}
           className={`${mainPage ? 'text-white' : 'text-[#000]'} flex items-center text-[28px] font-extrabold leading-tight tracking-tighter outline-none`}
         >
           petl
