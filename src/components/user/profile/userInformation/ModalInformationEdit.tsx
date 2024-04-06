@@ -11,6 +11,7 @@ import { EmailInput } from '@/components/ui/authInput/EmailInput';
 import { PhoneInput } from '@/components/ui/input/PhoneInput';
 import { ImageInput } from '@/components/ui/input/ImageInput';
 import { useState } from 'react';
+import { InputForImg } from '@/components/ui/input/InputForImg';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -70,12 +71,27 @@ export const ModalInformationEdit = () => {
                   />
                 )}
               />
-              <div className=" h-[42px] w-[226px] overflow-hidden rounded-[30px] border-[1px] border-[#f6b83d] p-[12px]">
-                <p className=" h-[22px] w-[200px] cursor-not-allowed overflow-hidden text-ellipsis whitespace-normal text-[15px] font-bold leading-[129%] tracking-tight text-[#262626]">
-                  {!!selectImg
-                    ? URL.createObjectURL(selectImg).slice(5)
-                    : 'URL your photo'}
-                </p>
+              <div className="w-[226px]">
+                <Controller
+                  name="image"
+                  control={control}
+                  render={({ field }) => (
+                    <InputForImg
+                      {...field}
+                      placeholder="Enter URL"
+                      errorMessage={errors.image?.message}
+                      disabled={true}
+                      activeBorder={!!selectImg}
+                      value={
+                        (selectImg &&
+                          (URL.createObjectURL(selectImg).slice(
+                            5,
+                          ) as string)) ??
+                        ''
+                      }
+                    />
+                  )}
+                />
               </div>
             </div>
           </div>

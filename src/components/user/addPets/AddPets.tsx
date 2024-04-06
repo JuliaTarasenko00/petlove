@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import image from '/public/image/image_dog_add_pets.webp';
 import { InferType } from 'yup';
@@ -11,6 +12,12 @@ import { validationSchema } from './validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextInput } from '@/components/ui/input/TextInput';
 import { ImageInput } from '@/components/ui/input/ImageInput';
+import { InputForImg } from '@/components/ui/input/InputForImg';
+import { DataInput } from '@/components/ui/input/DataInput';
+import { FormControl } from '@mui/material';
+import { getSpecies } from '@/redux/filter/operation';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { CustomMenuItem, CustomSelect, style } from './SelectCustomStyle';
 
 interface IListSelect {
   name: string;
@@ -37,7 +44,11 @@ const defaultValues: TDefaultValues = {
 
 export const AddPetForm = () => {
   const [checkedName, setCheckedName] = useState<string>('');
-  const [selectImg, setSelectImg] = useState<any>(null);
+  const [selectImg, setSelectImg] = useState<File | null>(null);
+  const dispatch = useAppDispatch();
+  const { isLoading, species } = useAppSelector((state) => state.filter);
+  const routBack = useRouter();
+
   const listSelect: IListSelect[] = [
     {
       name: type.female,
@@ -67,27 +78,30 @@ export const AddPetForm = () => {
   });
 
   const handelSubmitForm = handleSubmit((values) => {
-    console.log(values);
+    console.log({ ...values, image: selectImg });
   });
 
   return (
     <section className="py-[32px]">
-      <div className=" container flex items-center justify-center gap-[32px]">
-        <div>
+      <div className=" container flex  justify-center gap-[32px]">
+        <div className=" h-[inherit]">
           <Image
             src={image}
             alt="Dog"
             width={592}
             height={654}
             priority={true}
-            className=" h-[654px] w-[592px] rounded-[60px]"
+            className=" h-[100%] w-[592px] rounded-[60px]"
           />
         </div>
         <div className=" w-[592px] rounded-[60px] bg-[#fff] px-[80px] py-[60px]">
-          <h3 className="mb-[40px]">
-            Add my pet / <span>Personal details</span>
+          <h3 className="mb-[40px] text-[32px] font-bold tracking-[-0.03em] text-[#262626]">
+            Add my pet /{' '}
+            <span className=" text-[16px] text-[#26262680]">
+              Personal details
+            </span>
           </h3>
-          <form onSubmit={handelSubmitForm} className="  w-[432px] ">
+          <form onSubmit={handelSubmitForm} className=" w-[432px] ">
             <div>
               <ul className=" flex items-center gap-[8px]">
                 {listSelect.map(({ element, name, style }) => (
@@ -119,17 +133,19 @@ export const AddPetForm = () => {
                   </li>
                 ))}
               </ul>
-              {errors.gender?.message && <p>{errors.gender.message}</p>}
+              {errors.gender?.message && (
+                <p className="mt-[4px] text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]">
+                  {errors.gender.message}
+                </p>
+              )}
             </div>
-            <div className="mb-[40px] flex flex-col items-center justify-center gap-[18px]">
-              <div>
+            <div className="mb-[40px]  mt-[-20px] flex flex-col items-center justify-center gap-[18px]">
+              <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
                 <img
                   src={!!selectImg ? URL.createObjectURL(selectImg) : img?.src}
                   alt="Pet photo"
                   loading="lazy"
-                  width="86"
-                  height="86"
-                  className="object-cover object-center"
+                  className=" h-[100%] w-[100%]  object-cover object-center"
                 />
               </div>
               <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
@@ -144,6 +160,28 @@ export const AddPetForm = () => {
                     />
                   )}
                 />
+                <div className="w-[278px]">
+                  <Controller
+                    name="image"
+                    control={control}
+                    render={({ field }) => (
+                      <InputForImg
+                        {...field}
+                        placeholder="Enter URL"
+                        errorMessage={errors.image?.message}
+                        disabled={true}
+                        activeBorder={!!selectImg}
+                        value={
+                          (selectImg &&
+                            (URL.createObjectURL(selectImg).slice(
+                              5,
+                            ) as string)) ??
+                          ''
+                        }
+                      />
+                    )}
+                  />
+                </div>
               </div>
               <Controller
                 name="title"
@@ -173,8 +211,71 @@ export const AddPetForm = () => {
                   />
                 )}
               />
+              <div className=" flex justify-between gap-[12px]">
+                <div className="w-[210px]">
+                  <Controller
+                    name="birthday"
+                    control={control}
+                    render={({ field }) => (
+                      <DataInput
+                        {...field}
+                        errorMessage={errors.birthday?.message}
+                        activeBorder={!!field.value}
+                      />
+                    )}
+                  />
+                </div>
+                <div>
+                  <Controller
+                    name="type"
+                    control={control}
+                    render={({ field }) => (
+                      <FormControl sx={{ width: 210, position: 'relative' }}>
+                        {field.value.length <= 0 && (
+                          <p className=" absolute left-[16px] top-[50%] z-30 translate-y-[-50%] text-[#26262680]">
+                            Type of pet
+                          </p>
+                        )}
+                        <CustomSelect
+                          {...field}
+                          MenuProps={{ PaperProps: { sx: style } }}
+                          onOpen={() => dispatch(getSpecies())}
+                          className={`${field.value.length > 0 ? 'border-[1px] border-[#f6b83d]' : 'border-[1px] border-[#26262626]'} ${!!errors.type?.message && 'border-[2px] border-[#ef2447]'}`}
+                        >
+                          {isLoading && <p>Loading...</p>}
+                          {!isLoading &&
+                            species.map((specie: string) => (
+                              <CustomMenuItem key={specie} value={specie}>
+                                {specie}
+                              </CustomMenuItem>
+                            ))}
+                        </CustomSelect>
+                      </FormControl>
+                    )}
+                  />
+                  {errors.type?.message && (
+                    <p className="mt-[4px] text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]">
+                      {errors.type.message}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
-            <button type="submit">Submit</button>
+            <div className=" flex items-center justify-center gap-[8px]">
+              <button
+                onClick={() => routBack.back()}
+                type="button"
+                className=" custom-transition block rounded-[30px] bg-[#2626260d] px-[67px] py-[14px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#262626] hover:bg-[#3535351f] focus:bg-[#3535351f]"
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                className=" button-active-darker h-[48px] w-[170px] rounded-[30px] bg-[#f6b83d] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff]"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

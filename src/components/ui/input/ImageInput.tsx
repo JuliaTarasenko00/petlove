@@ -5,7 +5,8 @@ import { IoCloudUploadOutline } from 'react-icons/io5';
 interface ImageInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   placeholder: string;
-  setSelectImg: (ev: File | null) => void;
+  setSelectImg: (value: File | null) => void;
+  value?: any;
 }
 
 export const ImageInput = forwardRef(
@@ -21,7 +22,7 @@ export const ImageInput = forwardRef(
     _ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
-      <div className="">
+      <div>
         <div className=" relative ">
           <label htmlFor="image" className=" h-[42px] max-w-[146px]">
             <span className=" button-active-lighter flex items-center gap-[5px] rounded-[30px] bg-[#fff4df] px-[12px] py-[12px] text-center text-[14px] font-medium text-[#262626]">
