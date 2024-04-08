@@ -16,7 +16,15 @@ const config: Config = {
           'linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url(../../public/image/bg_image.png)',
       },
     },
+    screens: {
+      xs: '320px',
+      sm: '480px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1440px',
+    },
   },
+
   plugins: [require('tailwind-scrollbar')],
 };
 export default config;

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { options } from './data';
 import { RenderAuthComponent } from './RenderAuthComponent';
 import { routes } from '@/helpers/routes';
+import { NavigationForMobile } from './NavigationForMobile';
 
 export interface Options {
   title: string;
@@ -18,8 +19,10 @@ export const Header = () => {
   const auth = false;
 
   return (
-    <div className="container">
-      <div className="flex items-center justify-between">
+    <div
+      className={`container pt-[43px] ${mainPage ? ' absolute left-0 right-0 top-0 w-[95%]' : ' relative'}`}
+    >
+      <div className="flex w-[100%] items-center justify-between">
         <Link
           href={routes.main.main}
           className={`${mainPage ? 'text-white' : 'text-[#000]'} flex items-center text-[28px] font-extrabold leading-tight tracking-tighter outline-none`}
@@ -32,7 +35,7 @@ export const Header = () => {
           </span>
           ve
         </Link>
-        <nav>
+        <nav className=" hidden lg:block">
           {options.map((item: Options) => {
             const { title, href } = item;
             return (
@@ -52,8 +55,13 @@ export const Header = () => {
             );
           })}
         </nav>
-        <div className="flex items-center gap-[10px]">
-          <RenderAuthComponent mainPage={mainPage} auth={auth} />
+        <div>
+          <div className=" flex items-center gap-[15px]">
+            <div className="hidden items-center gap-[10px] sm:flex">
+              <RenderAuthComponent mainPage={mainPage} auth={auth} />
+            </div>
+            <NavigationForMobile auth={auth} />
+          </div>
         </div>
       </div>
     </div>

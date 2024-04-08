@@ -8,11 +8,11 @@ export const LayoutProvider = ({
 }>) => {
   return (
     <>
-      <header className="pt-[43px]">
+      <header className="">
         <Header />
       </header>
       <main>{children}</main>
-      <footer className="py-[20px] border-t-[3px] border-[#F6B83D]">
+      <footer className="border-t-[3px] border-[#F6B83D] py-[20px]">
         <Footer />
       </footer>
     </>

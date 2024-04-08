@@ -26,12 +26,15 @@
 }
 body {
   margin: 0px;
-  color: #000;
+  color: #262626;
   background: #f9f9f9;
   min-height: 100vh;
 }
 
 @layer components {
+  .container {
+    @apply mx-auto w-full max-w-[1568px] px-[20px] md:px-[64px];
+  }
   .button-active-darker {
     @apply duration-[350ms]  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020];
   }
@@ -40,27 +43,5 @@ body {
   }
   .custom-transition {
     @apply duration-[350ms]  ease-in-out;
-  }
-}
-
-@layer utilities {
-  .container {
-    margin: 0 auto;
-    max-width: 375px;
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  @media screen and (min-width: 768px) {
-    .container {
-      max-width: 1200px;
-      padding-right: 64px;
-      padding-left: 64px;
-    }
-  }
-
-  @media screen and (min-width: 1400px) {
-    .container {
-      max-width: 1568px;
-    }
   }
 }
