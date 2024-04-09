@@ -15,6 +15,7 @@ export const Pagination = ({ count, page, setPage }: IPagination) => {
     <CustomPagination
       count={count}
       page={page}
+      boundaryCount={0}
       onChange={(_, page: number) => setPage(page)}
       showFirstButton
       showLastButton

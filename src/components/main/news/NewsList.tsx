@@ -37,18 +37,20 @@ export const NewsList = () => {
       {!isLoading && (
         <section className=" py-[96px]">
           <div className="container">
-            <div className=" mb-[60px] flex items-center justify-between px-[60px]">
+            <div className=" mb-[60px] flex flex-wrap items-center justify-between gap-[20px]">
               <TitlePage>News</TitlePage>
-              <SearchForm
-                handelSubmitForm={handelSubmitForm}
-                setValue={setValue}
-                setPage={setPage}
-              />
+              <div className="sm:w-[230px]">
+                <SearchForm
+                  handelSubmitForm={handelSubmitForm}
+                  setValue={setValue}
+                  setPage={setPage}
+                />
+              </div>
             </div>
             {news.length > 0 && (
               <>
                 <div className="flex max-w-[100%] justify-center">
-                  <ul className="flex w-[1153px] flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
+                  <ul className="flex w-[1153px] flex-wrap justify-center gap-x-[20px] gap-y-[40px] lg:gap-x-[32px]">
                     <NewsItem items={news} />
                   </ul>
                 </div>

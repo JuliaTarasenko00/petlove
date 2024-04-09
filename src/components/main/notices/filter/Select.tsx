@@ -28,7 +28,7 @@ export const SelectList = ({
 
   return (
     <>
-      <FormControl sx={{ width: 200 }}>
+      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
         <CustomSelect
           defaultValue={0}
           name="category"
@@ -46,7 +46,7 @@ export const SelectList = ({
             ))}
         </CustomSelect>
       </FormControl>
-      <FormControl sx={{ width: 200 }}>
+      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
         <CustomSelect
           defaultValue={0}
           name="sex"
@@ -64,7 +64,7 @@ export const SelectList = ({
             ))}
         </CustomSelect>
       </FormControl>
-      <FormControl sx={{ width: 200 }}>
+      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
         <CustomSelect
           defaultValue={0}
           name="species"

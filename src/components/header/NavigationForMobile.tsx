@@ -43,7 +43,7 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
           onClick={onClickOverlay}
           className="absolute left-0 right-0 top-0 z-50 h-[100vh] w-[100%] bg-[#80808040]"
         >
-          <div className="ml-auto  h-[100%] w-[218px] bg-[#fff] px-[20px] py-[40px] sm:w-[375px] sm:px-[49px]">
+          <div className="ml-auto  h-[100vh] w-[218px] bg-[#fff] px-[20px] py-[40px] sm:w-[375px] sm:px-[49px]">
             <button
               type="button"
               onClick={() => setOpen(false)}
@@ -52,7 +52,7 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
               <IoClose className="h-[36px] w-[36px] " />
             </button>
             <div className=" flex h-[100%] flex-col items-center justify-end ">
-              <ul className=" flex h-[100%] flex-col items-center justify-center gap-[10px]">
+              <ul className=" flex h-[50%] flex-col items-center justify-start gap-[10px]">
                 {options.map((item: Options) => {
                   const { title, href } = item;
                   return (
@@ -71,7 +71,7 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
                   );
                 })}
               </ul>
-              <div className="">
+              <div className="text-center">
                 <RenderAuthComponent auth={auth} />
               </div>
             </div>

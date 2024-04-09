@@ -20,10 +20,12 @@ export const Filter = () => {
   };
 
   return (
-    <div className="mt-[40px] rounded-[30px] bg-[#fff4df] p-[40px]">
-      <div className="flex items-center gap-[16px] border-b border-[#2626261a] pb-[20px]">
-        <SearchForm handelSubmitForm={submitForm} color={true} />
-        <div className="flex items-center gap-[16px]">
+    <div className="mt-[40px] rounded-[30px] bg-[#fff4df] p-[20px] sm:p-[32px] lg:p-[40px]">
+      <div className="flex flex-wrap items-center gap-[16px] border-b border-[#2626261a] pb-[20px]">
+        <div className=" w-[100%] sm:w-[265px]">
+          <SearchForm handelSubmitForm={submitForm} color={true} />
+        </div>
+        <div className="flex flex-wrap items-center  justify-start  gap-[8px] sm:gap-[16px]">
           <SelectList
             isLoading={isLoading}
             categories={categories}

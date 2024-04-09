@@ -8,8 +8,10 @@ export const CustomPagination = styled(Pagination)(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '44px',
-    width: '44px',
+    height: 'calc(25px + (40 - 25) * ((100vw - 320px) / (1440 - 320)))',
+    width: 'calc(25px + (40 - 25) * ((100vw - 320px) / (1440 - 320)))',
+    minHeight: '10px',
+    minWidth: '10px',
     color: '#262626',
     borderRadius: '50%',
     textAlign: 'center',
@@ -30,4 +32,8 @@ export const CustomPagination = styled(Pagination)(() => ({
       border: '1px solid  #F6B83D',
       backgroundColor: 'transparent',
     },
+  '& .MuiPaginationItem-previousNext, .MuiPaginationItem-firstLast': {
+    margin: '0 3px',
+    padding: 0,
+  },
 }));

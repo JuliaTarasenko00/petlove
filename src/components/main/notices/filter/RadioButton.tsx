@@ -38,14 +38,14 @@ export const RadioButton = () => {
   };
 
   return (
-    <div className=" flex items-center gap-[8px] pt-[20px]">
+    <div className=" flex flex-wrap items-center justify-center gap-[8px] pt-[20px] sm:justify-start">
       {option.map(({ value, name, bool }: TOption) => (
         <label
           htmlFor={value}
           key={value}
-          className={` cursor-pointer rounded-[30px] p-[14px] text-[16px] font-medium leading-[125%] tracking-[-0.03em] ${selected.name === value ? 'text-[#fff]' : 'text-[#262626]'} ${selected.name === value ? 'bg-[#f6b83d]' : 'bg-[#fff]'} duration-250 transition-colors  ease-in-out hover:bg-[#f6b83d] hover:text-[#fff] focus:bg-[#f6b83d] focus:text-[#fff]`}
+          className={` w-[72px] cursor-pointer rounded-[30px] py-[14px] text-center text-[13px] font-medium leading-[125%] tracking-[-0.03em] sm:w-[93px] sm:text-[16px] ${selected.name === value ? 'text-[#fff]' : 'text-[#262626]'} ${selected.name === value ? 'bg-[#f6b83d]' : 'bg-[#fff]'} duration-250 transition-colors  ease-in-out hover:bg-[#f6b83d] hover:text-[#fff] focus:bg-[#f6b83d] focus:text-[#fff]`}
         >
-          <span className=" mr-[5px] inline-block">{name}</span>
+          <span className=" inline-block">{name}</span>
           {selected.name === value && <span className=" text-center">x</span>}
           <input
             type="radio"

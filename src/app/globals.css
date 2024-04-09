@@ -33,7 +33,7 @@ body {
 
 @layer components {
   .container {
-    @apply mx-auto w-full max-w-[1568px] px-[20px] md:px-[64px];
+    @apply mx-auto w-full max-w-[1400px] px-[20px] lg:px-[64px];
   }
   .button-active-darker {
     @apply duration-[350ms]  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020];

@@ -47,27 +47,26 @@ export const SearchForm = ({
   return (
     <form
       onSubmit={handleSubmit(handelSubmitForm)}
-      className=" relative w-[230px]"
+      className=" relative w-[100%]"
     >
-      <div>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="text"
-              placeholder="Search"
-              className={`w-full rounded-[30px] border-[1px] ${color ? 'bg-[#fff]' : 'bg-transparent'} ${color && 'border-transparent'} p-[14px] ${color ? 'text-[#262626]' : 'text-[#26262680]'} ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'} ${color ? 'placeholder:text-[#262626]' : 'placeholder:text-[#26262680]'}`}
-            />
-          )}
-        />
-        {errors.name && (
-          <p className=" absolute bottom-[-15px] w-max translate-y-[15px] text-[#ef4444]">
-            {errors.name.message}
-          </p>
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => (
+          <input
+            {...field}
+            type="text"
+            placeholder="Search"
+            className={`w-full rounded-[30px] border-[1px] ${color ? 'bg-[#fff]' : 'bg-transparent'} ${color && 'border-transparent'} p-[14px] ${color ? 'text-[#262626]' : 'text-[#26262680]'} ${errors.name ? 'border-[#ef4444]' : 'border-[#26262626]'} ${errors.name ? 'outline-none' : 'outline-[#057405e0]'} ${color ? 'placeholder:text-[#262626]' : 'placeholder:text-[#26262680]'}`}
+          />
         )}
-      </div>
+      />
+      {errors.name && (
+        <p className=" absolute bottom-[-15px] w-max translate-y-[15px] text-[#ef4444]">
+          {errors.name.message}
+        </p>
+      )}
+
       {values.name.length >= 1 && (
         <button
           type="button"

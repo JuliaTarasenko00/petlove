@@ -7,7 +7,7 @@ const Home = () => {
       <div className="container">
         <div className=" flex h-[390px] w-[100%] items-end rounded-[30px] bg-[#f6b83d] px-[calc(20px+(64-20)*((100vw-320px)/(768-320)))] pb-[50px] sm:h-[496px] sm:rounded-[60px] md:px-[64px] md:pb-[32px] xl:h-[384px]">
           <div className="flex flex-wrap items-end gap-[24px] xl:gap-[73px]">
-            <h1 className="w-[100%] max-w-[760px] text-[calc(40px+(80-40)*((100vw-320px)/(1290-320)))] font-bold leading-[1.07] tracking-[-0.03rem] text-[#fff] xl:text-[90px]">
+            <h1 className="w-[100%] max-w-[760px] text-[calc(40px+(80-40)*((100vw-320px)/(1440-320)))] font-bold leading-[1.07] tracking-[-0.03rem] text-[#fff] xl:text-[90px]">
               Take good <span className="text-[#FFFFFF66]">care</span> of your
               small pets
             </h1>

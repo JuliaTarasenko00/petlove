@@ -22,7 +22,9 @@ export const Header = () => {
     <div
       className={`container pt-[43px] ${mainPage ? ' absolute left-0 right-0 top-0 w-[95%]' : ' relative'}`}
     >
-      <div className="flex w-[100%] items-center justify-between">
+      <div
+        className={`m-auto flex ${mainPage && 'w-[90%]'} items-center justify-between`}
+      >
         <Link
           href={routes.main.main}
           className={`${mainPage ? 'text-white' : 'text-[#000]'} flex items-center text-[28px] font-extrabold leading-tight tracking-tighter outline-none`}

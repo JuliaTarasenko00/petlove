@@ -13,7 +13,10 @@ export const NewsItem = (props: NewsItemsProps) => {
       {items.map((item: NewsResult) => {
         const date = format(item.date, 'MM/dd/yyyy');
         return (
-          <li key={item._id} className="flex max-w-[361px] flex-col gap-[28px]">
+          <li
+            key={item._id}
+            className="flex max-w-[335px] flex-col  gap-[28px]  lg:max-w-[361px]"
+          >
             <div className=" grow-[1]">
               <img
                 loading="lazy"
