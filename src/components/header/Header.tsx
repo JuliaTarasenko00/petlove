@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <div
-      className={`container pt-[43px] ${mainPage ? ' absolute left-0 right-0 top-0 w-[95%]' : ' relative'}`}
+      className={`container pt-[43px] ${mainPage ? ' absolute left-0 right-0 top-0 z-40 w-[95%]' : ' relative'}`}
     >
       <div
         className={`m-auto flex ${mainPage && 'w-[90%]'} items-center justify-between`}

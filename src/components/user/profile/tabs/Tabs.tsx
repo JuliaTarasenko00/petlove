@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 
 type Tab = {
@@ -10,7 +11,7 @@ interface TabsProps {
 }
 
 export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   const handleTabClick = (index: number) => {
     setActiveTabIndex(index);

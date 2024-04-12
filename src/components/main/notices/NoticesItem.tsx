@@ -132,17 +132,11 @@ export const NoticesItem = ({ items }: INoticesItem) => {
           </li>
         ),
       )}
-      {open && (
-        <ModalWindow onClose={toggleModal}>
-          <>
-            {!showInform ? (
-              <ModalInformationAuth />
-            ) : (
-              <ModalInformationNotAuth />
-            )}
-          </>
-        </ModalWindow>
-      )}
+      <ModalWindow onClose={toggleModal} open={open}>
+        <>
+          {!showInform ? <ModalInformationAuth /> : <ModalInformationNotAuth />}
+        </>
+      </ModalWindow>
     </>
   );
 };

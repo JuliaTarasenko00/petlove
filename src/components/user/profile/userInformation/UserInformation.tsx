@@ -94,16 +94,20 @@ export const UserInformation = () => {
           Log Out
         </button>
       </div>
-      {modalWithName.open && modalWithName.name === MODALNAME.LOGOUT && (
-        <ModalWindow onClose={closeModalWithName}>
-          <ModalInformationLogOut onClose={closeModalWithName} />
-        </ModalWindow>
-      )}
-      {modalWithName.open && modalWithName.name === MODALNAME.EDIT && (
-        <ModalWindow onClose={closeModalWithName}>
-          <ModalInformationEdit />
-        </ModalWindow>
-      )}
+
+      <ModalWindow
+        onClose={closeModalWithName}
+        open={modalWithName.name === MODALNAME.LOGOUT}
+      >
+        <ModalInformationLogOut onClose={closeModalWithName} />
+      </ModalWindow>
+
+      <ModalWindow
+        onClose={closeModalWithName}
+        open={modalWithName.name === MODALNAME.EDIT}
+      >
+        <ModalInformationEdit />
+      </ModalWindow>
     </>
   );
 };

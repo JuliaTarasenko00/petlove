@@ -1,11 +1,18 @@
 'use client';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import { Friends } from '@/types/friends';
+import { useEffect } from 'react';
 
 interface OurFriends {
   items: Friends[];
 }
 
 export const OurFriendsItem = ({ items }: OurFriends) => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <>
       {items.map(
@@ -19,6 +26,8 @@ export const OurFriendsItem = ({ items }: OurFriends) => {
           phone,
         }: Friends) => (
           <li
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
             key={_id}
             className="flex w-[381px] items-center gap-[20px] rounded-[15px] bg-[#fff] px-[20px] py-[40px]"
           >

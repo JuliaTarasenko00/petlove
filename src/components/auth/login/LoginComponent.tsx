@@ -1,5 +1,6 @@
 'use client';
-
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_dog.png';
@@ -13,6 +14,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
 import { routes } from '@/helpers/routes';
+import { useEffect } from 'react';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -36,10 +38,14 @@ export const LoginComponent = () => {
     console.log('value: ', value);
   });
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <section className="py-[32px]">
       <div className=" container flex flex-wrap justify-center gap-[32px] lg:flex-nowrap">
-        <div className=" relative ">
+        <div data-aos="flip-up" className=" relative ">
           <Image
             src={img}
             priority={true}
@@ -74,7 +80,10 @@ export const LoginComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[60px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[71px] md:px-[140px] lg:px-[84px]  lg:py-[69px]">
+        <div
+          data-aos="flip-down"
+          className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[60px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[71px] md:px-[140px] lg:px-[84px]  lg:py-[69px]"
+        >
           <TitlePage>Log in</TitlePage>
           <p className=" mt-[16px] text-[14px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626] md:text-[18px]">
             Welcome! Please enter your credentials to login to the platform:

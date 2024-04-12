@@ -1,5 +1,6 @@
 'use client';
-
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_cat.png';
@@ -14,6 +15,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
 import { routes } from '@/helpers/routes';
+import { useEffect } from 'react';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -39,10 +41,14 @@ export const RegisterComponent = () => {
     console.log('value: ', value);
   });
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <section className="py-[32px]">
       <div className=" container flex flex-wrap items-center justify-center gap-[32px] lg:flex-nowrap">
-        <div className=" relative">
+        <div data-aos="flip-up" className=" relative">
           <Image
             src={img}
             priority={true}
@@ -77,7 +83,10 @@ export const RegisterComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[20px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[30px] md:px-[140px] lg:px-[84px]  lg:py-[69px]">
+        <div
+          data-aos="flip-down"
+          className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[20px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[30px] md:px-[140px] lg:px-[84px]  lg:py-[69px]"
+        >
           <TitlePage>Register</TitlePage>
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Thank you for your interest in our platform.
