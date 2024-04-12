@@ -83,7 +83,7 @@ export const AddPetForm = () => {
 
   return (
     <section className="py-[32px]">
-      <div className=" container flex  justify-center gap-[32px]">
+      <div className=" container flex flex-wrap justify-center gap-[32px] lg:flex-nowrap">
         <div className=" h-[inherit]">
           <Image
             src={image}
@@ -91,17 +91,20 @@ export const AddPetForm = () => {
             width={592}
             height={654}
             priority={true}
-            className=" h-[100%] w-[592px] rounded-[60px]"
+            className=" h-[280px] w-[335px] max-w-[100%] rounded-[60px] object-cover object-center sm:w-[704px] lg:h-[100%] lg:w-[592px]"
           />
         </div>
-        <div className=" w-[592px] rounded-[60px] bg-[#fff] px-[80px] py-[60px]">
-          <h3 className="mb-[40px] text-[32px] font-bold tracking-[-0.03em] text-[#262626]">
+        <div className=" max-w-[335px] rounded-[60px] bg-[#fff] p-[20px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[40px] md:px-[140px] lg:px-[84px]  lg:py-[60px]">
+          <h3 className="mb-[40px] text-[28px] font-bold tracking-[-0.03em] text-[#262626] md:text-[32px]">
             Add my pet /{' '}
-            <span className=" text-[16px] text-[#26262680]">
+            <span className=" text-[14px] text-[#26262680] md:text-[16px]">
               Personal details
             </span>
           </h3>
-          <form onSubmit={handelSubmitForm} className=" w-[432px] ">
+          <form
+            onSubmit={handelSubmitForm}
+            className=" m-auto w-[100%] sm:w-[335px] md:w-[432px] "
+          >
             <div>
               <ul className=" flex items-center gap-[8px]">
                 {listSelect.map(({ element, name, style }) => (
@@ -139,7 +142,7 @@ export const AddPetForm = () => {
                 </p>
               )}
             </div>
-            <div className="mb-[40px]  mt-[-20px] flex flex-col items-center justify-center gap-[18px]">
+            <div className="mb-[40px] mt-[20px] flex flex-col items-center justify-center gap-[18px] md:mt-[-20px]">
               <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
                 <img
                   src={!!selectImg ? URL.createObjectURL(selectImg) : img?.src}
@@ -160,7 +163,7 @@ export const AddPetForm = () => {
                     />
                   )}
                 />
-                <div className="w-[278px]">
+                <div className="w-[170px] md:w-[278px]">
                   <Controller
                     name="image"
                     control={control}
@@ -211,8 +214,8 @@ export const AddPetForm = () => {
                   />
                 )}
               />
-              <div className=" flex justify-between gap-[12px]">
-                <div className="w-[210px]">
+              <div className=" flex justify-between gap-[12px] md:flex-wrap">
+                <div className="w-[144px] sm:w-[160px] md:w-[210px]">
                   <Controller
                     name="birthday"
                     control={control}
@@ -225,12 +228,12 @@ export const AddPetForm = () => {
                     )}
                   />
                 </div>
-                <div>
+                <div className="w-[144px] sm:w-[160px] md:w-[210px] ">
                   <Controller
                     name="type"
                     control={control}
                     render={({ field }) => (
-                      <FormControl sx={{ width: 210, position: 'relative' }}>
+                      <FormControl sx={{ width: '100%', position: 'relative' }}>
                         {field.value.length <= 0 && (
                           <p className=" absolute left-[16px] top-[50%] z-30 translate-y-[-50%] text-[#26262680]">
                             Type of pet
@@ -261,17 +264,17 @@ export const AddPetForm = () => {
                 </div>
               </div>
             </div>
-            <div className=" flex items-center justify-center gap-[8px]">
+            <div className=" flex items-center justify-end gap-[8px] md:justify-center">
               <button
                 onClick={() => routBack.back()}
                 type="button"
-                className=" custom-transition block rounded-[30px] bg-[#2626260d] px-[67px] py-[14px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#262626] hover:bg-[#3535351f] focus:bg-[#3535351f]"
+                className=" custom-transition block h-[48px] w-[100px] rounded-[30px]  bg-[#2626260d] text-[14px] font-bold leading-[125%] tracking-[-0.03em] text-[#262626] hover:bg-[#3535351f] focus:bg-[#3535351f] md:w-[170px] md:text-[16px]"
               >
                 Back
               </button>
               <button
                 type="submit"
-                className=" button-active-darker h-[48px] w-[170px] rounded-[30px] bg-[#f6b83d] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff]"
+                className=" button-active-darker h-[48px] w-[100px] rounded-[30px] bg-[#f6b83d] text-[14px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] md:w-[170px] md:text-[16px]"
               >
                 Submit
               </button>

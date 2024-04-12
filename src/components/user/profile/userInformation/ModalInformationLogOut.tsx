@@ -24,7 +24,7 @@ export const ModalInformationLogOut = ({
       <div className="mt-[28px]">
         <button
           type="button"
-          className=" button-active-darker mr-[8px] rounded-[30px] bg-[#f6b83d] px-[57px]  py-[14px] text-[16px]  font-bold leading-[125%] tracking-[-0.03em]  text-[#fff]"
+          className=" button-active-darker mr-[8px] rounded-[30px] bg-[#f6b83d] px-[40px] py-[14px]  text-[16px] font-bold  leading-[125%] tracking-[-0.03em] text-[#fff]  sm:px-[57px]"
         >
           Yes
         </button>
@@ -32,7 +32,7 @@ export const ModalInformationLogOut = ({
         <button
           type="button"
           onClick={() => onClose()}
-          className=" mr-[8px] rounded-[30px] bg-[#2626260d] px-[57px] py-[14px]  text-[16px] font-bold  leading-[125%] tracking-[-0.03em] text-[#262626]"
+          className="rounded-[30px] bg-[#2626260d] px-[40px] py-[14px] text-[16px]  font-bold leading-[125%]  tracking-[-0.03em] text-[#262626] sm:px-[57px]"
         >
           Cancel
         </button>

@@ -58,8 +58,8 @@ export const NewsList = () => {
               </>
             )}
             {news.length <= 0 && value !== '' && (
-              <div className=" flex justify-center">
-                <div className=" flex max-w-[900px] items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
+              <div className=" flex  justify-center">
+                <div className=" flex max-w-[900px] flex-wrap items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
                   <Image
                     src={image}
                     alt="This name not found"
@@ -67,7 +67,7 @@ export const NewsList = () => {
                     height={200}
                     className=" w-[300px]"
                   />
-                  <h3 className=" text-[24px] font-bold text-[#fff]">
+                  <h3 className=" text-center text-[24px] font-bold text-[#fff]">
                     Oppppsss! This name "{value}" not found
                   </h3>
                 </div>

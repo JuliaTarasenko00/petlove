@@ -36,7 +36,7 @@ export const ModalWindow = (props: ModalProps) => {
       onClick={onClickOverlay}
       className=" fixed bottom-0 top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center bg-[#2626264d]"
     >
-      <div className=" relative rounded-[15px] bg-[#fff]  p-[40px]">
+      <div className=" relative rounded-[15px] bg-[#fff]  p-[20px] lg:p-[40px]">
         <button
           type="button"
           onClick={onClose}

@@ -24,7 +24,7 @@ export const PasswordInput = forwardRef(
             placeholder={placeholder}
             type={show ? 'text' : 'password'}
             autoComplete="new-password"
-            className={`w-[100%] rounded-[30px] border-[1px] border-[#26262626] ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
+            className={`w-[100%] rounded-[30px] border-[1px] border-[#26262626] p-[12px] sm:p-[16px] ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'} text-[#262626] outline-offset-0`}
           />
           <button
             type="button"

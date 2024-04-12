@@ -51,8 +51,8 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
             >
               <IoClose className="h-[36px] w-[36px] " />
             </button>
-            <div className=" flex h-[100%] flex-col items-center justify-end ">
-              <ul className=" flex h-[50%] flex-col items-center justify-start gap-[10px]">
+            <div className=" flex h-[100%] flex-col items-center justify-around ">
+              <ul className=" flex flex-col items-center justify-start gap-[10px]">
                 {options.map((item: Options) => {
                   const { title, href } = item;
                   return (

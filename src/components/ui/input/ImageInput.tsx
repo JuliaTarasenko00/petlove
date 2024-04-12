@@ -24,8 +24,11 @@ export const ImageInput = forwardRef(
     return (
       <div>
         <div className=" relative ">
-          <label htmlFor="image" className=" h-[42px] max-w-[146px]">
-            <span className=" button-active-lighter flex items-center gap-[5px] rounded-[30px] bg-[#fff4df] px-[12px] py-[12px] text-center text-[14px] font-medium text-[#262626]">
+          <label
+            htmlFor="image"
+            className=" h-[42px] max-w-[117px] md:max-w-[146px]"
+          >
+            <span className=" button-active-lighter flex items-center gap-[5px] rounded-[30px] bg-[#fff4df] px-[12px] py-[12px] text-center text-[12px] font-medium text-[#262626] md:text-[14px]">
               Upload photo
               <span>
                 <IoCloudUploadOutline className=" text-[#F6B83D]" />

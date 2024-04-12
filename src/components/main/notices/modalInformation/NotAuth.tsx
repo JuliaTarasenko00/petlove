@@ -16,7 +16,7 @@ export const ModalInformationNotAuth = () => {
       <h3 className="mb-[20px] text-[24px] font-bold text-[#f6b83d]">
         Attention
       </h3>
-      <p className="mb-[28px] max-w-[346px] text-center text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a]">
+      <p className="mb-[28px] max-w-[295px] text-center text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a] lg:max-w-[346px]">
         We would like to remind you that certain functionality is available only
         to authorized users.If you have an account, please log in with your
         credentials. If you do not already have an account, you must register to

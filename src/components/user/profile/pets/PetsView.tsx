@@ -1,15 +1,8 @@
-import { INoticesViewed } from '@/types/user';
 import { view } from '../data';
 import { MarkupPets } from './MarkupPets';
-import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { ModalWindow } from '@/components/ui/modal/Modal';
-import { ModalInformationAuth } from '@/components/ui/modalInformation/Auth';
 
 export const PetsView = () => {
-  const { open, toggleModal } = useToggleModal();
-
   const handelClick = (id: string) => {
-    toggleModal();
     console.log(id);
   };
 
@@ -23,11 +16,6 @@ export const PetsView = () => {
         </h3>
       )}
       {view.length > 0 && <MarkupPets items={view} handelClick={handelClick} />}
-      {open && (
-        <ModalWindow onClose={toggleModal}>
-          <ModalInformationAuth />
-        </ModalWindow>
-      )}
     </>
   );
 };

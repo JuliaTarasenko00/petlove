@@ -24,7 +24,7 @@ export const DataInput = forwardRef(
             min="2000-01-01"
             max={data}
             value={value}
-            className={`w-[100%] ${!!value ? ' text-[#262626]' : 'text-[#26262680]'} rounded-[30px] border-[1px] outline-none   ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'} bg-transparent ${errorMessage && 'border-[2px] border-[#ef2447]'} 'outline-none' p-[16px]  outline-offset-0`}
+            className={`w-[100%] ${!!value ? ' text-[#262626]' : 'text-[#26262680]'} rounded-[30px] border-[1px] p-[12px] outline-none sm:p-[16px]   ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'} bg-transparent ${errorMessage && 'border-[2px] border-[#ef2447]'} outline-none outline-offset-0`}
           />
         </div>
         {errorMessage ? (

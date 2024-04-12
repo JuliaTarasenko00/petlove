@@ -1,18 +1,8 @@
-import { INoticesFavorite } from '@/types/user';
 import { favorite } from '../data';
-import { Span, Text } from '@/components/ui/TextNotices';
-import { MdOutlineStar } from 'react-icons/md';
-import { format } from 'date-fns';
-import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { ModalWindow } from '@/components/ui/modal/Modal';
-import { ModalInformationAuth } from '@/components/ui/modalInformation/Auth';
 import { MarkupPets } from './MarkupPets';
 
 export const PetsFavorite = () => {
-  const { open, toggleModal } = useToggleModal();
-
   const handelClick = (id: string) => {
-    toggleModal();
     console.log(id);
   };
 
@@ -27,11 +17,6 @@ export const PetsFavorite = () => {
       )}
       {favorite.length > 0 && (
         <MarkupPets items={favorite} handelClick={handelClick} />
-      )}
-      {open && (
-        <ModalWindow onClose={toggleModal}>
-          <ModalInformationAuth />
-        </ModalWindow>
       )}
     </>
   );

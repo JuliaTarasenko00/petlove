@@ -48,7 +48,7 @@ export const ModalInformationAuth = () => {
   } = data;
 
   return (
-    <div className=" w-[393px] flex flex-col items-center">
+    <div className=" flex w-[100%] flex-col  items-center sm:w-[335px] md:w-[473px]">
       <div className=" relative">
         <img
           src={imgURL}
@@ -56,16 +56,16 @@ export const ModalInformationAuth = () => {
           loading="lazy"
           width="150"
           height="150"
-          className=" rounded-[100px] max-w-[150px] max-h-[150px] object-cover object-center mb-[24px]"
+          className=" mb-[24px] max-h-[150px] max-w-[150px] rounded-[100px] object-cover object-center"
         />
-        <p className=" bg-[#fff4df] absolute capitalize top-0 left-0 py-[8px] px-[14px] rounded-[30px] font-medium text-[14px] text-[#f6b83d]">
+        <p className=" absolute left-0 top-0 rounded-[30px] bg-[#fff4df] px-[14px] py-[8px] text-[14px] font-medium capitalize text-[#f6b83d]">
           {category}
         </p>
       </div>
-      <h3 className="mb-[10px] font-bold text-[18px] text-[#2b2b2a] leading-[133%]">
+      <h3 className="mb-[10px] text-[18px] font-bold leading-[133%] text-[#2b2b2a]">
         {title}
       </h3>
-      <div className=" flex items-center gap-[5px] mb-[20px]">
+      <div className=" mb-[20px] flex items-center gap-[5px]">
         <Rating
           value={popularity}
           readOnly
@@ -79,11 +79,11 @@ export const ModalInformationAuth = () => {
           }}
           emptyIcon={<MdOutlineStar style={{ opacity: 0.35 }} />}
         />
-        <p className=" flex items-center gap-[5px] text-[#262626] text-[16px] font-medium">
+        <p className=" flex items-center gap-[5px] text-[16px] font-medium text-[#262626]">
           {popularity}
         </p>
       </div>
-      <ul className=" flex items-center justify-center gap-[20px] mb-[18px]">
+      <ul className=" mb-[18px] flex items-center justify-center gap-[20px]">
         <li>
           <Text>
             <Span>Name</Span>
@@ -109,29 +109,29 @@ export const ModalInformationAuth = () => {
           </Text>
         </li>
       </ul>
-      <p className=" font-medium up text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] mb-[20px]">
+      <p className=" up mb-[20px] text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a]">
         {comment}
       </p>
       <div className=" mb-[20px] flex flex-col gap-[5px]">
-        <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] ">
-          <span className=" text-[#26262680] mr-[5px]"> Region:</span>
+        <p className=" text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a] ">
+          <span className=" mr-[5px] text-[#26262680]"> Region:</span>
           {location.stateEn}
         </p>
-        <p className=" font-medium text-[14px] text-[#2b2b2a] tracking-tight leading-[129%] ">
-          <span className=" text-[#26262680] mr-[5px] ">City:</span>
+        <p className=" text-[14px] font-medium leading-[129%] tracking-tight text-[#2b2b2a] ">
+          <span className=" mr-[5px] text-[#26262680] ">City:</span>
           {location.cityEn}
         </p>
       </div>
-      <div className="flex items-center gap-[15px]">
+      <div className="flex items-center gap-[5px] sm:gap-[15px]">
         <button
           type="button"
-          className="flex items-center gap-[5px] px-[42px] py-[15px] font-bold text-[16px] text-white rounded-[30px] bg-[#f6b83d]  hover:bg-[#f9b020] focus:bg-[#f9b020] transition-colors duration-250 ease-in-out"
+          className="duration-250 flex items-center gap-[5px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-bold text-white transition-colors  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020] sm:px-[42px] sm:py-[15px]"
         >
           Add to {<FaRegHeart />}
         </button>
         <a
           href={`tel:${user.phone}`}
-          className="px-[42px] py-[15px] font-bold text-[16px] uppercase rounded-[30px] bg-[#fff4df] text-[#f6b83d] hover:bg-[#fbe7c1] focus:bg-[#fbe7c1]  transition-colors duration-250 ease-in-out"
+          className="duration-250 rounded-[30px] bg-[#fff4df] px-[20px] py-[10px] text-[16px] font-bold uppercase text-[#f6b83d] transition-colors ease-in-out hover:bg-[#fbe7c1]  focus:bg-[#fbe7c1] sm:px-[42px] sm:py-[15px]"
         >
           Contact
         </a>

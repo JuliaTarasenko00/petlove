@@ -43,7 +43,10 @@ export const ModalInformationEdit = () => {
       <h3 className=" mb-[20px] text-[18px] font-bold leading-[133%] text-[#2b2b2a]">
         Edit information
       </h3>
-      <form onSubmit={handleSubmitForm}>
+      <form
+        onSubmit={handleSubmitForm}
+        className="max-w-[335px] sm:max-w-[380px]"
+      >
         <div className=" mb-[40px] flex flex-col items-center gap-[14px]">
           <div className=" flex w-[100%] flex-col items-center gap-[12px]">
             <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
@@ -71,7 +74,7 @@ export const ModalInformationEdit = () => {
                   />
                 )}
               />
-              <div className="w-[226px]">
+              <div className="w-[160px] md:w-[226px]">
                 <Controller
                   name="image"
                   control={control}
@@ -135,7 +138,7 @@ export const ModalInformationEdit = () => {
         </div>
         <button
           type="submit"
-          className=" button-active-darker w-[380px] max-w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none"
+          className=" button-active-darker w-[285px] max-w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none md:w-[380px]"
         >
           Save
         </button>

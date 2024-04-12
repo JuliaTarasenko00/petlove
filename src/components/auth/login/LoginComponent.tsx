@@ -38,7 +38,7 @@ export const LoginComponent = () => {
 
   return (
     <section className="py-[32px]">
-      <div className=" container flex justify-center gap-[32px]">
+      <div className=" container flex flex-wrap justify-center gap-[32px] lg:flex-nowrap">
         <div className=" relative ">
           <Image
             src={img}
@@ -46,9 +46,9 @@ export const LoginComponent = () => {
             width={592}
             height={654}
             alt="Image Dog"
-            className=" min-h-[654px] w-[592px] rounded-[60px]"
+            className=" h-[280px] w-[335px] max-w-[100%] rounded-[60px] object-cover object-center sm:w-[704px] lg:min-h-[654px] lg:w-[592px]"
           />
-          <div className="absolute bottom-[15%] left-[61px] flex translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px]">
+          <div className=" absolute  bottom-[15%] left-[61px] hidden translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px] sm:flex">
             <Image
               src={icon}
               priority={true}
@@ -74,14 +74,14 @@ export const LoginComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
+        <div className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[60px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[71px] md:px-[140px] lg:px-[84px]  lg:py-[69px]">
           <TitlePage>Log in</TitlePage>
-          <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
+          <p className=" mt-[16px] text-[14px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626] md:text-[18px]">
             Welcome! Please enter your credentials to login to the platform:
           </p>
 
           <div className="mt-[32px] flex w-[100%] items-center justify-center">
-            <form onSubmit={onSubmit} className="   w-[424px] ">
+            <form onSubmit={onSubmit} className="  w-[100%]  md:max-w-[424px] ">
               <div className="mb-[58px] flex w-[100%] flex-col items-start gap-[16px]">
                 <Controller
                   name="email"

@@ -41,7 +41,7 @@ export const RegisterComponent = () => {
 
   return (
     <section className="py-[32px]">
-      <div className=" container flex items-center justify-center gap-[32px]">
+      <div className=" container flex flex-wrap items-center justify-center gap-[32px] lg:flex-nowrap">
         <div className=" relative">
           <Image
             src={img}
@@ -49,9 +49,9 @@ export const RegisterComponent = () => {
             width={592}
             height={654}
             alt="Image Dog"
-            className=" h-[100%] min-h-[654px] w-[592px] rounded-[60px]"
+            className=" h-[280px] w-[335px] max-w-[100%] rounded-[60px] object-cover object-top sm:w-[704px] lg:min-h-[654px] lg:w-[592px]"
           />
-          <div className="absolute bottom-[15%] left-[61px] flex translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px]">
+          <div className=" absolute bottom-[15%] left-[61px] hidden translate-y-[-15%] items-start gap-[8px] rounded-[20px] bg-[#fff] p-[16px] md:flex">
             <Image
               src={icon}
               priority={true}
@@ -77,13 +77,16 @@ export const RegisterComponent = () => {
             </div>
           </div>
         </div>
-        <div className=" h-[100%] rounded-[60px] bg-[#fff] px-[84px]  py-[69px]">
+        <div className=" max-w-[335px] rounded-[60px] bg-[#fff] px-[20px]  py-[20px] sm:w-[100%] sm:max-w-[704px] sm:px-[100px] sm:py-[30px] md:px-[140px] lg:px-[84px]  lg:py-[69px]">
           <TitlePage>Register</TitlePage>
           <p className=" mt-[16px] text-[18px] font-medium leading-[122%] tracking-[-0.02em] text-[#262626]">
             Thank you for your interest in our platform.
           </p>
           <div className="mt-[32px] flex w-[100%] items-center justify-center">
-            <form onSubmit={onSubmit} className=" w-[424px]">
+            <form
+              onSubmit={onSubmit}
+              className="  w-[100%]  md:w-[100%]  md:max-w-[424px] "
+            >
               <div className="mb-[34px]  flex w-[100%] flex-col items-start gap-[16px] ">
                 <Controller
                   name="name"

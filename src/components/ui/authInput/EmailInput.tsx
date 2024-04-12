@@ -33,7 +33,7 @@ export const EmailInput = forwardRef(
             placeholder={placeholder}
             value={value}
             type="email"
-            className={`w-[100%] rounded-[30px] border-[1px] ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'}  ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'}  p-[16px] text-[#262626] outline-offset-0`}
+            className={`w-[100%] rounded-[30px] border-[1px] p-[12px] sm:p-[16px] ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'}  ${errorMessage && 'outline-[#ef2447]'} ${!errorMessage ? 'outline-[#08AA83]' : 'outline-none'} text-[#262626] outline-offset-0`}
           />
           <p className=" absolute right-[20px] top-[50%] translate-y-[-50%] outline-none">
             {errorMessage && icon ? (

@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { InferType } from 'yup';
 import { FaUserLarge } from 'react-icons/fa6';
 import { LuPen } from 'react-icons/lu';
-import { UserPets } from '../pets/UserPets';
+import { UserPets } from './UserPets';
 import { user } from '../data';
 import img from '/public/image/not-photo.png';
 import { TextInput } from '@/components/ui/input/TextInput';
@@ -37,7 +37,7 @@ export const UserInformation = () => {
 
   return (
     <>
-      <div className=" h-max w-[520px] rounded-[60px] bg-[#fff]  p-[40px]">
+      <div className=" h-max w-[100%] rounded-[60px] bg-[#fff] p-[20px] sm:p-[30px] md:w-[704px]  lg:w-[520px]">
         <div>
           <div className=" flex items-start justify-between ">
             <p className=" flex max-w-[80px] items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[14px] py-[10px] text-[14px] font-medium leading-[129%] tracking-tight text-[#fff]">
@@ -48,7 +48,7 @@ export const UserInformation = () => {
               alt="User Avatar"
               width="110"
               height="110"
-              className=" rounded-[100px]"
+              className=" h-[94px] w-[94px] rounded-[100px] md:h-[110px] md:w-[110px]"
             />
             <button
               type="button"

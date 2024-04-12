@@ -24,6 +24,16 @@
   background-color: #80808080;
   border-radius: 15px;
 }
+
+body ::-webkit-scrollbar {
+  width: 5px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  background-color: #80808056;
+  border-radius: 15px;
+}
+
 body {
   margin: 0px;
   color: #262626;

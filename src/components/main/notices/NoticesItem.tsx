@@ -6,8 +6,8 @@ import { useToggleModal } from '@/helpers/hooks/useToggleModal';
 import { useState } from 'react';
 import { Span, Text } from '@/components/ui/TextNotices';
 import { ModalWindow } from '@/components/ui/modal/Modal';
-import { ModalInformationAuth } from '@/components/ui/modalInformation/Auth';
-import { ModalInformationNotAuth } from '@/components/ui/modalInformation/NotAuth';
+import { ModalInformationAuth } from '@/components/main/notices/modalInformation/Auth';
+import { ModalInformationNotAuth } from '@/components/main/notices/modalInformation/NotAuth';
 
 interface INoticesItem {
   items: NoticesResult[];
@@ -16,7 +16,7 @@ interface INoticesItem {
 export const NoticesItem = ({ items }: INoticesItem) => {
   const { open, toggleModal } = useToggleModal();
   const [showInform, setShowInform] = useState<boolean>(false);
-  const auth = false;
+  const auth = true;
 
   const clickLearnMore = (id: string) => {
     toggleModal();
@@ -55,7 +55,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
         }: NoticesResult) => (
           <li
             key={_id}
-            className=" flex w-[363px] flex-col gap-[50px] rounded-[16px] bg-[#fff] p-[24px]"
+            className=" flex w-[310px] flex-col gap-[50px] rounded-[16px] bg-[#fff] p-[24px] sm:w-[335px] md:w-[363px]"
           >
             <div className=" grow-[1]">
               <img
@@ -77,7 +77,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
                   {popularity}
                 </p>
               </div>
-              <ul className=" mb-[20px] flex items-center justify-center gap-[20px]">
+              <ul className=" mb-[20px] flex items-center justify-center gap-[14px] md:gap-[20px]">
                 <li>
                   <Text>
                     <Span>Name</Span>
@@ -117,7 +117,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
               <button
                 type="button"
                 onClick={() => clickLearnMore(_id)}
-                className=" button-active-darker  max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] outline-none"
+                className=" button-active-darker w-[80%] max-w-[100%] rounded-[30px] bg-[#f6b83d]  py-[14px] text-[14px] leading-[125%] tracking-[-0.03em] text-[#fff] outline-none sm:w-[257px] sm:text-[16px]"
               >
                 Learn more
               </button>
