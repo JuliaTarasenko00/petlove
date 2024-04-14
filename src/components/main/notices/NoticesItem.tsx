@@ -16,7 +16,7 @@ interface INoticesItem {
 export const NoticesItem = ({ items }: INoticesItem) => {
   const { open, toggleModal } = useToggleModal();
   const [showInform, setShowInform] = useState<boolean>(false);
-  const auth = true;
+  const auth = false;
 
   const clickLearnMore = (id: string) => {
     toggleModal();
