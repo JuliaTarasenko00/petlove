@@ -8,6 +8,7 @@ import { Span, Text } from '@/components/ui/TextNotices';
 import { ModalWindow } from '@/components/ui/modal/Modal';
 import { ModalInformationAuth } from '@/components/main/notices/modalInformation/Auth';
 import { ModalInformationNotAuth } from '@/components/main/notices/modalInformation/NotAuth';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 
 interface INoticesItem {
   items: NoticesResult[];
@@ -16,7 +17,7 @@ interface INoticesItem {
 export const NoticesItem = ({ items }: INoticesItem) => {
   const { open, toggleModal } = useToggleModal();
   const [showInform, setShowInform] = useState<boolean>(false);
-  const auth = false;
+  const auth = useAppSelector((state) => state.user.token);
 
   const clickLearnMore = (id: string) => {
     toggleModal();

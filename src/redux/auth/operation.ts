@@ -1,7 +1,7 @@
 import { ErrorType } from '@/types/errorType';
 import { UserAuth } from '@/types/user';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { $instants, setToken } from '../request';
+import { $instants, clearToken, setToken } from '../request';
 
 interface SignUpArgs {
   email: string;
@@ -60,7 +60,8 @@ export const signOut = createAsyncThunk<
   }
 >('user/sign_out', async (_, thunkApi) => {
   try {
-    return await $instants.post('/users/signout');
+    await $instants.post('/users/signout');
+    return clearToken();
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({
       message: error.message,
