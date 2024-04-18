@@ -28,7 +28,10 @@ export const ModalInformationLogOut = ({
       <div className="mt-[28px]">
         <button
           type="button"
-          onClick={() => dispatch(signOut())}
+          onClick={() => {
+            onClose();
+            dispatch(signOut());
+          }}
           className=" button-active-darker mr-[8px] rounded-[30px] bg-[#f6b83d] px-[40px] py-[14px]  text-[16px] font-bold  leading-[125%] tracking-[-0.03em] text-[#fff]  sm:px-[57px]"
         >
           Yes

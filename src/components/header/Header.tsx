@@ -7,6 +7,7 @@ import { options } from './data';
 import { RenderAuthComponent } from './RenderAuthComponent';
 import { routes } from '@/helpers/routes';
 import { NavigationForMobile } from './NavigationForMobile';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 
 export interface Options {
   title: string;
@@ -16,7 +17,7 @@ export interface Options {
 export const Header = () => {
   const location = usePathname();
   const mainPage = location === routes.main.main;
-  const auth = false;
+  const auth = useAppSelector((state) => state.user.token);
 
   return (
     <div
@@ -56,6 +57,21 @@ export const Header = () => {
               </Link>
             );
           })}
+
+          {auth && (
+            <Link
+              href={routes.user.profile}
+              className={`${
+                mainPage
+                  ? 'border-[rgba(255, 255, 255, 0.4)]'
+                  : location === routes.user.profile
+                    ? 'border-[#F6B83D]'
+                    : 'border-[rgba(38, 38, 38, 0.15)]'
+              } mr-[10px] rounded-[30px] border-[1px] border-solid px-[20px] py-[15px] outline-none last:mr-0 ${mainPage ? 'text-white' : 'text-[#000]'} duration-250 text-[16px] font-medium leading-tight transition-colors  ease-in-out hover:border-[#F6B83D] focus:border-[#F6B83D]`}
+            >
+              Profile
+            </Link>
+          )}
         </nav>
         <div>
           <div className=" flex items-center gap-[15px]">

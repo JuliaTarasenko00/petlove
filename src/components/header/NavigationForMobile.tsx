@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { options } from './data';
 import { Options } from './Header';
 import { usePathname } from 'next/navigation';
+import { routes } from '@/helpers/routes';
 
 interface INavigationForMobile {
   auth: boolean;
@@ -70,6 +71,18 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
                     </li>
                   );
                 })}
+                {auth && (
+                  <Link
+                    href={routes.user.profile}
+                    className={` text-center ${
+                      location === routes.user.profile
+                        ? 'border-[#F6B83D]'
+                        : 'border-[rgba(38, 38, 38, 0.15)]'
+                    } 'text-[#000] duration-250 w-[120px] rounded-[30px] border-[1px] border-solid px-[20px] py-[15px] text-[14px] font-medium leading-tight outline-none transition-colors ease-in-out  last:mr-0 hover:border-[#F6B83D] focus:border-[#F6B83D]`}
+                  >
+                    Profile
+                  </Link>
+                )}
               </ul>
               <div className="text-center">
                 <RenderAuthComponent auth={auth} />
