@@ -15,6 +15,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
 import { routes } from '@/helpers/routes';
 import { useEffect } from 'react';
+import { useAppDispatch } from '@/helpers/hooks/useActionHooks';
+import { signIn } from '@/redux/auth/operation';
+import { useRouter } from 'next/navigation';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -24,6 +27,8 @@ const initialValues: ValuesInput = {
 };
 
 export const LoginComponent = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -35,7 +40,8 @@ export const LoginComponent = () => {
   });
 
   const onSubmit = handleSubmit((value) => {
-    console.log('value: ', value);
+    dispatch(signIn(value));
+    router.replace(routes.user.profile);
   });
 
   useEffect(() => {
