@@ -1,20 +1,21 @@
 'use client';
+
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { routes } from '@/helpers/routes';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function withAuth(Component: React.ElementType) {
-  return function ProtectedRoute({ ...props }) {
-    const router = useRouter();
-    const token = useAppSelector((state) => state.user.token);
+export function PrivateRoute({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const patch = usePathname();
+  const userProfile = patch.split('/').includes('profile');
+  const token = useAppSelector((state) => state.user.token);
 
-    useEffect(() => {
-      if (!token) {
-        router.replace(routes.main.login);
-      }
-    }, [token, router]);
+  useEffect(() => {
+    if (!token && userProfile) {
+      router.replace(routes.main.login);
+    }
+  }, [token, router]);
 
-    return <Component {...props} />;
-  };
+  return <>{children}</>;
 }

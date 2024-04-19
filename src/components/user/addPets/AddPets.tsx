@@ -1,23 +1,23 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import image from '/public/image/image_dog_add_pets.webp';
-import { InferType } from 'yup';
-import { IoFemaleSharp, IoMale, IoMaleFemale } from 'react-icons/io5';
-import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import img from '/public/image/image-pet-add.png';
-import { validationSchema } from './validationSchema';
+import { Controller, useForm } from 'react-hook-form';
+import { InferType } from 'yup';
+import Image from 'next/image';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TextInput } from '@/components/ui/input/TextInput';
+import { IoFemaleSharp, IoMale, IoMaleFemale } from 'react-icons/io5';
+import { validationSchema } from './validationSchema';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useRouter } from 'next/navigation';
+import image from '/public/image/image_dog_add_pets.webp';
+import img from '/public/image/image-pet-add.png';
 import { ImageInput } from '@/components/ui/input/ImageInput';
 import { InputForImg } from '@/components/ui/input/InputForImg';
-import { DataInput } from '@/components/ui/input/DataInput';
+import { TextInput } from '@/components/ui/input/TextInput';
 import { FormControl } from '@mui/material';
-import { getSpecies } from '@/redux/filter/operation';
-import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { CustomMenuItem, CustomSelect, style } from './SelectCustomStyle';
+import { getSpecies } from '@/redux/filter/operation';
+import { DataInput } from '@/components/ui/input/DataInput';
 
 interface IListSelect {
   name: string;
@@ -71,7 +71,7 @@ export const AddPetForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<TDefaultValues>({
     defaultValues,
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
