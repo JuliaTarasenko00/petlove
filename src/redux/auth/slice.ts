@@ -4,13 +4,14 @@ import {
   createSlice,
   isAnyOf,
 } from '@reduxjs/toolkit';
-import { signIn, signOut, signUp } from './operation';
-import { UserAuth } from '@/types/user';
+import { currentUser, signIn, signOut, signUp } from './operation';
+import { UserAuth, UserInformation } from '@/types/user';
 import { ErrorType } from '@/types/errorType';
 
 export interface InitialStateAuth {
   token: string;
   user: UserAuth;
+  userFullInformation: UserInformation;
   error: ErrorType | null | undefined;
   isLoading: boolean;
 }
@@ -18,8 +19,19 @@ export interface InitialStateAuth {
 export const initialState: InitialStateAuth = {
   token: '',
   user: {
+    email: '',
+    name: '',
+    token: '',
+  },
+  userFullInformation: {
+    _id: '',
     name: '',
     email: '',
+    phone: '',
+    avatar: '',
+    noticesViewed: [],
+    noticesFavorites: [],
+    pets: [],
     token: '',
   },
   error: null,
@@ -50,12 +62,37 @@ export const userSlice = createSlice({
           state.error = null;
         },
       )
+      .addCase(
+        currentUser.fulfilled,
+        (state, { payload }: PayloadAction<UserInformation>) => {
+          state.isLoading = false;
+          state.token = payload.token;
+          state.user = {
+            email: payload.email,
+            name: payload.name,
+            token: payload.token,
+          };
+          state.userFullInformation = payload;
+          state.error = null;
+        },
+      )
       .addCase(signOut.fulfilled, (state) => {
         state.isLoading = false;
         state.token = '';
         state.user = {
           name: '',
           email: '',
+          token: '',
+        };
+        state.userFullInformation = {
+          _id: '',
+          name: '',
+          email: '',
+          phone: '',
+          avatar: '',
+          noticesViewed: [],
+          noticesFavorites: [],
+          pets: [],
           token: '',
         };
         state.error = null;
@@ -70,17 +107,44 @@ export const userSlice = createSlice({
             email: '',
             token: '',
           };
+          state.userFullInformation = {
+            _id: '',
+            name: '',
+            email: '',
+            phone: '',
+            avatar: '',
+            noticesViewed: [],
+            noticesFavorites: [],
+            pets: [],
+            token: '',
+          };
           state.error = null;
         },
       )
       .addMatcher(
-        isAnyOf(signUp.rejected, signIn.rejected, signOut.rejected),
+        isAnyOf(
+          signUp.rejected,
+          signIn.rejected,
+          signOut.rejected,
+          currentUser.rejected,
+        ),
         (state, { payload }) => {
           state.isLoading = false;
           state.token = '';
           state.user = {
             name: '',
             email: '',
+            token: '',
+          };
+          state.userFullInformation = {
+            _id: '',
+            name: '',
+            email: '',
+            phone: '',
+            avatar: '',
+            noticesViewed: [],
+            noticesFavorites: [],
+            pets: [],
             token: '',
           };
           state.error = payload;

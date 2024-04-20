@@ -1,7 +1,8 @@
 import { ErrorType } from '@/types/errorType';
 import { Notices } from '@/types/notices';
 import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getNotices } from './operation';
+import { getNotices, getNoticesId } from './operation';
+import { PetInformationForModal } from '@/types/petMoreInformation';
 
 export interface InitialState extends Notices {
   isLoading: boolean;
@@ -34,7 +35,6 @@ export const noticesSlice = createSlice({
           state.error = null;
         },
       )
-
       .addMatcher(isAnyOf(getNotices.pending), (state: InitialState) => {
         state.page = 0;
         state.perPage = 0;

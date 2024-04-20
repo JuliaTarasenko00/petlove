@@ -72,16 +72,17 @@ export const NavigationForMobile: FC<INavigationForMobile> = ({ auth }) => {
                   );
                 })}
                 {auth && (
-                  <Link
-                    href={routes.user.profile}
+                  <li
                     className={` text-center ${
                       location === routes.user.profile
                         ? 'border-[#F6B83D]'
                         : 'border-[rgba(38, 38, 38, 0.15)]'
                     } 'text-[#000] duration-250 w-[120px] rounded-[30px] border-[1px] border-solid px-[20px] py-[15px] text-[14px] font-medium leading-tight outline-none transition-colors ease-in-out  last:mr-0 hover:border-[#F6B83D] focus:border-[#F6B83D]`}
                   >
-                    Profile
-                  </Link>
+                    <Link href={routes.user.profile} className=" w-[100%]">
+                      Profile
+                    </Link>
+                  </li>
                 )}
               </ul>
               <div className="text-center">

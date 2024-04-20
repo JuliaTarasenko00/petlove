@@ -2,7 +2,6 @@
 
 import * as Yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
-import { user } from '../data';
 import img from '/public/image/not-photo.png';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
@@ -12,18 +11,20 @@ import { PhoneInput } from '@/components/ui/input/PhoneInput';
 import { ImageInput } from '@/components/ui/input/ImageInput';
 import { useState } from 'react';
 import { InputForImg } from '@/components/ui/input/InputForImg';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
-const defaultValues: ValuesInput = {
-  name: user?.name || '',
-  email: user?.email || '',
-  phone: user?.phone || '+380',
-  image: user?.avatar || '',
-};
-
 export const ModalInformationEdit = () => {
   const [selectImg, setSelectImg] = useState<File | null>(null);
+  const user = useAppSelector((state) => state.user.userFullInformation);
+
+  const defaultValues: ValuesInput = {
+    name: user.name || '',
+    email: user.email || '',
+    phone: user.phone || '+380',
+    image: user.avatar || '',
+  };
   const {
     handleSubmit,
     control,

@@ -1,11 +1,13 @@
 import { GoPlus } from 'react-icons/go';
-import { pet } from '../data';
 import { format } from 'date-fns';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { routes } from '@/helpers/routes';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 
 export const UserPets = () => {
+  const pet = useAppSelector((state) => state.user.userFullInformation.pets);
+
   return (
     <>
       <div className=" mt-[20px] flex items-center justify-between">
@@ -20,14 +22,14 @@ export const UserPets = () => {
         </Link>
       </div>
       <div className="mx-[auto] mt-[20px]  h-[360px] overflow-scroll sm:h-[200px] ">
-        {pet.length > 0 && (
+        {!!pet.length && (
           <ul className=" m-auto flex w-[295px] max-w-[100%] flex-col items-center justify-center  gap-[10px] sm:w-[100%] sm:flex-row sm:flex-wrap md:gap-[14px]  lg:w-[440px] lg:flex-col">
             {pet.map((item) => {
               const data = new Date(item.birthday);
               const formatData = format(data, 'MM.dd.yyyy');
               return (
                 <li
-                  key={item?._id}
+                  key={item._id}
                   className=" flex w-[100%] items-start justify-between rounded-[20px] border-[1px] border-[#2626261a] p-[20px] sm:w-[305px] lg:w-[100%]"
                 >
                   <img
@@ -87,6 +89,7 @@ export const UserPets = () => {
             })}
           </ul>
         )}
+        {!pet.length && <p>Oppsss... You don't have a list of animals</p>}
       </div>
     </>
   );

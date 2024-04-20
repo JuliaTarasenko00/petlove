@@ -26,7 +26,7 @@ const persistConfigAuth: PersistConfig<InitialStateAuth> = {
 
 const persistedReducer = persistReducer(persistConfigAuth, userSlice.reducer);
 
-export const store: any = configureStore({
+export const store = configureStore({
   reducer: {
     news: newsSlice.reducer,
     friends: friendsSlice.reducer,

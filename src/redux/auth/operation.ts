@@ -1,5 +1,5 @@
 import { ErrorType } from '@/types/errorType';
-import { UserAuth } from '@/types/user';
+import { UserAuth, UserInformation } from '@/types/user';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $instants, clearToken, setToken } from '../request';
 
@@ -43,6 +43,27 @@ export const signIn = createAsyncThunk<
   try {
     const { data } = await $instants.post<UserAuth>('/users/signin', userData);
     setToken(data.token);
+    return data;
+  } catch (error: ErrorType | any) {
+    return thunkApi.rejectWithValue({
+      message: error.message,
+      code: error.response.status,
+    });
+  }
+});
+
+export const currentUser = createAsyncThunk<
+  UserInformation,
+  void,
+  {
+    rejectValue: ErrorType;
+  }
+>('user/current', async (_, thunkApi) => {
+  const state: any = thunkApi.getState();
+  const token = state.user.token;
+  try {
+    setToken(token);
+    const { data } = await $instants.get('/users/current/full');
     return data;
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({

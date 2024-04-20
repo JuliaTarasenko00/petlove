@@ -1,4 +1,4 @@
-export interface Pet {
+export interface PetInformationForModal {
   _id: string;
   species: string;
   category: string;

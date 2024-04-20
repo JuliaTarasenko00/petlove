@@ -3,31 +3,37 @@ import { NoticesResult } from '@/types/notices';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdOutlineStar } from 'react-icons/md';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Span, Text } from '@/components/ui/TextNotices';
 import { ModalWindow } from '@/components/ui/modal/Modal';
 import { ModalInformationAuth } from '@/components/main/notices/modalInformation/Auth';
 import { ModalInformationNotAuth } from '@/components/main/notices/modalInformation/NotAuth';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useFetchNoticesId } from './NoticesList';
 
 interface INoticesItem {
   items: NoticesResult[];
 }
 
 export const NoticesItem = ({ items }: INoticesItem) => {
+  const auth = useAppSelector((state) => state.user.token);
   const { open, toggleModal } = useToggleModal();
   const [showInform, setShowInform] = useState<boolean>(false);
-  const auth = useAppSelector((state) => state.user.token);
+  const [id, setId] = useState<string>('');
+  const { dataForModal, isLoading } = useFetchNoticesId(id);
 
-  const clickLearnMore = (id: string) => {
-    toggleModal();
-    if (auth) {
-      console.log('id learn more: ', id);
-      setShowInform(false);
-    } else {
-      setShowInform(true);
-    }
-  };
+  const clickLearnMore = useCallback(
+    (id: string) => {
+      toggleModal();
+      if (auth) {
+        setId(id);
+        return setShowInform(false);
+      } else {
+        return setShowInform(true);
+      }
+    },
+    [auth, toggleModal],
+  );
 
   const clickFavorite = (id: string) => {
     if (auth) {
@@ -135,7 +141,11 @@ export const NoticesItem = ({ items }: INoticesItem) => {
       )}
       <ModalWindow onClose={toggleModal} open={open}>
         <>
-          {!showInform ? <ModalInformationAuth /> : <ModalInformationNotAuth />}
+          {!showInform ? (
+            <ModalInformationAuth data={dataForModal} isLoading={isLoading} />
+          ) : (
+            <ModalInformationNotAuth />
+          )}
         </>
       </ModalWindow>
     </>

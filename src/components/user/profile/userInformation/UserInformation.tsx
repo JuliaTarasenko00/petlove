@@ -4,7 +4,6 @@ import { InferType } from 'yup';
 import { FaUserLarge } from 'react-icons/fa6';
 import { LuPen } from 'react-icons/lu';
 import { UserPets } from './UserPets';
-import { user } from '../data';
 import img from '/public/image/not-photo.png';
 import { TextInput } from '@/components/ui/input/TextInput';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
@@ -12,6 +11,8 @@ import { ModalWindow } from '@/components/ui/modal/Modal';
 import { ModalInformationLogOut } from './ModalInformationLogOut';
 import { ModalInformationEdit } from './ModalInformationEdit';
 import { validationSchema } from './validationSchema';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useEffect } from 'react';
 
 type ValuesInput = InferType<typeof validationSchema>;
 
@@ -24,16 +25,19 @@ export const UserInformation = () => {
   const { modalWithName, openModalWithName, closeModalWithName } =
     useToggleModal();
 
+  const user = useAppSelector((state) => state.user.userFullInformation);
+
   const initialValues: ValuesInput = {
     name: user?.name,
     email: user?.email,
-    phone: user?.phone || '+380',
+    phone: user.phone || '+380',
   };
-  const { control } = useForm<ValuesInput>({
+  const { control, reset } = useForm<ValuesInput>({
     defaultValues: initialValues,
     disabled: true,
   });
-  const image = !user?.avatar ? img.src : user?.avatar;
+
+  const image = !user.avatar ? img.src : user.avatar;
 
   return (
     <>
