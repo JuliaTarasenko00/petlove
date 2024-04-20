@@ -61,9 +61,9 @@ export const Header = () => {
         <div>
           <div className=" flex items-center gap-[15px]">
             <div className="hidden items-center gap-[10px] sm:flex">
-              <RenderAuthComponent mainPage={mainPage} auth={auth} />
+              <RenderAuthComponent mainPage={mainPage} auth={!!auth} />
             </div>
-            <NavigationForMobile auth={auth} />
+            <NavigationForMobile auth={!!auth} />
           </div>
         </div>
       </div>
