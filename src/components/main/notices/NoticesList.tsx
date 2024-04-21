@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getNotices } from '@/redux/notices/operation';
+import { getNotices, getNoticesFilter } from '@/redux/notices/operation';
 import { NoticesItem } from './NoticesItem';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { Filter } from './filter/Filter';
@@ -9,6 +9,12 @@ import { Pagination } from '@/components/ui/Pagination/Pagination';
 import { Loader } from '@/components/ui/loader/Loader';
 import { PetInformationForModal } from '@/types/petMoreInformation';
 import { $instants } from '@/redux/request';
+
+export interface TState {
+  name: string;
+  check: null | boolean;
+  type: string;
+}
 
 export const useFetchNoticesId = (id: string) => {
   const [dataForModal, setDataForModal] =
@@ -37,22 +43,57 @@ export const useFetchNoticesId = (id: string) => {
 };
 
 export const NoticesList = () => {
-  const [page, setPage] = useState<number>(1);
+  const dispatch = useAppDispatch();
   const noticesList = useAppSelector((state) => state.notices.results);
   const isLoading = useAppSelector((state) => state.notices.isLoading);
   const count = useAppSelector((state) => state.notices.totalPages);
-  const dispatch = useAppDispatch();
+  const [page, setPage] = useState<number>(1);
+  const [selectedButton, setSelectedButton] = useState<TState>({
+    name: '',
+    check: null,
+    type: '',
+  });
+  const [selected, setSelected] = useState({
+    category: '',
+    species: '',
+  });
+  const [selectedName, setSelectedName] = useState<string>('');
+  const isFilter =
+    !!Object.values(selected).join('') ||
+    !!selectedName ||
+    !!selectedButton.name;
 
   useEffect(() => {
-    dispatch(getNotices({ p: page }));
-  }, [page, dispatch]);
+    if (isFilter) {
+      dispatch(
+        getNoticesFilter({
+          ...selected,
+          p: page,
+          name: selectedName,
+          type: selectedButton.check !== null && selectedButton.type,
+          isSelected: selectedButton.check ?? '',
+        }),
+      );
+      return;
+    } else {
+      dispatch(getNotices({ p: page }));
+      return;
+    }
+  }, [page, selectedName, selectedButton, selected, dispatch]);
 
   return (
     <>
       <section className="min-h-[100vh] py-[96px]">
         <div className="container">
           <TitlePage>Find your favorite pet</TitlePage>
-          <Filter />
+
+          <Filter
+            setSelectedButton={setSelectedButton}
+            setSelected={setSelected}
+            setSelectedName={setSelectedName}
+            selectedButton={selectedButton}
+          />
+
           <ul className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
             <NoticesItem items={noticesList} />
           </ul>

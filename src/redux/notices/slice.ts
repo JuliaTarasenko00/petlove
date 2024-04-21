@@ -1,8 +1,7 @@
 import { ErrorType } from '@/types/errorType';
 import { Notices } from '@/types/notices';
 import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getNotices, getNoticesId } from './operation';
-import { PetInformationForModal } from '@/types/petMoreInformation';
+import { getNotices, getNoticesFilter } from './operation';
 
 export interface InitialState extends Notices {
   isLoading: boolean;
@@ -35,6 +34,17 @@ export const noticesSlice = createSlice({
           state.error = null;
         },
       )
+      .addCase(
+        getNoticesFilter.fulfilled,
+        (state: InitialState, { payload }: PayloadAction<Notices>) => {
+          state.page = payload.page;
+          state.perPage = payload.perPage;
+          state.totalPages = payload.totalPages;
+          state.results = payload.results;
+          state.isLoading = false;
+          state.error = null;
+        },
+      )
       .addMatcher(isAnyOf(getNotices.pending), (state: InitialState) => {
         state.page = 0;
         state.perPage = 0;
@@ -43,6 +53,7 @@ export const noticesSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
+
       .addMatcher(
         isAnyOf(getNotices.rejected),
         (

@@ -7,12 +7,12 @@ import {
   style,
 } from './FilterCustomStyle';
 import { useAppDispatch } from '@/helpers/hooks/useActionHooks';
-import { getCategories, getSex, getSpecies } from '@/redux/filter/operation';
+import { getCategories, getSpecies } from '@/redux/filter/operation';
+import { LoaderForPage } from '@/components/ui/loaderForPage/LoaderForPage';
 
 interface SelectListProps {
   isLoading: boolean;
   categories: Array<string>;
-  sex: Array<string>;
   species: Array<string>;
   handleChange: (event: any) => void;
 }
@@ -20,7 +20,6 @@ interface SelectListProps {
 export const SelectList = ({
   isLoading,
   categories,
-  sex,
   species,
   handleChange,
 }: SelectListProps) => {
@@ -28,7 +27,7 @@ export const SelectList = ({
 
   return (
     <>
-      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
+      <FormControl className="w-[100%] sm:w-[170px] lg:w-[200px]">
         <CustomSelect
           defaultValue={0}
           name="category"
@@ -37,7 +36,11 @@ export const SelectList = ({
           onOpen={() => dispatch(getCategories())}
         >
           <FirstMenuItem value={0}>Category</FirstMenuItem>
-          {isLoading && <p>Loading...</p>}
+          {isLoading && (
+            <div className=" flex items-center justify-center">
+              <LoaderForPage />
+            </div>
+          )}
           {!isLoading &&
             categories.map((category: string) => (
               <CustomMenuItem key={category} value={category}>
@@ -46,25 +49,7 @@ export const SelectList = ({
             ))}
         </CustomSelect>
       </FormControl>
-      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
-        <CustomSelect
-          defaultValue={0}
-          name="sex"
-          MenuProps={{ PaperProps: { sx: style } }}
-          onChange={handleChange}
-          onOpen={() => dispatch(getSex())}
-        >
-          <FirstMenuItem value={0}>By gender</FirstMenuItem>
-          {isLoading && <p>Loading...</p>}
-          {!isLoading &&
-            sex.map((gender: string) => (
-              <CustomMenuItem key={gender} value={gender}>
-                {gender}
-              </CustomMenuItem>
-            ))}
-        </CustomSelect>
-      </FormControl>
-      <FormControl className="max-w-[143px] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
+      <FormControl className="w-[46%] max-w-[100%] sm:w-[170px] sm:max-w-[100%] lg:w-[200px]">
         <CustomSelect
           defaultValue={0}
           name="species"
@@ -73,7 +58,11 @@ export const SelectList = ({
           onOpen={() => dispatch(getSpecies())}
         >
           <FirstMenuItem value={0}>By type</FirstMenuItem>
-          {isLoading && <p>Loading...</p>}
+          {isLoading && (
+            <div className=" flex items-center justify-center">
+              <LoaderForPage />
+            </div>
+          )}
           {!isLoading &&
             species.map((specie: string) => (
               <CustomMenuItem key={specie} value={specie}>

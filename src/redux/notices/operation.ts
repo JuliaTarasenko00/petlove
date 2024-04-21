@@ -2,7 +2,6 @@ import { ErrorType } from '@/types/errorType';
 import { Notices } from '@/types/notices';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $instants } from '../request';
-import { AxiosResponse } from 'axios';
 
 interface NoticesArgs {
   p: number;
@@ -28,6 +27,39 @@ export const getNotices = createAsyncThunk<
     });
   }
 });
+
+export const getNoticesFilter = createAsyncThunk<
+  Notices,
+  any,
+  {
+    rejectValue: ErrorType;
+  }
+>(
+  'notices/filter',
+  async (
+    { p = 1, l = 6, category, species, name, type, isSelected },
+    thunkApi,
+  ) => {
+    const params = new URLSearchParams({
+      page: p,
+      limit: l,
+      keyword: name,
+      category: category,
+      species: species,
+    });
+    try {
+      const { data } = await $instants.get(
+        `/notices?${params.toString()}&${type}=${isSelected}`,
+      );
+      return data;
+    } catch (error: ErrorType | any) {
+      return thunkApi.rejectWithValue({
+        message: error.message,
+        code: error.response.status,
+      });
+    }
+  },
+);
 
 export const getNoticesId = createAsyncThunk<
   any,

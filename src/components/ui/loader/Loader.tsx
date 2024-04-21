@@ -21,7 +21,7 @@ export const Loader = () => {
   }, []);
 
   return (
-    <div className=" absolute left-0 top-0 z-[50000] grid h-[100vh] w-[100%] place-items-center overflow-hidden bg-slate-400 bg-loader bg-cover bg-center bg-no-repeat scrollbar-none">
+    <div className=" absolute bottom-0 left-0 top-0 z-[50000] grid min-h-[100vh] w-[100%] place-items-center overflow-hidden bg-slate-400 bg-loader bg-cover bg-center bg-no-repeat scrollbar-none">
       {loadingProgress > 0 && (
         <span className=" absolute box-border inline-block h-[250px] w-[250px] animate-spin rounded-[50%] border-r-[3px] border-t-[3px] border-r-transparent border-t-[#Fff] md:h-[396px] md:w-[396px]"></span>
       )}
