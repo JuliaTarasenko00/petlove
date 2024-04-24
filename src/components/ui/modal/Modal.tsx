@@ -34,7 +34,7 @@ export const ModalWindow = (props: ModalProps) => {
   return (
     <div
       onClick={onClickOverlay}
-      className={` ${open ? '' : ' pointer-events-none invisible opacity-0'} fixed bottom-0  top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center bg-[#2626264d] transition-opacity duration-[350ms] ease-in-out`}
+      className={` ${open ? '' : ' pointer-events-none invisible opacity-0'} fixed bottom-0 left-0 right-0  top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center bg-[#2626264d] transition-opacity duration-[350ms] ease-in-out`}
     >
       <div className=" relative rounded-[15px] bg-[#fff]  p-[20px] lg:p-[40px]">
         <button

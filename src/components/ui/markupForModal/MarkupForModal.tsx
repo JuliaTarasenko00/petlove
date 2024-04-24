@@ -1,19 +1,20 @@
-'use clint';
-
+import { MdOutlineStar } from 'react-icons/md';
+import { Span, Text } from '../TextNotices';
+import { FaRegHeart } from 'react-icons/fa6';
+import { LoaderForPage } from '../loaderForPage/LoaderForPage';
+import { PetInformationForModal } from '@/types/petMoreInformation';
 import { FC } from 'react';
 import { Rating } from '@mui/material';
-import { MdOutlineStar } from 'react-icons/md';
-import { Span, Text } from '@/components/ui/TextNotices';
-import { PetInformationForModal } from '@/types/petMoreInformation';
-import { FaRegHeart } from 'react-icons/fa6';
-import { LoaderForPage } from '@/components/ui/loaderForPage/LoaderForPage';
 
-interface Props {
-  data: PetInformationForModal | null;
+interface MarkupForModalProps {
   isLoading: boolean;
+  data: PetInformationForModal | null;
 }
 
-export const ModalInformationAuth: FC<Props> = ({ data, isLoading }) => {
+export const MarkupForModal: FC<MarkupForModalProps> = ({
+  isLoading,
+  data,
+}) => {
   return (
     <div className=" flex min-h-[450px] w-[100%]  flex-col items-center justify-center sm:w-[335px] md:w-[473px]">
       {!isLoading && (

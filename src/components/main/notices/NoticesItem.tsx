@@ -3,13 +3,13 @@ import { NoticesResult } from '@/types/notices';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdOutlineStar } from 'react-icons/md';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Span, Text } from '@/components/ui/TextNotices';
 import { ModalWindow } from '@/components/ui/modal/Modal';
-import { ModalInformationAuth } from '@/components/main/notices/modalInformation/Auth';
 import { ModalInformationNotAuth } from '@/components/main/notices/modalInformation/NotAuth';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
-import { useFetchNoticesId } from './NoticesList';
+import { useFetchNoticesId } from '@/helpers/api/useFetchNoticesId';
+import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
 
 interface INoticesItem {
   items: NoticesResult[];
@@ -142,7 +142,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
       <ModalWindow onClose={toggleModal} open={open}>
         <>
           {!showInform ? (
-            <ModalInformationAuth data={dataForModal} isLoading={isLoading} />
+            <MarkupForModal data={dataForModal} isLoading={isLoading} />
           ) : (
             <ModalInformationNotAuth />
           )}

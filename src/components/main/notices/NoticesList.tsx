@@ -7,40 +7,12 @@ import { Filter } from './filter/Filter';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { Pagination } from '@/components/ui/Pagination/Pagination';
 import { Loader } from '@/components/ui/loader/Loader';
-import { PetInformationForModal } from '@/types/petMoreInformation';
-import { $instants } from '@/redux/request';
 
 export interface TState {
   name: string;
   check: null | boolean;
   type: string;
 }
-
-export const useFetchNoticesId = (id: string) => {
-  const [dataForModal, setDataForModal] =
-    useState<PetInformationForModal | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (id) {
-      const fetchNotices = async (id: string) => {
-        try {
-          setIsLoading(true);
-          const { data } = await $instants.get(`/notices/${id}`);
-          setDataForModal(data);
-        } catch (error) {
-          setIsLoading(true);
-          console.error(error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-
-      fetchNotices(id);
-    }
-  }, [id]);
-  return { dataForModal, isLoading };
-};
 
 export const NoticesList = () => {
   const dispatch = useAppDispatch();

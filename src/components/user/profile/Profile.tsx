@@ -12,7 +12,7 @@ export const Profile = () => {
   ];
   return (
     <section className=" py-[32px]">
-      <div className=" container flex flex-wrap justify-center gap-[25px] lg:flex-nowrap">
+      <div className=" container flex flex-wrap justify-start gap-[25px] lg:flex-nowrap">
         <UserInformation />
         <Tabs tabs={tabs} />
       </div>
