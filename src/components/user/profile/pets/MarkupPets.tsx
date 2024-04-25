@@ -1,28 +1,22 @@
 'use client';
 import { Span, Text } from '@/components/ui/TextNotices';
-import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
-import { ModalWindow } from '@/components/ui/modal/Modal';
-import { PetInformationForModal } from '@/types/petMoreInformation';
 import { INoticesFavorite } from '@/types/user';
 import { format } from 'date-fns';
 import { MdOutlineStar } from 'react-icons/md';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 interface MarkupPetsProps {
   items: INoticesFavorite[] | INoticesFavorite[];
   handelClick: (id: string) => void;
-  open: boolean;
-  toggleModal: () => void;
-  dataForModal: PetInformationForModal | null;
-  isLoadingModal: boolean;
+  isFavorite?: boolean;
+  onOpenModalFavorite?: (id: string) => void;
 }
 
 export const MarkupPets = ({
   items,
   handelClick,
-  open,
-  toggleModal,
-  dataForModal,
-  isLoadingModal,
+  isFavorite,
+  onOpenModalFavorite,
 }: MarkupPetsProps) => {
   return (
     <>
@@ -100,22 +94,32 @@ export const MarkupPets = ({
                       {item?.comment}
                     </p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => handelClick(item?._id)}
-                    className=" m-auto max-w-[257px] rounded-[30px] bg-[#f6b83d] px-[80px] py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] outline-none transition-colors ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020]"
-                  >
-                    Learn more
-                  </button>
+                  <div className=" flex items-center gap-[10px]">
+                    <button
+                      type="button"
+                      onClick={() => handelClick(item?._id)}
+                      className=" button-active-darker m-auto w-[100%] rounded-[30px] bg-[#f6b83d]  py-[14px] text-[16px] leading-[125%] tracking-[-0.03em] text-[#fff] outline-none"
+                    >
+                      Learn more
+                    </button>
+                    {isFavorite && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!!onOpenModalFavorite) onOpenModalFavorite(item?._id);
+                        }}
+                        className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[13px]"
+                      >
+                        <RiDeleteBinLine className=" text-[#F6B83D]" />
+                      </button>
+                    )}
+                  </div>
                 </li>
               );
             })}
           </ul>
         )}
       </div>
-      <ModalWindow open={open} onClose={toggleModal}>
-        <MarkupForModal data={dataForModal} isLoading={isLoadingModal} />
-      </ModalWindow>
     </>
   );
 };

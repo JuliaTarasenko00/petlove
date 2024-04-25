@@ -60,21 +60,3 @@ export const getNoticesFilter = createAsyncThunk<
     }
   },
 );
-
-export const getNoticesId = createAsyncThunk<
-  any,
-  string,
-  {
-    rejectValue: ErrorType;
-  }
->('notices/id', async (id, thunkApi) => {
-  try {
-    const { data } = await $instants(`/notices/${id}`);
-    return data;
-  } catch (error: ErrorType | any) {
-    return thunkApi.rejectWithValue({
-      message: error.message,
-      code: error.response.status,
-    });
-  }
-});

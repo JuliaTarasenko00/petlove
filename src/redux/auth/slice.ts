@@ -4,7 +4,14 @@ import {
   createSlice,
   isAnyOf,
 } from '@reduxjs/toolkit';
-import { currentUser, signIn, signOut, signUp } from './operation';
+import {
+  addFavoritePet,
+  currentUser,
+  deleteFavoritePet,
+  signIn,
+  signOut,
+  signUp,
+} from './operation';
 import { UserAuth, UserInformation } from '@/types/user';
 import { ErrorType } from '@/types/errorType';
 
@@ -12,6 +19,7 @@ export interface InitialStateAuth {
   token: string;
   user: UserAuth;
   userFullInformation: UserInformation;
+  favoritePets: Array<string>;
   error: ErrorType | null | undefined;
   isLoading: boolean;
 }
@@ -34,6 +42,7 @@ export const initialState: InitialStateAuth = {
     pets: [],
     token: '',
   },
+  favoritePets: [],
   error: null,
   isLoading: false,
 };
@@ -72,6 +81,7 @@ export const userSlice = createSlice({
             name: payload.name,
             token: payload.token,
           };
+          state.favoritePets = payload.noticesFavorites.map(({ _id }) => _id);
           state.userFullInformation = payload;
           state.error = null;
         },
@@ -96,6 +106,36 @@ export const userSlice = createSlice({
           token: '',
         };
         state.error = null;
+      })
+      .addCase(
+        deleteFavoritePet.fulfilled,
+        (state, { payload }: PayloadAction<Array<string>>) => {
+          state.userFullInformation.noticesFavorites =
+            state.userFullInformation.noticesFavorites.filter((product) =>
+              payload.includes(product._id),
+            );
+          state.favoritePets = state.favoritePets.filter((id) =>
+            payload.includes(id),
+          );
+          state.isLoading = false;
+          state.error = null;
+        },
+      )
+      .addCase(
+        addFavoritePet.fulfilled,
+        (state, { payload }: PayloadAction<Array<string>>) => {
+          state.favoritePets = payload;
+          state.isLoading = false;
+          state.error = null;
+        },
+      )
+      .addCase(deleteFavoritePet.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteFavoritePet.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       })
       .addMatcher(
         isAnyOf(signUp.pending, signIn.pending, signOut.pending),

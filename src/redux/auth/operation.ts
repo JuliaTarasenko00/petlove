@@ -90,3 +90,39 @@ export const signOut = createAsyncThunk<
     });
   }
 });
+
+export const deleteFavoritePet = createAsyncThunk<
+  Array<string>,
+  string,
+  {
+    rejectValue: ErrorType;
+  }
+>('delete/favorite', async (id, thunkApi) => {
+  try {
+    const { data } = await $instants.delete(`/notices/favorites/remove/${id}`);
+    return data;
+  } catch (error: ErrorType | any) {
+    return thunkApi.rejectWithValue({
+      message: error.message,
+      code: error.response.status,
+    });
+  }
+});
+
+export const addFavoritePet = createAsyncThunk<
+  Array<string>,
+  string,
+  {
+    rejectValue: ErrorType;
+  }
+>('add/favorite', async (id, thunkApi) => {
+  try {
+    const { data } = await $instants.post(`/notices/favorites/add/${id}`);
+    return data;
+  } catch (error: ErrorType | any) {
+    return thunkApi.rejectWithValue({
+      message: error.message,
+      code: error.response.status,
+    });
+  }
+});

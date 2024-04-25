@@ -1,3 +1,4 @@
+'use client';
 import { MdOutlineStar } from 'react-icons/md';
 import { Span, Text } from '../TextNotices';
 import { FaRegHeart } from 'react-icons/fa6';
@@ -9,11 +10,13 @@ import { Rating } from '@mui/material';
 interface MarkupForModalProps {
   isLoading: boolean;
   data: PetInformationForModal | null;
+  isProfilePage?: boolean;
 }
 
 export const MarkupForModal: FC<MarkupForModalProps> = ({
   isLoading,
   data,
+  isProfilePage,
 }) => {
   return (
     <div className=" flex min-h-[450px] w-[100%]  flex-col items-center justify-center sm:w-[335px] md:w-[473px]">
@@ -93,12 +96,14 @@ export const MarkupForModal: FC<MarkupForModalProps> = ({
             </p>
           </div>
           <div className="flex items-center gap-[5px] sm:gap-[15px]">
-            <button
-              type="button"
-              className="duration-250 flex items-center gap-[5px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-bold text-white transition-colors  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020] sm:px-[42px] sm:py-[15px]"
-            >
-              Add to {<FaRegHeart />}
-            </button>
+            {!isProfilePage && (
+              <button
+                type="button"
+                className="duration-250 flex items-center gap-[5px] rounded-[30px] bg-[#f6b83d] px-[20px] py-[10px] text-[16px] font-bold text-white transition-colors  ease-in-out hover:bg-[#f9b020] focus:bg-[#f9b020] sm:px-[42px] sm:py-[15px]"
+              >
+                Add to {<FaRegHeart />}
+              </button>
+            )}
             <a
               href={`tel:${data?.user.phone}`}
               className="duration-250 rounded-[30px] bg-[#fff4df] px-[20px] py-[10px] text-[16px] font-bold uppercase text-[#f6b83d] transition-colors ease-in-out hover:bg-[#fbe7c1]  focus:bg-[#fbe7c1] sm:px-[42px] sm:py-[15px]"

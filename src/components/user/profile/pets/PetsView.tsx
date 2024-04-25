@@ -4,6 +4,8 @@ import { MarkupPets } from './MarkupPets';
 import { useState } from 'react';
 import { useFetchNoticesId } from '@/helpers/api/useFetchNoticesId';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
+import { ModalWindow } from '@/components/ui/modal/Modal';
+import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
 
 export const PetsView = () => {
   const view = useAppSelector(
@@ -18,15 +20,15 @@ export const PetsView = () => {
     toggleModal();
   };
   return (
-    view.length > 0 && (
-      <MarkupPets
-        items={view}
-        open={open}
-        toggleModal={toggleModal}
-        dataForModal={dataForModal}
-        isLoadingModal={isLoading}
-        handelClick={handelClick}
-      />
-    )
+    <>
+      {view.length > 0 && <MarkupPets items={view} handelClick={handelClick} />}
+      <ModalWindow open={open} onClose={toggleModal}>
+        <MarkupForModal
+          isProfilePage={true}
+          data={dataForModal}
+          isLoading={isLoading}
+        />
+      </ModalWindow>
+    </>
   );
 };

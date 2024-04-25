@@ -18,7 +18,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
   };
 
   return (
-    <div>
+    <div className="lg:w-[calc(100%-520px)]">
       <div className=" mb-[32px] flex items-center gap-[8px]">
         {tabs.map((tab, index) => {
           return (

@@ -1,7 +1,10 @@
 import { ErrorType } from '@/types/errorType';
 import { Notices } from '@/types/notices';
 import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getNotices, getNoticesFilter } from './operation';
+import {
+  getNotices,
+  getNoticesFilter,
+} from './operation';
 
 export interface InitialState extends Notices {
   isLoading: boolean;

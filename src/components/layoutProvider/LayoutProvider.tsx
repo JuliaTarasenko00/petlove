@@ -18,7 +18,7 @@ export const LayoutProvider = ({
     if (token) {
       dispatch(currentUser());
     }
-  }, [token]);
+  }, [dispatch, token]);
 
   return (
     <>
