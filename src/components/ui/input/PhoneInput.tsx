@@ -35,7 +35,7 @@ export const PhoneInput = forwardRef(
       <div className="w-[100%]">
         <div className=" relative ">
           <MaskedInput
-            mask="+38# *0 000 00 00"
+            mask="+38#*00000000"
             definitions={{
               '#': /[0]/,
               '*': /[6,7,8,9,5]/,

@@ -13,5 +13,5 @@ export const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(phonePattern, `This is an ERROR phone`)
     .required('Required'),
-  image: Yup.string(),
+  avatar: Yup.string(),
 });

@@ -28,14 +28,24 @@ export const UserInformation = () => {
   const user = useAppSelector((state) => state.user.userFullInformation);
 
   const initialValues: ValuesInput = {
-    name: user?.name,
-    email: user?.email,
+    name: user.name,
+    email: user.email,
     phone: user.phone || '+380',
   };
   const { control, reset } = useForm<ValuesInput>({
     defaultValues: initialValues,
     disabled: true,
   });
+
+  useEffect(() => {
+    if (user.email) {
+      reset({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+      });
+    }
+  }, [user, reset]);
 
   const image = !user.avatar ? img.src : user.avatar;
 

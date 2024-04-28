@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'framer-motion';
 import { NoticesResult } from '@/types/notices';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdOutlineStar } from 'react-icons/md';
@@ -12,6 +13,14 @@ import { useFetchNoticesId } from '@/helpers/api/useFetchNoticesId';
 import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
 import { addFavoritePet } from '@/redux/auth/operation';
 import { FaHeart } from 'react-icons/fa6';
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 interface INoticesItem {
   items: NoticesResult[];
@@ -65,7 +74,8 @@ export const NoticesItem = ({ items }: INoticesItem) => {
           popularity,
         }: NoticesResult) => {
           return (
-            <li
+            <motion.li
+              variants={item}
               key={_id}
               className=" flex w-[310px] flex-col gap-[50px] rounded-[16px] bg-[#fff] p-[24px] sm:w-[335px] md:w-[363px]"
             >
@@ -147,7 +157,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
                   )}
                 </button>
               </div>
-            </li>
+            </motion.li>
           );
         },
       )}

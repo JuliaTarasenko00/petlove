@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import {
   addFavoritePet,
+  currentEdit,
   currentUser,
   deleteFavoritePet,
   signIn,
@@ -73,6 +74,21 @@ export const userSlice = createSlice({
       )
       .addCase(
         currentUser.fulfilled,
+        (state, { payload }: PayloadAction<UserInformation>) => {
+          state.isLoading = false;
+          state.token = payload.token;
+          state.user = {
+            email: payload.email,
+            name: payload.name,
+            token: payload.token,
+          };
+          state.favoritePets = payload.noticesFavorites.map(({ _id }) => _id);
+          state.userFullInformation = payload;
+          state.error = null;
+        },
+      )
+      .addCase(
+        currentEdit.fulfilled,
         (state, { payload }: PayloadAction<UserInformation>) => {
           state.isLoading = false;
           state.token = payload.token;
@@ -167,6 +183,7 @@ export const userSlice = createSlice({
           signIn.rejected,
           signOut.rejected,
           currentUser.rejected,
+          currentEdit.rejected,
         ),
         (state, { payload }) => {
           state.isLoading = false;

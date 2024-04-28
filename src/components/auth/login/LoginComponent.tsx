@@ -1,6 +1,4 @@
 'use client';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_dog.png';
@@ -14,7 +12,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from './validationSchema';
 import { routes } from '@/helpers/routes';
-import { useEffect } from 'react';
 import { useAppDispatch } from '@/helpers/hooks/useActionHooks';
 import { signIn } from '@/redux/auth/operation';
 import { useRouter } from 'next/navigation';
@@ -44,14 +41,10 @@ export const LoginComponent = () => {
     router.replace(routes.user.profile);
   });
 
-  useEffect(() => {
-    Aos.init();
-  }, []);
-
   return (
     <section className="py-[32px]">
       <div className=" container flex flex-wrap justify-center gap-[32px] lg:flex-nowrap">
-        <div data-aos="flip-up" className=" relative ">
+        <div className=" relative ">
           <Image
             src={img}
             priority={true}

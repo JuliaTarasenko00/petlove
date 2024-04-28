@@ -126,3 +126,22 @@ export const addFavoritePet = createAsyncThunk<
     });
   }
 });
+
+export const currentEdit = createAsyncThunk<
+  UserInformation,
+  FormData,
+  {
+    rejectValue: ErrorType;
+  }
+>('edit/user', async (information, thunkApi) => {
+  try {
+    console.log('information: ', information);
+    const { data } = await $instants.patch('/users/current/edit', information);
+    return data;
+  } catch (error: ErrorType | any) {
+    return thunkApi.rejectWithValue({
+      message: error.message,
+      code: error.response.status,
+    });
+  }
+});

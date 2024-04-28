@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { AuthLink } from '../ui/AuthLink';
-import { user } from '../user/profile/data';
 import img from '/public/image/not-photo.png';
 import { routes } from '@/helpers/routes';
 
@@ -13,8 +12,8 @@ interface IRender {
 }
 
 export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
-  const data = useAppSelector((state) => state.user.user);
-  const image = !user?.avatar ? img.src : user?.avatar;
+  const data = useAppSelector((state) => state.user.userFullInformation);
+  const image = !data?.avatar ? img.src : data?.avatar;
 
   return (
     <>
@@ -22,7 +21,7 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
         <div className=" flex items-center gap-[8px]">
           <img
             src={image}
-            alt={user.name}
+            alt={data.name}
             width="50"
             height="50"
             className="hidden rounded-[50px] lg:block"

@@ -6,6 +6,19 @@ import { useEffect } from 'react';
 import { OurFriendsItem } from './OurFriendsItem';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { Loader } from '@/components/ui/loader/Loader';
+import { motion } from 'framer-motion';
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export const OurFriendsComponent = () => {
   const friendsList = useAppSelector((state) => state.friends.friends);
@@ -22,9 +35,14 @@ export const OurFriendsComponent = () => {
         <section className="py-[96px]">
           <div className="container">
             <TitlePage>Our Friends</TitlePage>
-            <ul className=" mt-[60px] flex flex-wrap  justify-center gap-[20px]">
+            <motion.ul
+              variants={container}
+              initial="hidden"
+              animate="visible"
+              className=" mt-[60px] flex flex-wrap  justify-center gap-[20px]"
+            >
               <OurFriendsItem items={friendsList} />
-            </ul>
+            </motion.ul>
           </div>
         </section>
       )}

@@ -1,6 +1,4 @@
 'use client';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import img from '/public/image/image_cat.png';
@@ -54,14 +52,10 @@ export const RegisterComponent = () => {
     router.replace(routes.user.profile);
   });
 
-  useEffect(() => {
-    Aos.init();
-  }, []);
-
   return (
     <section className="py-[32px]">
       <div className=" container flex flex-wrap items-center justify-center gap-[32px] lg:flex-nowrap">
-        <div data-aos="flip-up" className=" relative">
+        <div className=" relative">
           <Image
             src={img}
             priority={true}

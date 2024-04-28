@@ -9,34 +9,60 @@ import { TextInput } from '@/components/ui/input/TextInput';
 import { EmailInput } from '@/components/ui/authInput/EmailInput';
 import { PhoneInput } from '@/components/ui/input/PhoneInput';
 import { ImageInput } from '@/components/ui/input/ImageInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputForImg } from '@/components/ui/input/InputForImg';
-import { useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { currentEdit } from '@/redux/auth/operation';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
 export const ModalInformationEdit = () => {
   const [selectImg, setSelectImg] = useState<File | null>(null);
   const user = useAppSelector((state) => state.user.userFullInformation);
+  const dispatch = useAppDispatch();
 
   const defaultValues: ValuesInput = {
-    name: user.name || '',
-    email: user.email || '',
+    name: user.name,
+    email: user.email,
     phone: user.phone || '+380',
-    image: user.avatar || '',
+    avatar: user.avatar,
   };
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    reset,
+    formState: { errors, isDirty },
   } = useForm<ValuesInput>({
     defaultValues,
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
+  console.log('isDirty: ', isDirty);
+
+  useEffect(() => {
+    if (user.email) {
+      reset({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        avatar: user.avatar,
+      });
+    }
+  }, [user, reset]);
 
   const handleSubmitForm = handleSubmit((values) => {
-    console.log('values: ', values);
+    let value: any = {};
+    if (values.name) {
+      value.name = values.name;
+    }
+    if (values.phone) {
+      value.phone = values.phone;
+    }
+    if (values.email) {
+      value.email = values.email;
+    }
+    console.log(value);
+    dispatch(currentEdit(value));
   });
 
   return (
@@ -65,11 +91,12 @@ export const ModalInformationEdit = () => {
             </div>
             <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
               <Controller
-                name="image"
+                name="avatar"
                 control={control}
                 render={({ field }) => (
                   <ImageInput
                     {...field}
+                    disabled
                     setSelectImg={setSelectImg}
                     placeholder="Image"
                   />
@@ -77,13 +104,13 @@ export const ModalInformationEdit = () => {
               />
               <div className="w-[160px] md:w-[226px]">
                 <Controller
-                  name="image"
+                  name="avatar"
                   control={control}
                   render={({ field }) => (
                     <InputForImg
                       {...field}
                       placeholder="Enter URL"
-                      errorMessage={errors.image?.message}
+                      errorMessage={errors.avatar?.message}
                       disabled={true}
                       activeBorder={!!selectImg}
                       value={
@@ -139,7 +166,8 @@ export const ModalInformationEdit = () => {
         </div>
         <button
           type="submit"
-          className=" button-active-darker w-[285px] max-w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none md:w-[380px]"
+          disabled={!isDirty}
+          className=" button-active-darker w-[285px] max-w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none disabled:cursor-not-allowed disabled:bg-[#6b72808a] md:w-[380px]"
         >
           Save
         </button>

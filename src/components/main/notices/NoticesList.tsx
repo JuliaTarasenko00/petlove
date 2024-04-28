@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { getNotices, getNoticesFilter } from '@/redux/notices/operation';
 import { NoticesItem } from './NoticesItem';
@@ -7,6 +8,18 @@ import { Filter } from './filter/Filter';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { Pagination } from '@/components/ui/Pagination/Pagination';
 import { Loader } from '@/components/ui/loader/Loader';
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export interface TState {
   name: string;
@@ -66,9 +79,14 @@ export const NoticesList = () => {
             selectedButton={selectedButton}
           />
 
-          <ul className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]">
+          <motion.ul
+            variants={container}
+            initial="hidden"
+            animate="visible"
+            className=" mt-[40px] flex flex-wrap justify-center gap-x-[32px] gap-y-[40px]"
+          >
             <NoticesItem items={noticesList} />
-          </ul>
+          </motion.ul>
           <Pagination page={page} setPage={setPage} count={count} />
         </div>
       </section>

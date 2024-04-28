@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 type Tab = {
   title: string;
@@ -11,6 +12,7 @@ interface TabsProps {
 }
 
 export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
+  console.log('tabs: ', tabs);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   const handleTabClick = (index: number) => {
@@ -32,7 +34,16 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
           );
         })}
       </div>
-      <>{tabs[activeTabIndex].content}</>
+      <motion.div
+        layoutId="underline"
+        key={activeTabIndex}
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -10, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        {tabs[activeTabIndex].content}
+      </motion.div>
     </div>
   );
 };
