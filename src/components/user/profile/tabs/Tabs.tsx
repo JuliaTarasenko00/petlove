@@ -12,7 +12,6 @@ interface TabsProps {
 }
 
 export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
-  console.log('tabs: ', tabs);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   const handleTabClick = (index: number) => {

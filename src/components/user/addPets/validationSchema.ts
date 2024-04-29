@@ -9,7 +9,7 @@ export const validationSchema = Yup.object().shape({
     .min(10, 'Too Short! Minimum number of characters is 10')
     .max(50, 'Too Long! Maximum number of characters is 50')
     .required('Required'),
-  birthday: Yup.string().required('Enter birthday'),
+  birthday: Yup.date().nullable().required('Required'),
   type: Yup.string().required('Enter type'),
   gender: Yup.string()
     .oneOf(['', 'female', 'male', 'multiple'] as const, 'Invalid gender')

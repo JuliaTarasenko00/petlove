@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { InferType } from 'yup';
 import Image from 'next/image';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IoFemaleSharp, IoMale, IoMaleFemale } from 'react-icons/io5';
@@ -31,12 +30,19 @@ export const type = {
   multiple: 'multiple',
 };
 
-type TDefaultValues = InferType<typeof validationSchema>;
+type TDefaultValues = {
+  petsName: string;
+  title: string;
+  birthday?: Date | null;
+  type: string;
+  gender: string;
+  image: string;
+};
 
 const defaultValues: TDefaultValues = {
   petsName: '',
   title: '',
-  birthday: '',
+  birthday: null,
   type: '',
   gender: '',
   image: '',

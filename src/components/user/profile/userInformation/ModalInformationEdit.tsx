@@ -37,7 +37,6 @@ export const ModalInformationEdit = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
-  console.log('isDirty: ', isDirty);
 
   useEffect(() => {
     if (user.email) {
@@ -61,7 +60,7 @@ export const ModalInformationEdit = () => {
     if (values.email) {
       value.email = values.email;
     }
-    console.log(value);
+
     dispatch(currentEdit(value));
   });
 
@@ -96,7 +95,6 @@ export const ModalInformationEdit = () => {
                 render={({ field }) => (
                   <ImageInput
                     {...field}
-                    disabled
                     setSelectImg={setSelectImg}
                     placeholder="Image"
                   />
