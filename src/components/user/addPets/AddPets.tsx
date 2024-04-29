@@ -17,6 +17,7 @@ import { FormControl } from '@mui/material';
 import { CustomMenuItem, CustomSelect, style } from './SelectCustomStyle';
 import { getSpecies } from '@/redux/filter/operation';
 import { DataInput } from '@/components/ui/input/DataInput';
+import { InferType } from 'yup';
 
 interface IListSelect {
   name: string;
@@ -30,14 +31,7 @@ export const type = {
   multiple: 'multiple',
 };
 
-type TDefaultValues = {
-  petsName: string;
-  title: string;
-  birthday?: Date | null;
-  type: string;
-  gender: string;
-  image: string;
-};
+type TDefaultValues = InferType<typeof validationSchema>;
 
 const defaultValues: TDefaultValues = {
   petsName: '',
