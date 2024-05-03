@@ -62,7 +62,7 @@ export const UserInformation = () => {
               alt="User Avatar"
               width="110"
               height="110"
-              className=" h-[94px] w-[94px] rounded-[100px] md:h-[110px] md:w-[110px]"
+              className=" h-[94px] w-[94px] rounded-[100px] object-cover object-center md:h-[110px] md:w-[110px]"
             />
             <button
               type="button"

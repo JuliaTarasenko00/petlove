@@ -135,7 +135,6 @@ export const currentEdit = createAsyncThunk<
   }
 >('edit/user', async (information, thunkApi) => {
   try {
-    console.log('information: ', information);
     const { data } = await $instants.patch('/users/current/edit', information);
     return data;
   } catch (error: ErrorType | any) {

@@ -8,7 +8,7 @@ import {
 } from './FilterCustomStyle';
 import { useAppDispatch } from '@/helpers/hooks/useActionHooks';
 import { getCategories, getSpecies } from '@/redux/filter/operation';
-import { LoaderForPage } from '@/components/ui/loaderForPage/LoaderForPage';
+import { LoaderForPage } from '@/components/ui/loader/LoaderForPage';
 
 interface SelectListProps {
   isLoading: boolean;

@@ -24,7 +24,7 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
             alt={data.name}
             width="50"
             height="50"
-            className="hidden rounded-[50px] lg:block"
+            className="hidden h-[50px] w-[50px] rounded-[50px] object-cover object-center lg:block"
           />
           <Link
             href={routes.user.profile}

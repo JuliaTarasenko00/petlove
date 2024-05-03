@@ -5,7 +5,7 @@ import { MarkupPets } from './MarkupPets';
 import { useState } from 'react';
 import { useFetchNoticesId } from '@/helpers/api/useFetchNoticesId';
 import { useToggleModal } from '@/helpers/hooks/useToggleModal';
-import { LoaderForPage } from '@/components/ui/loaderForPage/LoaderForPage';
+import { LoaderForPage } from '@/components/ui/loader/LoaderForPage';
 import { ModalWindow } from '@/components/ui/modal/Modal';
 import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
 import { deleteFavoritePet } from '@/redux/auth/operation';

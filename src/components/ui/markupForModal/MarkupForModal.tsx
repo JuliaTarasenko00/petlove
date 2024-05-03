@@ -2,7 +2,7 @@
 import { MdOutlineStar } from 'react-icons/md';
 import { Span, Text } from '../TextNotices';
 import { FaRegHeart } from 'react-icons/fa6';
-import { LoaderForPage } from '../loaderForPage/LoaderForPage';
+import { LoaderForPage } from '../loader/LoaderForPage';
 import { PetInformationForModal } from '@/types/petMoreInformation';
 import { FC } from 'react';
 import { Rating } from '@mui/material';

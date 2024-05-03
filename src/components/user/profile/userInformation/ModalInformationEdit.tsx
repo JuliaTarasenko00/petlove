@@ -13,12 +13,15 @@ import { useEffect, useState } from 'react';
 import { InputForImg } from '@/components/ui/input/InputForImg';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { currentEdit } from '@/redux/auth/operation';
+import { useUploadImage } from '@/helpers/hooks/useUploadImage';
+import { LoaderForComponents } from '@/components/ui/loader/LoaderForComponent';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
 export const ModalInformationEdit = () => {
   const [selectImg, setSelectImg] = useState<File | null>(null);
   const user = useAppSelector((state) => state.user.userFullInformation);
+  const { patchImage, loading } = useUploadImage(selectImg, user._id);
   const dispatch = useAppDispatch();
 
   const defaultValues: ValuesInput = {
@@ -59,6 +62,9 @@ export const ModalInformationEdit = () => {
     }
     if (values.email) {
       value.email = values.email;
+    }
+    if (values.avatar) {
+      value.avatar = patchImage;
     }
 
     dispatch(currentEdit(value));
@@ -164,10 +170,10 @@ export const ModalInformationEdit = () => {
         </div>
         <button
           type="submit"
-          disabled={!isDirty}
-          className=" button-active-darker w-[285px] max-w-[100%] rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none disabled:cursor-not-allowed disabled:bg-[#6b72808a] md:w-[380px]"
+          disabled={!isDirty || loading}
+          className=" button-active-darker flex w-[285px] max-w-[100%] justify-center rounded-[30px] bg-[#f6b83d] py-[16px] text-[16px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] outline-none disabled:cursor-not-allowed disabled:bg-[#6b72808a] md:w-[380px]"
         >
-          Save
+          {!loading ? 'Save' : <LoaderForComponents />}
         </button>
       </form>
     </div>
