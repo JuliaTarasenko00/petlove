@@ -5,16 +5,17 @@ import { useEffect, useState } from 'react';
 
 const url = process.env.NEXT_PUBLIC_CLOUD_API;
 
-export const useUploadImage = (selectedImage: File | null, id: string) => {
+export const useUploadImage = (selectedImage: File | null, id?: string) => {
   const [patchImage, setPatchImage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!selectedImage) return;
+
     const uploadImage = async (file: File) => {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('unique_id', id);
+      if (id) formData.append('unique_id', id);
       formData.append('upload_preset', 'yywgwal3');
       formData.append('folder', 'petlove');
 
@@ -30,7 +31,7 @@ export const useUploadImage = (selectedImage: File | null, id: string) => {
       }
     };
     uploadImage(selectedImage);
-  }, [selectedImage]);
+  }, [selectedImage, id]);
 
   return { patchImage, loading };
 };

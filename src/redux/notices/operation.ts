@@ -8,6 +8,16 @@ interface NoticesArgs {
   l?: number;
 }
 
+interface FilterArg {
+  p: number;
+  l?: number;
+  category?: string;
+  species?: string;
+  name?: string;
+  type?: string;
+  isSelected: string;
+}
+
 export const getNotices = createAsyncThunk<
   Notices,
   NoticesArgs,
@@ -30,7 +40,7 @@ export const getNotices = createAsyncThunk<
 
 export const getNoticesFilter = createAsyncThunk<
   Notices,
-  any,
+  FilterArg,
   {
     rejectValue: ErrorType;
   }
@@ -40,17 +50,25 @@ export const getNoticesFilter = createAsyncThunk<
     { p = 1, l = 6, category, species, name, type, isSelected },
     thunkApi,
   ) => {
-    const params = new URLSearchParams({
-      page: p,
-      limit: l,
-      keyword: name,
-      category: category,
-      species: species,
-    });
+    const params = new URLSearchParams();
+    params.append('page', p.toString());
+    params.append('limit', l.toString());
+
+    if (category) {
+      params.append('category', category);
+    }
+    if (species) {
+      params.append('species', species);
+    }
+    if (name) {
+      params.append('keyword', name);
+    }
+    if (type) {
+      params.append(`${type}`, isSelected);
+    }
+
     try {
-      const { data } = await $instants.get(
-        `/notices?${params.toString()}&${type}=${isSelected}`,
-      );
+      const { data } = await $instants.get(`/notices?${params.toString()}`);
       return data;
     } catch (error: ErrorType | any) {
       return thunkApi.rejectWithValue({

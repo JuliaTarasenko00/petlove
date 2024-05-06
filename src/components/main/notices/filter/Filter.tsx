@@ -1,10 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { SelectList } from './Select';
 import * as Yup from 'yup';
 import { RadioButton } from './RadioButton';
-import { getNoticesFilter } from '@/redux/notices/operation';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SearchInput } from '@/components/ui/input/SearchInput';
@@ -16,6 +14,7 @@ interface FilterProps {
   setSelected: any;
   setSelectedName: (name: string) => void;
   selectedButton: TState;
+  isFilter: boolean;
 }
 
 const validationSchema = Yup.object().shape({
@@ -30,6 +29,7 @@ export const Filter: React.FC<FilterProps> = ({
   setSelected,
   setSelectedName,
   selectedButton,
+  isFilter,
 }) => {
   const { categories, isLoading, species } = useAppSelector(
     (state) => state.filter,
@@ -69,8 +69,30 @@ export const Filter: React.FC<FilterProps> = ({
     setSelectedName(value.name);
   });
 
+  const resetFilter = () => {
+    setSelectedButton({
+      name: '',
+      check: null,
+      type: '',
+    });
+    setSelected({
+      category: '',
+      species: '',
+    });
+    setSelectedName('');
+  };
+
   return (
     <div className="mt-[40px] rounded-[30px] bg-[#fff4df] p-[20px] sm:p-[32px] lg:p-[40px]">
+      {isFilter && (
+        <button
+          type="button"
+          className=" ml-auto block text-[16px] font-medium text-[#262626]"
+          onClick={resetFilter}
+        >
+          Clean the filter
+        </button>
+      )}
       <div className="flex flex-wrap items-center gap-[16px] border-b border-[#2626261a] pb-[20px]">
         <div className=" w-[100%] md:w-[265px]">
           <form className="relative" onSubmit={submitForm}>

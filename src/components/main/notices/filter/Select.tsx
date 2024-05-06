@@ -8,7 +8,7 @@ import {
 } from './FilterCustomStyle';
 import { useAppDispatch } from '@/helpers/hooks/useActionHooks';
 import { getCategories, getSpecies } from '@/redux/filter/operation';
-import { LoaderForPage } from '@/components/ui/loader/LoaderForPage';
+import { LoaderForComponents } from '@/components/ui/loader/LoaderForComponent';
 
 interface SelectListProps {
   isLoading: boolean;
@@ -38,7 +38,7 @@ export const SelectList = ({
           <FirstMenuItem value={0}>Category</FirstMenuItem>
           {isLoading && (
             <div className=" flex items-center justify-center">
-              <LoaderForPage />
+              <LoaderForComponents />
             </div>
           )}
           {!isLoading &&
@@ -60,7 +60,7 @@ export const SelectList = ({
           <FirstMenuItem value={0}>By type</FirstMenuItem>
           {isLoading && (
             <div className=" flex items-center justify-center">
-              <LoaderForPage />
+              <LoaderForComponents />
             </div>
           )}
           {!isLoading &&

@@ -9,6 +9,7 @@ import {
   currentEdit,
   currentUser,
   deleteFavoritePet,
+  removeUserPet,
   signIn,
   signOut,
   signUp,
@@ -100,6 +101,12 @@ export const userSlice = createSlice({
           state.favoritePets = payload.noticesFavorites.map(({ _id }) => _id);
           state.userFullInformation = payload;
           state.error = null;
+        },
+      )
+      .addCase(
+        removeUserPet.fulfilled,
+        (state, { payload }: PayloadAction<UserInformation>) => {
+          state.userFullInformation.pets = payload.pets;
         },
       )
       .addCase(signOut.fulfilled, (state) => {

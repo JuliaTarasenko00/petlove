@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,6 +18,11 @@ import { CustomMenuItem, CustomSelect, style } from './SelectCustomStyle';
 import { getSpecies } from '@/redux/filter/operation';
 import { DataInput } from '@/components/ui/input/DataInput';
 import { InferType } from 'yup';
+import { useUploadImage } from '@/helpers/hooks/useUploadImage';
+import { format } from 'date-fns';
+import { useAddUserPet } from '@/helpers/api/useAddUserPet';
+import { IPet } from '@/types/user';
+import { LoaderForComponents } from '@/components/ui/loader/LoaderForComponent';
 
 interface IListSelect {
   name: string;
@@ -43,11 +48,16 @@ const defaultValues: TDefaultValues = {
 };
 
 export const AddPetForm = () => {
-  const [checkedName, setCheckedName] = useState<string>('');
-  const [selectImg, setSelectImg] = useState<File | null>(null);
+  const routBack = useRouter();
   const dispatch = useAppDispatch();
   const { isLoading, species } = useAppSelector((state) => state.filter);
-  const routBack = useRouter();
+  const [checkedName, setCheckedName] = useState<string>('');
+  const [selectImg, setSelectImg] = useState<File | null>(null);
+  const [information, setInformation] = useState<IPet>();
+  const { patchImage, loading } = useUploadImage(selectImg);
+  const { isLoading: isLoadingAddPet, isSuccessfully } = useAddUserPet(
+    information as IPet,
+  );
 
   const listSelect: IListSelect[] = [
     {
@@ -71,6 +81,7 @@ export const AddPetForm = () => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TDefaultValues>({
     defaultValues,
     mode: 'onChange',
@@ -78,8 +89,27 @@ export const AddPetForm = () => {
   });
 
   const handelSubmitForm = handleSubmit((values) => {
-    console.log({ ...values, image: selectImg });
+    const data: string = values.birthday
+      ? format(values.birthday, 'yyyy-MM-dd')
+      : '';
+
+    setInformation({
+      name: values.petsName,
+      title: values.title,
+      imgURL: patchImage,
+      species: values.type,
+      birthday: data,
+      sex: values.gender,
+    });
   });
+
+  useEffect(() => {
+    if (isSuccessfully && !isLoadingAddPet) {
+      reset();
+      setCheckedName('');
+      setSelectImg(null);
+    }
+  }, [isSuccessfully, isLoadingAddPet]);
 
   return (
     <section className="py-[32px]">
@@ -245,7 +275,11 @@ export const AddPetForm = () => {
                           onOpen={() => dispatch(getSpecies())}
                           className={`${field.value.length > 0 ? 'border-[1px] border-[#f6b83d]' : 'border-[1px] border-[#26262626]'} ${!!errors.type?.message && 'border-[2px] border-[#ef2447]'}`}
                         >
-                          {isLoading && <p>Loading...</p>}
+                          {isLoading && (
+                            <div className=" flex items-center justify-center">
+                              <LoaderForComponents />
+                            </div>
+                          )}
                           {!isLoading &&
                             species.map((specie: string) => (
                               <CustomMenuItem key={specie} value={specie}>
@@ -274,7 +308,8 @@ export const AddPetForm = () => {
               </button>
               <button
                 type="submit"
-                className=" button-active-darker h-[48px] w-[100px] rounded-[30px] bg-[#f6b83d] text-[14px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] md:w-[170px] md:text-[16px]"
+                disabled={loading}
+                className=" button-active-darker h-[48px] w-[100px] rounded-[30px] bg-[#f6b83d] text-[14px] font-bold leading-[125%] tracking-[-0.03em] text-[#fff] disabled:bg-[#8080808a] md:w-[170px] md:text-[16px]"
               >
                 Submit
               </button>

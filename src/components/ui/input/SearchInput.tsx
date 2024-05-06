@@ -26,10 +26,12 @@ export const SearchInput = forwardRef(
           type="text"
           value={value}
           placeholder="Search"
-          className={`w-full rounded-[30px] border-[1px] ${isColor ? 'bg-[#fff]' : 'bg-transparent'} ${isColor ? 'border-transparent' : 'border-[#26262626]'} p-[14px] ${isColor ? 'text-[#262626]' : 'text-[#26262680]'} ${errorMessage && 'border-[#ef4444]'} ${!!errorMessage ? 'outline-none' : 'outline-[#057405e0]'} ${isColor ? 'placeholder:text-[#262626]' : 'placeholder:text-[#26262680]'}`}
+          className={`w-full rounded-[30px] border-[1px] outline-none ${isColor ? 'bg-[#fff]' : 'bg-transparent'} ${isColor && !errorMessage ? 'border-transparent' : 'border-[#26262626]'} p-[14px] ${isColor ? 'text-[#262626]' : 'text-[#26262680]'} ${errorMessage && 'border-[#ef4444]'} ${!errorMessage && value && 'border-[#057405e0]'} ${isColor ? 'placeholder:text-[#262626]' : 'placeholder:text-[#26262680]'}`}
         />
         {errorMessage ? (
-          <p className=" absolute bottom-[-34px] text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]">
+          <p
+            className={` ${isColor ? 'bottom-[-18px]' : 'bottom-[-34px]'} absolute text-[12px] leading-[117%] tracking-[-0.03em] text-[#ef2447]`}
+          >
             {errorMessage}
           </p>
         ) : null}

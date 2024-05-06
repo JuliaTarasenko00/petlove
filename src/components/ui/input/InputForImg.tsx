@@ -29,7 +29,7 @@ export const InputForImg = forwardRef(
             value={value}
             disabled={disabled}
             placeholder={placeholder}
-            className={`w-[100%] rounded-[30px] ${disabled && 'cursor-no-drop'} border-[1px]  ${activeBorder ? 'border-[#f6b83d]' : 'border-[#26262626]'} bg-transparent ${errorMessage && 'border-[2px] border-[#ef2447]'} 'outline-none' p-[5px] text-[#262626] outline-offset-0 sm:p-[10px]`}
+            className={`w-[100%] rounded-[30px] outline-none ${disabled && 'cursor-no-drop'} border-[1px]  ${activeBorder || value ? 'border-[#f6b83d]' : 'border-[#26262626]'} bg-transparent ${errorMessage && 'border-[2px] border-[#ef2447]'} 'outline-none' p-[5px] text-[#262626] outline-offset-0 sm:p-[10px]`}
           />
         </div>
         {errorMessage ? (

@@ -53,7 +53,7 @@ export interface INoticesFavorite {
 }
 
 export interface IPet {
-  _id: string;
+  _id?: string;
   species: string;
   title: string;
   name: string;

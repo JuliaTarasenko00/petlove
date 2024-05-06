@@ -1,12 +1,15 @@
+'use client';
 import { GoPlus } from 'react-icons/go';
 import { format } from 'date-fns';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { routes } from '@/helpers/routes';
-import { useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
+import { removeUserPet } from '@/redux/auth/operation';
 
 export const UserPets = () => {
   const pet = useAppSelector((state) => state.user.userFullInformation.pets);
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -37,10 +40,10 @@ export const UserPets = () => {
                     alt={item.title}
                     width="90"
                     height="90"
-                    className="mr-[25px] h-[66px] w-[66px] rounded-[100px] lg:h-[90px] lg:w-[90px]"
+                    className="mr-[25px] h-[66px] w-[66px] rounded-[100px] object-cover object-center lg:h-[90px] lg:w-[90px]"
                   />
                   <div className=" m-auto">
-                    <h2 className=" mb-[12px] text-[14px] font-bold leading-[129%] text-[#2b2b2a]">
+                    <h2 className=" mb-[12px] max-w-[230px] text-[14px] font-bold leading-[129%] text-[#2b2b2a]">
                       {item.title}
                     </h2>
                     <ul className=" flex flex-wrap items-center gap-[10px] lg:flex-nowrap lg:gap-[25px]">
@@ -48,7 +51,7 @@ export const UserPets = () => {
                         <p className=" text-[10px] font-medium leading-[140%] tracking-[-0.02em] text-[#26262680]">
                           Name
                         </p>
-                        <p className=" text-[12px] font-medium leading-[117%] tracking-[-0.02em] text-[#262626]">
+                        <p className=" max-w-[50px] overflow-hidden text-center text-[12px] font-medium leading-[117%] tracking-[-0.02em] text-[#262626]">
                           {item.name}
                         </p>
                       </li>
@@ -80,6 +83,7 @@ export const UserPets = () => {
                   </div>
                   <button
                     type="button"
+                    onClick={() => dispatch(removeUserPet(item._id as string))}
                     className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[10px] text-[#F6B83D] outline-none"
                   >
                     <RiDeleteBinLine />

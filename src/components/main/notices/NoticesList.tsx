@@ -49,14 +49,16 @@ export const NoticesList = () => {
     !!selectedButton.name;
 
   useEffect(() => {
+    const check =
+      selectedButton.check !== null ? selectedButton.check.toString() : '';
     if (isFilter) {
       dispatch(
         getNoticesFilter({
           ...selected,
           p: page,
           name: selectedName,
-          type: selectedButton.check !== null && selectedButton.type,
-          isSelected: selectedButton.check ?? '',
+          type: selectedButton.check !== null ? selectedButton.type : '',
+          isSelected: check,
         }),
       );
       return;
@@ -73,6 +75,7 @@ export const NoticesList = () => {
           <TitlePage>Find your favorite pet</TitlePage>
 
           <Filter
+            isFilter={isFilter}
             setSelectedButton={setSelectedButton}
             setSelected={setSelected}
             setSelectedName={setSelectedName}

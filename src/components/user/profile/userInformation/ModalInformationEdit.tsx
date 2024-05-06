@@ -30,6 +30,7 @@ export const ModalInformationEdit = () => {
     phone: user.phone || '+380',
     avatar: user.avatar,
   };
+
   const {
     handleSubmit,
     control,
@@ -122,7 +123,7 @@ export const ModalInformationEdit = () => {
                           (URL.createObjectURL(selectImg).slice(
                             5,
                           ) as string)) ??
-                        ''
+                        field.value
                       }
                     />
                   )}

@@ -1,5 +1,5 @@
 import { ErrorType } from '@/types/errorType';
-import { UserAuth, UserInformation } from '@/types/user';
+import { IPet, UserAuth, UserInformation } from '@/types/user';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $instants, clearToken, setToken } from '../request';
 
@@ -63,7 +63,9 @@ export const currentUser = createAsyncThunk<
   const token = state.user.token;
   try {
     setToken(token);
-    const { data } = await $instants.get('/users/current/full');
+    const { data } = await $instants.get<UserInformation>(
+      '/users/current/full',
+    );
     return data;
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({
@@ -99,7 +101,9 @@ export const deleteFavoritePet = createAsyncThunk<
   }
 >('delete/favorite', async (id, thunkApi) => {
   try {
-    const { data } = await $instants.delete(`/notices/favorites/remove/${id}`);
+    const { data } = await $instants.delete<Array<string>>(
+      `/notices/favorites/remove/${id}`,
+    );
     return data;
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({
@@ -117,7 +121,9 @@ export const addFavoritePet = createAsyncThunk<
   }
 >('add/favorite', async (id, thunkApi) => {
   try {
-    const { data } = await $instants.post(`/notices/favorites/add/${id}`);
+    const { data } = await $instants.post<Array<string>>(
+      `/notices/favorites/add/${id}`,
+    );
     return data;
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({
@@ -135,7 +141,30 @@ export const currentEdit = createAsyncThunk<
   }
 >('edit/user', async (information, thunkApi) => {
   try {
-    const { data } = await $instants.patch('/users/current/edit', information);
+    const { data } = await $instants.patch<UserInformation>(
+      '/users/current/edit',
+      information,
+    );
+    return data;
+  } catch (error: ErrorType | any) {
+    return thunkApi.rejectWithValue({
+      message: error.message,
+      code: error.response.status,
+    });
+  }
+});
+
+export const removeUserPet = createAsyncThunk<
+  UserInformation,
+  string,
+  {
+    rejectValue: ErrorType;
+  }
+>('delete/pet', async (id, thunkApi) => {
+  try {
+    const { data } = await $instants.delete<UserInformation>(
+      `users/current/pets/remove/${id}`,
+    );
     return data;
   } catch (error: ErrorType | any) {
     return thunkApi.rejectWithValue({
