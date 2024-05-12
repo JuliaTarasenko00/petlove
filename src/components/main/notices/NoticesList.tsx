@@ -73,15 +73,14 @@ export const NoticesList = () => {
       <section className="min-h-[100vh] py-[96px]">
         <div className="container">
           <TitlePage>Find your favorite pet</TitlePage>
-
           <Filter
             isFilter={isFilter}
+            selected={selected}
             setSelectedButton={setSelectedButton}
             setSelected={setSelected}
             setSelectedName={setSelectedName}
             selectedButton={selectedButton}
           />
-
           <motion.ul
             variants={container}
             initial="hidden"

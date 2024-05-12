@@ -15,6 +15,10 @@ interface FilterProps {
   setSelectedName: (name: string) => void;
   selectedButton: TState;
   isFilter: boolean;
+  selected: {
+    category: string;
+    species: string;
+  };
 }
 
 const validationSchema = Yup.object().shape({
@@ -29,7 +33,7 @@ export const Filter: React.FC<FilterProps> = ({
   setSelected,
   setSelectedName,
   selectedButton,
-  isFilter,
+  isFilter,selected
 }) => {
   const { categories, isLoading, species } = useAppSelector(
     (state) => state.filter,
@@ -123,6 +127,7 @@ export const Filter: React.FC<FilterProps> = ({
         </div>
         <SelectList
           isLoading={isLoading}
+          selected={selected}
           categories={categories}
           species={species}
           handleChange={handleSelectChange}

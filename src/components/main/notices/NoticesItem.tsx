@@ -13,6 +13,7 @@ import { useFetchNoticesId } from '@/helpers/api/useFetchNoticesId';
 import { MarkupForModal } from '@/components/ui/markupForModal/MarkupForModal';
 import { addFavoritePet } from '@/redux/auth/operation';
 import { FaHeart } from 'react-icons/fa6';
+import { FilterNotFound } from '@/components/ui/filterNotFound/FilterNotFound';
 
 const item = {
   hidden: { y: 20, opacity: 0 },
@@ -161,6 +162,7 @@ export const NoticesItem = ({ items }: INoticesItem) => {
           );
         },
       )}
+      {!items.length && <FilterNotFound />}
       <ModalWindow onClose={toggleModal} open={open}>
         <>
           {!showInform ? (

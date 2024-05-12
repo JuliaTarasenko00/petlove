@@ -4,8 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { getNews, getNewsSearch } from '@/redux/news/operation';
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import image from '/public/image/not_found.png';
 import { TitlePage } from '@/components/ui/TitlePage';
 import { NewsItem } from './NewsItem';
 import { Pagination } from '@/components/ui/Pagination/Pagination';
@@ -15,6 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { IoIosClose } from 'react-icons/io';
 import { IoSearch } from 'react-icons/io5';
 import { SearchInput } from '@/components/ui/input/SearchInput';
+import { FilterNotFound } from '@/components/ui/filterNotFound/FilterNotFound';
 
 export type FormValues = {
   name: string;
@@ -111,20 +110,7 @@ export const NewsList = () => {
             </>
           )}
           {news.length <= 0 && searchValue !== '' && (
-            <div className=" flex  justify-center">
-              <div className=" flex max-w-[900px] flex-wrap items-center justify-center gap-[50px] rounded-[20px] bg-[#f6b83d] p-[20px]">
-                <Image
-                  src={image}
-                  alt="This name not found"
-                  width={300}
-                  height={200}
-                  className=" w-[300px]"
-                />
-                <h3 className=" text-center text-[24px] font-bold text-[#fff]">
-                  Oppppsss! This name "{searchValue}" not found
-                </h3>
-              </div>
-            </div>
+            <FilterNotFound name={searchValue} />
           )}
         </div>
       </section>
