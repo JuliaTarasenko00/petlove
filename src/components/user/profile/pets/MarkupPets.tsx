@@ -23,9 +23,9 @@ export const MarkupPets = ({
       <div className=" max-w-[700px] overflow-scroll sm:h-[450px] md:h-[900px]">
         {!items.length && (
           <h3 className=" max-w-[700px]">
-            Oops, <span>looks like there aren't any furies</span> on our
-            adorable page yet. Do not worry! View your pets on the "find your
-            favorite pet" page and add them to your favorites.
+            Oops, <span>looks like there aren`t any furies</span> on our
+            adorable page yet. Do not worry! View your pets on the `find your
+            favorite pet` page and add them to your favorites.
           </h3>
         )}
         {!!items.length && (
@@ -39,14 +39,18 @@ export const MarkupPets = ({
                   className=" flex w-[310px] flex-col justify-center gap-[24px] rounded-[16px] bg-[#fff] p-[24px] sm:w-[335px] lg:w-[320px]"
                 >
                   <div className=" grow-[1]">
-                    <img
-                      src={item?.imgURL}
-                      alt={item?.title}
-                      loading="lazy"
-                      width="292"
-                      height="162"
-                      className=" mb-[14px] max-h-[178px] rounded-[16px] object-cover object-center"
-                    />
+                    <picture>
+                      <source srcSet={item?.imgURL} type="image/webp" />
+                      <img
+                        src={item?.imgURL}
+                        alt={item?.title}
+                        loading="lazy"
+                        width="292"
+                        height="162"
+                        className=" mb-[14px] max-h-[178px] rounded-[16px] object-cover object-center"
+                      />
+                    </picture>
+
                     <div className=" mb-[8px] flex justify-between">
                       <h3 className=" text-[18px] font-bold leading-[133%] text-[#2b2b2a]">
                         {item?.title}
@@ -106,7 +110,8 @@ export const MarkupPets = ({
                       <button
                         type="button"
                         onClick={() => {
-                          if (!!onOpenModalFavorite) onOpenModalFavorite(item?._id);
+                          if (!!onOpenModalFavorite)
+                            onOpenModalFavorite(item?._id);
                         }}
                         className=" button-active-lighter rounded-[30px] bg-[#fff4df] p-[13px]"
                       >

@@ -18,14 +18,17 @@ export const NewsItem = (props: NewsItemsProps) => {
             className="flex max-w-[335px] flex-col  gap-[28px]  lg:max-w-[361px]"
           >
             <div className=" grow-[1]">
-              <img
-                loading="lazy"
-                src={item.imgUrl}
-                alt={item.text}
-                width={361}
-                height={226}
-                className=" max-h-[226px] rounded-[15px] object-fill"
-              />
+              <picture>
+                <source srcSet={item.imgUrl} type="image/webp" />
+                <img
+                  loading="lazy"
+                  src={item.imgUrl}
+                  alt={item.text}
+                  width={361}
+                  height={226}
+                  className=" max-h-[226px] rounded-[15px] object-fill"
+                />
+              </picture>
               <h3 className="mb-[14px] mt-[28px] text-[20px] font-bold leading-[130%] tracking-tight text-[#262626]">
                 {item.title}
               </h3>

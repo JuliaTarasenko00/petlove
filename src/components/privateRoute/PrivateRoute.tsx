@@ -25,7 +25,7 @@ export function PrivateRoute({ children }: { children: React.ReactNode }) {
     if (token && login) {
       router.replace(routes.user.profile);
     }
-  }, [token, router]);
+  }, [token, router, userProfile, register, login]);
 
   return <>{children}</>;
 }

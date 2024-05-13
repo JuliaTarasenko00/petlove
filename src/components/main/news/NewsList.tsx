@@ -10,7 +10,6 @@ import { Pagination } from '@/components/ui/Pagination/Pagination';
 import { Loader } from '@/components/ui/loader/Loader';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IoIosClose } from 'react-icons/io';
 import { IoSearch } from 'react-icons/io5';
 import { SearchInput } from '@/components/ui/input/SearchInput';
 import { FilterNotFound } from '@/components/ui/filterNotFound/FilterNotFound';

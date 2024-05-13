@@ -66,7 +66,7 @@ export const NoticesList = () => {
       dispatch(getNotices({ p: page }));
       return;
     }
-  }, [page, selectedName, selectedButton, selected, dispatch]);
+  }, [page, selectedName, selectedButton, selected, dispatch, isFilter]);
 
   return (
     <>

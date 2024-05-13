@@ -31,14 +31,17 @@ export const OurFriendsItem = ({ items }: OurFriends) => {
             variants={item}
             className="flex w-[381px] items-center gap-[20px] rounded-[15px] bg-[#fff] px-[20px] py-[40px]"
           >
-            <img
-              src={imageUrl}
-              alt={title}
-              loading="lazy"
-              width="90"
-              height="90"
-              className="h-[90px] w-[90px]"
-            />
+            <picture>
+              <source srcSet={imageUrl} type="image/webp" />
+              <img
+                src={imageUrl}
+                alt={title}
+                loading="lazy"
+                width="90"
+                height="90"
+                className="h-[90px] w-[90px]"
+              />
+            </picture>
             <div className=" flex flex-col">
               <h3 className=" mb-[20px] text-[20px] font-bold leading-[130%] tracking-[-0.04em] text-[#262626]">
                 {title}

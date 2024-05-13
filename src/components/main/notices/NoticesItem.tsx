@@ -81,14 +81,17 @@ export const NoticesItem = ({ items }: INoticesItem) => {
               className=" flex w-[310px] flex-col gap-[50px] rounded-[16px] bg-[#fff] p-[24px] sm:w-[335px] md:w-[363px]"
             >
               <div className=" grow-[1]">
-                <img
-                  src={imgURL}
-                  alt={title}
-                  loading="lazy"
-                  width="315"
-                  height="178"
-                  className=" mb-[24px] max-h-[178px] rounded-[16px] object-cover object-center"
-                />
+                <picture>
+                  <source srcSet={imgURL} type="image/webp" />
+                  <img
+                    src={imgURL}
+                    alt={title}
+                    loading="lazy"
+                    width="315"
+                    height="178"
+                    className=" mb-[24px] max-h-[178px] rounded-[16px] object-cover object-center"
+                  />
+                </picture>
                 <div className=" mb-[8px] flex justify-between">
                   <h3 className=" text-[18px] font-bold leading-[133%] text-[#2b2b2a]">
                     {title}

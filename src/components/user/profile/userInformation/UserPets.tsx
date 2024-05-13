@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { routes } from '@/helpers/routes';
 import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { removeUserPet } from '@/redux/auth/operation';
+import Image from 'next/image';
 
 export const UserPets = () => {
   const pet = useAppSelector((state) => state.user.userFullInformation.pets);
@@ -35,7 +36,7 @@ export const UserPets = () => {
                   key={item._id}
                   className=" flex w-[100%] items-start justify-between rounded-[20px] border-[1px] border-[#2626261a] p-[20px] sm:w-[305px] lg:w-[100%]"
                 >
-                  <img
+                  <Image
                     src={item.imgURL}
                     alt={item.title}
                     width="90"
@@ -93,7 +94,7 @@ export const UserPets = () => {
             })}
           </ul>
         )}
-        {!pet.length && <p>Oppsss... You don't have a list of animals</p>}
+        {!pet.length && <p>Oppsss... You don`t have a list of animals</p>}
       </div>
     </>
   );

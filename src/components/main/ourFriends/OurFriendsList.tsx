@@ -27,7 +27,7 @@ export const OurFriendsComponent = () => {
 
   useEffect(() => {
     dispatch(getFriends());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

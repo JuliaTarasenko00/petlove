@@ -6,6 +6,7 @@ import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { AuthLink } from '../ui/AuthLink';
 import img from '/public/image/not-photo.png';
 import { routes } from '@/helpers/routes';
+import Image from 'next/image';
 
 interface IRender {
   mainPage?: boolean;
@@ -21,11 +22,11 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
     <>
       {auth && (
         <div className=" flex items-center gap-[8px]">
-          <img
+          <Image
             src={image}
             alt={data.name}
-            width="50"
-            height="50"
+            width={50}
+            height={50}
             className="hidden h-[50px] w-[50px] rounded-[50px] object-cover object-center lg:block"
           />
           <Link

@@ -14,7 +14,7 @@ export const FilterNotFound = ({ name }: { name?: string }) => {
         />
         {name && (
           <h3 className=" text-center text-[24px] font-bold text-[#fff]">
-            Oppppsss! This name "{name}" not found
+            Oppppsss! This name ``{name}`` not found
           </h3>
         )}
         {!name && (

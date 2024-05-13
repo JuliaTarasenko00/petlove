@@ -84,17 +84,29 @@ export const ModalInformationEdit = () => {
         <div className=" mb-[40px] flex flex-col items-center gap-[14px]">
           <div className=" flex w-[100%] flex-col items-center gap-[12px]">
             <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
-              <img
-                src={
-                  !!selectImg
-                    ? URL.createObjectURL(selectImg)
-                    : user.avatar === ''
-                      ? img?.src
-                      : user?.avatar
-                }
-                alt={user.name}
-                className="h-[100%] w-[100%] object-cover object-center"
-              />
+              <picture>
+                <source
+                  srcSet={
+                    !!selectImg
+                      ? URL.createObjectURL(selectImg)
+                      : user.avatar === ''
+                        ? img?.src
+                        : user?.avatar
+                  }
+                  type="image/webp"
+                />
+                <img
+                  src={
+                    !!selectImg
+                      ? URL.createObjectURL(selectImg)
+                      : user.avatar === ''
+                        ? img?.src
+                        : user?.avatar
+                  }
+                  alt={user.name}
+                  className="h-[100%] w-[100%] object-cover object-center"
+                />
+              </picture>
             </div>
             <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
               <Controller

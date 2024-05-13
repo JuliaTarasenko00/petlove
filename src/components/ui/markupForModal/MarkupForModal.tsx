@@ -23,14 +23,17 @@ export const MarkupForModal: FC<MarkupForModalProps> = ({
       {!isLoading && (
         <>
           <div className=" relative">
-            <img
-              src={data?.imgURL}
-              alt={data?.title}
-              loading="lazy"
-              width="150"
-              height="150"
-              className=" mb-[24px] max-h-[150px] max-w-[150px] rounded-[100px] object-cover object-center"
-            />
+            <picture>
+              <source srcSet={data?.imgURL} type="image/webp" />
+              <img
+                src={data?.imgURL}
+                alt={data?.title}
+                loading="lazy"
+                width="150"
+                height="150"
+                className=" mb-[24px] max-h-[150px] max-w-[150px] rounded-[100px] object-cover object-center"
+              />
+            </picture>
             <p className=" absolute left-0 top-0 rounded-[30px] bg-[#fff4df] px-[14px] py-[8px] text-[14px] font-medium capitalize text-[#f6b83d]">
               {data?.category}
             </p>

@@ -109,7 +109,7 @@ export const AddPetForm = () => {
       setCheckedName('');
       setSelectImg(null);
     }
-  }, [isSuccessfully, isLoadingAddPet]);
+  }, [isSuccessfully, isLoadingAddPet, reset]);
 
   return (
     <section className="py-[32px]">
@@ -174,12 +174,22 @@ export const AddPetForm = () => {
             </div>
             <div className="mb-[40px] mt-[20px] flex flex-col items-center justify-center gap-[18px] md:mt-[-20px]">
               <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
-                <img
-                  src={!!selectImg ? URL.createObjectURL(selectImg) : img?.src}
-                  alt="Pet photo"
-                  loading="lazy"
-                  className=" h-[100%] w-[100%]  object-cover object-center"
-                />
+                <picture>
+                  <source
+                    srcSet={
+                      !!selectImg ? URL.createObjectURL(selectImg) : img?.src
+                    }
+                    type="image/webp"
+                  />
+                  <img
+                    src={
+                      !!selectImg ? URL.createObjectURL(selectImg) : img?.src
+                    }
+                    alt="Pet photo"
+                    loading="lazy"
+                    className=" h-[100%] w-[100%]  object-cover object-center"
+                  />
+                </picture>
               </div>
               <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
                 <Controller

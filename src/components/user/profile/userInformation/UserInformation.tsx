@@ -13,6 +13,7 @@ import { ModalInformationEdit } from './ModalInformationEdit';
 import { validationSchema } from './validationSchema';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 type ValuesInput = InferType<typeof validationSchema>;
 
@@ -45,7 +46,7 @@ export const UserInformation = () => {
         phone: user.phone,
       });
     }
-  }, [user, reset]);
+  }, [reset, user]);
 
   const image = !user.avatar ? img.src : user.avatar;
 
@@ -57,11 +58,11 @@ export const UserInformation = () => {
             <p className=" flex max-w-[80px] items-center gap-[3px] rounded-[30px] bg-[#f6b83d] px-[14px] py-[10px] text-[14px] font-medium leading-[129%] tracking-tight text-[#fff]">
               User <FaUserLarge />
             </p>
-            <img
+            <Image
               src={image}
               alt="User Avatar"
-              width="110"
-              height="110"
+              width={110}
+              height={110}
               className=" h-[94px] w-[94px] rounded-[100px] object-cover object-center md:h-[110px] md:w-[110px]"
             />
             <button
