@@ -29,7 +29,6 @@ export const SelectList = ({
   selected,
 }: SelectListProps) => {
   const dispatch = useAppDispatch();
-  console.log('selected: ', !!selected.species);
 
   const styleSpan = `absolute left-[16px] top-[50%] z-10 translate-y-[-50%] text-[#262626]`;
 

@@ -272,7 +272,9 @@ export const AddPetForm = () => {
                         <CustomSelect
                           {...field}
                           MenuProps={{ PaperProps: { sx: style } }}
-                          onOpen={() => dispatch(getSpecies())}
+                          onOpen={() => {
+                            if (!species.length) dispatch(getSpecies());
+                          }}
                           className={`${field.value.length > 0 ? 'border-[1px] border-[#f6b83d]' : 'border-[1px] border-[#26262626]'} ${!!errors.type?.message && 'border-[2px] border-[#ef2447]'}`}
                         >
                           {isLoading && (

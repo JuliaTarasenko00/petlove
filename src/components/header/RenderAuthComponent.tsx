@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { AuthLink } from '../ui/AuthLink';
 import img from '/public/image/not-photo.png';
@@ -14,6 +15,7 @@ interface IRender {
 export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
   const data = useAppSelector((state) => state.user.userFullInformation);
   const image = !data?.avatar ? img.src : data?.avatar;
+  const location = usePathname();
 
   return (
     <>
@@ -28,7 +30,7 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
           />
           <Link
             href={routes.user.profile}
-            className={`hidden text-[20px] font-bold lg:block ${mainPage ? 'text-[#fff]' : 'text-[#262626]'}`}
+            className={`hidden text-[20px] font-bold lg:block ${mainPage ? 'text-[#fff]' : 'text-[#262626]'} ${location.includes(routes.user.profile) && 'text-[#F6B83D]'}`}
           >
             {data.name}
           </Link>

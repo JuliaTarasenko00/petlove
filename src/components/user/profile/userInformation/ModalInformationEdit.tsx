@@ -55,16 +55,17 @@ export const ModalInformationEdit = () => {
 
   const handleSubmitForm = handleSubmit((values) => {
     let value: any = {};
-    if (values.name) {
+    if (values.name !== user.name) {
       value.name = values.name;
     }
-    if (values.phone) {
+    if (values.phone !== user.phone) {
       value.phone = values.phone;
     }
-    if (values.email) {
+    if (values.email !== user.email) {
       value.email = values.email;
     }
-    if (values.avatar) {
+    if (values.avatar !== user.avatar) {
+      console.log('aaaa');
       value.avatar = patchImage;
     }
 
