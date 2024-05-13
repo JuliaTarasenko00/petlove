@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useActionHooks';
 import { currentEdit } from '@/redux/auth/operation';
 import { useUploadImage } from '@/helpers/hooks/useUploadImage';
 import { LoaderForComponents } from '@/components/ui/loader/LoaderForComponent';
+import Image from 'next/image';
 
 type ValuesInput = Yup.InferType<typeof validationSchema>;
 
@@ -84,29 +85,19 @@ export const ModalInformationEdit = () => {
         <div className=" mb-[40px] flex flex-col items-center gap-[14px]">
           <div className=" flex w-[100%] flex-col items-center gap-[12px]">
             <div className=" h-[86px] w-[86px] overflow-hidden rounded-[100px]">
-              <picture>
-                <source
-                  srcSet={
-                    !!selectImg
-                      ? URL.createObjectURL(selectImg)
-                      : user.avatar === ''
-                        ? img?.src
-                        : user?.avatar
-                  }
-                  type="image/webp"
-                />
-                <img
-                  src={
-                    !!selectImg
-                      ? URL.createObjectURL(selectImg)
-                      : user.avatar === ''
-                        ? img?.src
-                        : user?.avatar
-                  }
-                  alt={user.name}
-                  className="h-[100%] w-[100%] object-cover object-center"
-                />
-              </picture>
+              <Image
+                src={
+                  !!selectImg
+                    ? URL.createObjectURL(selectImg)
+                    : user.avatar === ''
+                      ? img?.src
+                      : user?.avatar
+                }
+                alt={user.name}
+                width={86}
+                height={86}
+                className="h-[100%] w-[100%] object-cover object-center"
+              />
             </div>
             <div className=" flex w-[100%] flex-row-reverse items-center justify-between">
               <Controller
