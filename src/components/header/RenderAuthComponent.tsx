@@ -22,13 +22,17 @@ export const RenderAuthComponent = ({ mainPage, auth }: IRender) => {
     <>
       {auth && (
         <div className=" flex items-center gap-[8px]">
-          <Image
-            src={image}
-            alt={data.name}
-            width={50}
-            height={50}
-            className="hidden h-[50px] w-[50px] rounded-[50px] object-cover object-center lg:block"
-          />
+          <picture>
+            <source srcSet={image} type="image/webp" />
+            <img
+              src={image}
+              alt={data.name}
+              width={50}
+              height={50}
+              className="hidden h-[50px] w-[50px] rounded-[50px] object-cover object-center lg:block"
+            />
+          </picture>
+
           <Link
             href={routes.user.profile}
             className={`hidden text-[20px] font-bold lg:block ${mainPage ? 'text-[#fff]' : 'text-[#262626]'} ${location.includes(routes.user.profile) && 'text-[#F6B83D]'}`}
