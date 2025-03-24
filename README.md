@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PetL💛ve
 
-## Getting Started
+PetLove is a platform where users can read articles about animals, register to access detailed information about pets, contact owners, and add their own pets for adoption or sharing.
 
-First, run the development server:
+## Features
+- 📖 Read various articles about animals
+- 🔑 Register to unlock additional pet details
+- 📩 Contact pet owners directly
+- 🐾 Add and manage your own pets
 
+## Technologies Used
+- **Framework & Libraries:** Next.js, React
+- **State Management:** Redux Toolkit, Redux Persist
+- **Forms & Validation:** React Hook Form, Yup, react-imask
+- **UI & Animations:** MUI, Emotion, Framer Motion, AOS
+- **Networking:** Axios
+- **Date Handling:** Date-fns
+- **Notifications & Loaders:** React Toastify, React Loader Spinner
+
+## Installation & Setup
 ```bash
-npm run dev
-# or
+# Clone the repository
+git clone https://github.com/JuliaTarasenko00/petlove.git
+cd petlove
+
+# Install dependencies
+yarn install
+
+# Run the development server
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
+Create a `.env.local` file and configure necessary environment variables:
+```env
+NEXT_PUBLIC_API_URL=https://petlove.b.goit.study/api
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to Contribute
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add new feature'`
+4. Push the branch: `git push origin feature-name`
+5. Submit a pull request
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+# PetL💛ve
 
-To learn more about Next.js, take a look at the following resources:
+PetLove — це платформа, де користувачі можуть читати статті про тварин, реєструватися для отримання додаткової інформації про них, зв’язуватися з власниками та додавати власних тварин.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Функції
+- 📖 Читання різних статей про тварин
+- 🔑 Реєстрація для розширеного доступу до інформації про тварин
+- 📩 Можливість зв’язатися з власником тварини
+- 🐾 Додавання та управління власними тваринами
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Використані технології
+- **Фреймворки та бібліотеки:** Next.js, React
+- **Управління станом:** Redux Toolkit, Redux Persist
+- **Форми та валідація:** React Hook Form, Yup, react-imask
+- **Інтерфейс та анімації:** MUI, Emotion, Framer Motion, AOS
+- **Мережеві запити:** Axios
+- **Обробка дат:** Date-fns
+- **Сповіщення та завантаження:** React Toastify, React Loader Spinner
 
-## Deploy on Vercel
+## Встановлення та налаштування
+```bash
+# Клонувати репозиторій
+git clone  https://github.com/JuliaTarasenko00/petlove.git
+cd petlove
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Встановити залежності
+yarn install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Запустити локальний сервер розробки
+yarn dev
+```
+
+## Змінні середовища
+Створіть файл `.env.local` та налаштуйте необхідні змінні:
+```env
+NEXT_PUBLIC_API_URL=https://petlove.b.goit.study/api
+```
+
+## Як зробити внесок
+1. Форкніть репозиторій
+2. Створіть нову гілку: `git checkout -b feature-name`
+3. Закомітьте зміни: `git commit -m 'Додати нову функцію'`
+4. Запуште гілку: `git push origin feature-name`
+5. Створіть Pull Request
+
+
